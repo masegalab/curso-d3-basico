@@ -1,0 +1,37 @@
+
+// Colors for the examples
+@color-ejemplo-blue:   #6085C5;
+@color-ejemplo-cyan:   #60B0C5;
+@color-ejemplo-green:  #4ACD71;
+@color-ejemplo-yellow: #E0C222;
+@color-ejemplo-red:    #C56060;
+
+// Manipulacion del DOM
+
+.ejemplo {
+
+    .fila {
+
+        display: inline-block;
+
+    }
+}
+
+.floating-block(@color) {
+
+    float: left;
+    margin: 0 @space-small 0 @space-small;
+    width:  2 * @space-huge;
+    height: @space-huge;
+
+    background-color: @color;
+    border: solid @space-thin darken(@color, 10%);
+}
+
+#block01-01 {
+    .floating-block(@color-ejemplo-yellow);
+}
+
+#block01-02 {
+    .floating-block(@color-ejemplo-green);
+}

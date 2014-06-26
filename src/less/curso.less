@@ -1,19 +1,49 @@
+.banner {
 
-.capitulo {
+    // Layout
+    padding: @space-medium @space-medium @space-huge @space-medium;
+    border-bottom: solid @space-medium @color-green;
+
+    background-color: @color-slate;
+
+    h1 {
+        color: @color-white;
+
+        .d3 {
+            color: @color-blue;
+        }
+    }
 
 }
 
 .seccion {
 
     h2 {
-        color: @color-lime;
+        color: @color-slate;
+        border-bottom: solid 1px @color-green;
     }
 
-    // Ejemplo
-    .ejemplo {
-        background-color: @color-white;
-        border: solid 1px @color-grey-light;
-        padding: 10px;
+    p {
+        font-size: 21px;
+        color: @color-grey;
     }
 
+}
+
+.ejemplo {
+
+    border: solid @space-thin @color-grey;
+    padding: @space-medium;
+
+    background-color: @color-grey-lighter;
+}
+
+.runnable {
+
+    margin: @space-medium 0 @space-medium 0;
+
+    textarea {
+        background-color: @color-grey-lighter;
+        font-family: courier;
+    }
 }

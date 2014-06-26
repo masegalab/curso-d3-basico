@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Visualización de datos con D3</title>
+
+    <link href="/assets/css/main.css" rel="stylesheet">
+
+    <script src="/bower_components/d3/d3.min.js" charset="utf8"></script>
+    <script src="/src/utils/runcode.js"></script>
+
+  </head>
+  <body>
+
+    <div class="container">
+
+      <!-- Main Heading -->
+      <div class="banner">
+
+        <h1>Visualización de datos con <span class="d3">D3</span></h1>
+
+      </div>
+
+      <section class="seccion">
+        <h2>Manipulación del DOM con D3</h2>
+
+        <p>Podemos cambiar el color de fondo de un contenedor</p>
+
+        <div class="ejemplo">
+          <div class="fila" id="ejemplo01">
+            <div id="block01-01"></div>
+            <div id="block01-02"></div>
+          </div>
+        </div>
+
+        <div class="runnable" id="code01-01">
+          <textarea class="form-control" rows="3">
+            d3.select('#block01-01').style('background-color', '#C56060');
+          </textarea>
+        </div>
+
+        <script>
+          runnable().source('#code01-01').target('#ejemplo01').init();
+        </script>
+
+
+      </section>
+
+
+
+    </div>
+
+  </body>
+</html>
