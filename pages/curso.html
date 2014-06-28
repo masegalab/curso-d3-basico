@@ -26,12 +26,12 @@
       <section class="seccion">
         <h2>Manipulación del DOM con D3</h2>
 
-        <p>Podemos cambiar el color de fondo de un contenedor</p>
+        <p>Podemos usar D3 para manipular elementos del DOM (Document Object Model). Por ejemplo, podemos cambiar el color de fondo de un contenedor:</p>
 
         <div class="ejemplo">
           <div class="fila" id="ejemplo01">
-            <div id="block01-01"></div>
-            <div id="block01-02"></div>
+            <div id="block01-01" class="example-block"></div>
+            <div id="block01-02" class="example-block"></div>
           </div>
         </div>
 
@@ -46,7 +46,197 @@
         </script>
 
 
+      
+
+      
+        <p>Podemos cambiar varios elementos al mismo tiempo, seleccionando por clase o por tipo de elemento:</p>
+
+
+        <div class="runnable" id="code01-02">
+          <textarea class="form-control" rows="3">
+            d3.selectAll('.example-block').style('width', '100px');
+          </textarea>
+        </div>
+
+        <script>
+          runnable().source('#code01-02').target('#ejemplo01').init();
+        </script>
+
+        <!-- Poner la lista a la derecha del DIY-->
+
+        <h3>DIY</h3>
+        <ul>
+          <li> Cambiar la altura del contenedor azul.</li>
+          <li> Alinear los contenedores a la derecha.</li>
+          <li> Escribir algo dentro de un contenedor.</li>
+        </ul>
+
+        <p>Podemos agregar elementos:</p>
+
+        <div class="ejemplo">
+          <div class="fila" id="ejemplo02">
+            <div id="block01-01" class="example-block"></div>
+            <div id="block01-02" class="example-block"></div>
+          </div>
+        </div>
+
+        <div class="runnable" id="code01-03">
+          <textarea class="form-control" rows="3">
+            var svg = d3.select('#ejemplo02').append('svg').attr('id','new-svg');
+          </textarea>
+        </div>
+
+        <script>
+          runnable().source('#code01-03').target('#ejemplo02').init();
+        </script>
+
+        <p>La variable `svg` contiene una referencia al elemento creado. Podemos usar esta referencia para cambiar los atributos del elemento.</p>
+
+        <!-- No reconoce la variable 'svg'-->
+
+
+        <div class="runnable" id="code01-04">
+          <textarea class="form-control" rows="3">
+            d3.select('#new-svg').attr('width', 300).attr('height', 100);
+          </textarea>
+        </div>
+
+        <script>
+          runnable().source('#code01-04').target('#ejemplo02').init();
+        </script>
+
+        <p>Podemos agregar un rectángulo al SVG:</p>
+
+        <div class="runnable" id="code01-05">
+          <textarea class="form-control" rows="3">
+            var rect = d3.select('#new-svg').append('rect')
+              .attr('fill', 'blue')
+              .attr('x', 20)
+              .attr('y', 20)
+              .attr('width', 150)
+              .attr('height', 80);
+          </textarea>
+        </div>
+
+        <script>
+          runnable().source('#code01-05').target('#ejemplo02').init();
+        </script>
+
+        <!-- Problemas insertando codigo-->
+
+        <h3>DIY</h3>
+        <ul>
+          <li>Agregar un circulo &lt circle cx=10 cy=10 r=30 fill='#bababa' &gt &lt /circle &gt </li>
+          <li>También se pueden eliminar elementos del DOM. Por ejemplo, se puede borrar el rectángulo con `rect.remove()`. </li>
+        </ul>
+
+        <h2>Data Binding</h2>
+
+        <p>El DOM se puede manipular con varias librerías, por ejemplo, con jQuery. La diferencia con D3, es que los elementos del DOM se pueden asociar a elementos de un array de datos.</p>
+
+        <div class="ejemplo">
+          <svg id="ejemplo03" width=400 height=200></svg>
+        </div>
+
+        <div class="runnable" id="code01-06">
+          <textarea class="form-control" rows="16">
+            var svg = d3.select('#ejemplo03');
+
+            var data = [
+                {ancho: 100, color: 'blue'},
+                {ancho:  80, color: 'red'},
+                {ancho:  60, color: 'yellow'},
+                {ancho: 140, color: 'green'}
+            ];
+
+            var rect = svg.selectAll('rect').data(data);
+
+            rect.enter().append('rect')
+                .attr('y', function(d, i) { return 50 * i; })
+                .attr('width', function(d) { return d.ancho; })
+                .attr('height', 40)
+                .attr('fill', function(d) { return d.color; });
+          </textarea>
+        </div>
+
+        <script>
+          runnable().source('#code01-06').target('#ejemplo03').init();
+        </script>
+
+        <p>Se pueden actualizar los atributos de los rectángulos:</p>
+        <!-- We already did this -->
+
+        <div class="ejemplo">
+          <svg height="200px">
+            <use xlink:href="#ejemplo03" />
+          </svg>
+        </div>
+
+        <script type="text/javascript">
+          var clone = d3.select('#ejemplo03');
+        </script>
+
+        <div class="runnable" id="code01-07">
+          <textarea class="form-control" rows="3">
+            d3.selectAll('rect').attr('x', 100);
+          </textarea>
+        </div>
+
+        <script>
+          runnable().source('#code01-07').target('#ejemplo03').init();
+        </script>
+
+        <p>Si hacemos binding de la misma selección con otro arreglo de datos, los elementos del DOM que tienen datos asociados se actualizan, y los que no, se eliminan. Si hay elementos de dato que no tienen elemento del DOM asociado, se agregan. Por ejemplo:</p>
+
+        <!-- Hay que refinar este ejemplo -->
+
+        <div class="ejemplo">
+          <svg height="200px">
+            <use xlink:href="#ejemplo03" />
+          </svg>
+        </div>
+
+        <div class="runnable" id="code01-08">
+          <textarea class="form-control" rows="28">
+            var svg = d3.select('#ejemplo03');
+
+            var data = [
+                {ancho: 100, color: 'blue'},
+                {ancho:  80, color: 'red'},
+            ];
+
+            var rect = svg.selectAll('rect').data(data);
+
+            // Nuevos rectangulos
+            rect.enter().append('rect')
+                .attr('x', 0)
+                .attr('y', function(d, i) { return 50 * i; })
+                .attr('width', function(d) { return d.ancho; })
+                .attr('height', 40)
+                .attr('fill', 'blue');
+
+            // Update
+            rect.transition().duration(1000)
+                .attr('x', 100)
+                .attr('fill', function(d) { return d.color; });
+
+            // Remove
+            rect.exit().transition().duration(1000)
+                .attr('x', 500)
+                .attr('fill', 'black')
+                .remove();
+          </textarea>
+        </div>
+
+        <script>
+          runnable().source('#code01-08').target('#ejemplo03').init();
+        </script>
+
+        <p>El binding entre elementos graficos y propiedades de los graficos permite crear gráficos y visualizaciones de datos.</p>
+    
+
       </section>
+
 
 
 
