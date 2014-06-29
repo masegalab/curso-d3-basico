@@ -91,7 +91,7 @@
 
 .ejemplo {
 
-    border: solid @space-thin @color-grey;
+    border: solid @space-thin @color-grey-light;
     padding: @space-medium;
 
     background-color: @color-grey-lighter;
@@ -115,7 +115,7 @@
     .colored-block(@color-green);
 
     .glyphicon {
-        font-size: 0.8em;
+        font-size: 0.75em;
     }
 }
 
@@ -126,20 +126,41 @@
     margin: @space-medium 0 @space-medium 0;
 
     textarea {
+        border-radius: 0px;
+        border-left: solid 2 * @space-thin @color-grey-light;
+
         background-color: @color-grey-lighter;
         font-family: courier;
+
     }
 
-    button {
+    button.btn-default {
         position: absolute;
         top:   @space-small;
         right: @space-small;
 
+        background-color: @color-grey-lighter;
+
+        font-size: 14px;
         color: @color-grey-light;
+        text-transform: uppercase;
+
+        .glyphicon {
+            font-size: 12px;
+        }
     }
 
-    button:hover {
-        color: @color-grey-dark
-    }
+    button.btn-default:hover {
+        border-color: darken(@color-green, 20%);
 
+        background-color: @color-grey-lighter;
+        color: darken(@color-green, 20%);
+
+        font-size: 14px;
+        text-transform: uppercase;
+
+        .glyphicon {
+            font-size: 12px;
+        }
+    }
 }

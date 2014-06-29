@@ -3211,7 +3211,7 @@ input[type="button"].btn-block {
   }
 }
 .ejemplo {
-  border: solid 1px #555555;
+  border: solid 1px #999999;
   padding: 10px;
   background-color: #eeeeee;
 }
@@ -3226,24 +3226,39 @@ input[type="button"].btn-block {
   color: #428030;
 }
 .diy .glyphicon {
-  font-size: 0.8em;
+  font-size: 0.75em;
 }
 .runnable {
   position: relative;
   margin: 10px 0 10px 0;
 }
 .runnable textarea {
+  border-radius: 0px;
+  border-left: solid 2px #999999;
   background-color: #eeeeee;
   font-family: courier;
 }
-.runnable button {
+.runnable button.btn-default {
   position: absolute;
   top: 5px;
   right: 5px;
+  background-color: #eeeeee;
+  font-size: 14px;
   color: #999999;
+  text-transform: uppercase;
 }
-.runnable button:hover {
-  color: #333333;
+.runnable button.btn-default .glyphicon {
+  font-size: 12px;
+}
+.runnable button.btn-default:hover {
+  border-color: #55a63d;
+  background-color: #eeeeee;
+  color: #55a63d;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+.runnable button.btn-default:hover .glyphicon {
+  font-size: 12px;
 }
 .ejemplo .fila {
   display: inline-block;

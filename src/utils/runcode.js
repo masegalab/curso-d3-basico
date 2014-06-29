@@ -55,8 +55,9 @@ function runnable() {
             .attr('class', 'btn btn-default btn-xs');
 
         // Add the button and the message
+        button.append('span').html('run ');
         button.append('span').attr('class', 'glyphicon glyphicon-play');
-        button.append('span').html('Run');
+
 
         // Binds the click event with the code execution
         codeButton.on('click', chart.run);
