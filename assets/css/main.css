@@ -3135,6 +3135,10 @@ input[type="button"].btn-block {
   border-bottom: solid 1px #8ece7b;
   color: #48455c;
 }
+.seccion h2 .glyphicon {
+  font-size: 0.8em;
+  color: #999999;
+}
 .seccion p {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -3153,6 +3157,9 @@ input[type="button"].btn-block {
 .diy h3 {
   margin-top: 5px;
   color: #428030;
+}
+.diy .glyphicon {
+  font-size: 0.8em;
 }
 .runnable {
   position: relative;
