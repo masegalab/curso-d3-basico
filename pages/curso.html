@@ -59,12 +59,24 @@
 
         <!-- Poner la lista a la derecha del DIY-->
 
-        <h3>DIY</h3>
-        <ul>
-          <li> Cambiar la altura del contenedor azul.</li>
-          <li> Alinear los contenedores a la derecha.</li>
-          <li> Escribir algo dentro de un contenedor.</li>
-        </ul>
+        <div class="diy">
+          <h3>Prueba tú mismo</h3>
+          <ul>
+            <li> Cambiar la altura del contenedor verde (<code>#block-01-02</code>).</li>
+            <li> Alinear los contenedores a la derecha.</li>
+            <li> Escribir algo dentro de un contenedor.</li>
+          </ul>
+
+          <div class="runnable" id="diy-01-01">
+            <textarea class="form-control" rows="1">
+              // Codigo aqui
+            </textarea>
+          </div>
+        </div>
+
+        <script>
+          runnable().source('#diy-01-01').target('#ejemplo01').init();
+        </script>
 
         <p>Podemos agregar elementos usando <code>append</code> o <code>insert</code></p>
 
@@ -77,7 +89,7 @@
 
         <div class="runnable" id="code01-03">
           <textarea class="form-control" rows="4">
-            var svg = d3.select('#ejemplo02').append('svg')
+            var svg01 = d3.select('#ejemplo02').append('svg')
             .attr('id','new-svg')
             .attr('width', 200)
             .attr('height', 150)
@@ -91,11 +103,9 @@
 
         <p>La variable <code>svg</code> contiene una referencia al elemento creado. Podemos usar esta referencia para cambiar los atributos del elemento.</p>
 
-        <!-- No reconoce la variable 'svg' // ahora si. -->
-
         <div class="runnable" id="code01-04">
           <textarea class="form-control" rows="3">
-            svg.attr('width', 300).attr('height', 100).style('border', 'solid 1px black');
+            svg01.attr('width', 300).attr('height', 100).style('border', 'solid 1px black');
           </textarea>
         </div>
 
@@ -103,11 +113,11 @@
           runnable().source('#code01-04').target('#ejemplo02').init();
         </script>
 
-        <p>Podemos agregar un rectángulo al SVG:</p>
+        <p>Podemos agregar un rectángulo al SVG.</p>
 
         <div class="runnable" id="code01-05">
           <textarea class="form-control" rows="6">
-            var rect = d3.select('#new-svg').append('rect')
+            var rect = svg01.append('rect')
               .attr('fill', 'blue')
               .attr('x', 20)
               .attr('y', 20)
@@ -120,20 +130,31 @@
           runnable().source('#code01-05').target('#ejemplo02').init();
         </script>
 
-        <!-- Problemas insertando codigo-->
+        <div class="diy">
+          <h3>Prueba tú mismo</h3>
+          <ul>
+            <li>Agregar un circulo <code>&lt;circle cx=10 cy=10 r=30 fill='red'&gt;&lt;/circle&gt;</code></li>
+            <li>También se pueden eliminar elementos del DOM. Por ejemplo, se puede borrar el rectángulo con <code>rect.remove()</code>.</li>
+          </ul>
 
-        <h3>DIY</h3>
-        <ul>
-          <li>Agregar un circulo &lt circle cx=10 cy=10 r=30 fill='#bababa' &gt &lt /circle &gt </li>
-          <li>También se pueden eliminar elementos del DOM. Por ejemplo, se puede borrar el rectángulo con `rect.remove()`. </li>
-        </ul>
+          <div class="runnable" id="diy-01-02">
+            <textarea class="form-control">
+              // Codigo aqui
+            </textarea>
+          </div>
+
+          <script>
+            runnable().source('#diy-01-02').target('#ejemplo02').init();
+          </script>
+        </div>
+
 
         <h2>Data Binding</h2>
 
         <p>El DOM se puede manipular con varias librerías, por ejemplo, con jQuery. La diferencia con D3, es que los elementos del DOM se pueden asociar a elementos de un array de datos.</p>
 
         <div class="ejemplo">
-          <svg id="ejemplo03" width=400 height=200></svg>
+          <svg id="ejemplo03" width=400 height=120></svg>
         </div>
 
         <div class="runnable" id="code01-06">
@@ -150,9 +171,9 @@
             var rect = svg.selectAll('rect').data(data);
 
             rect.enter().append('rect')
-                .attr('y', function(d, i) { return 50 * i; })
+                .attr('y', function(d, i) { return 30 * i; })
                 .attr('width', function(d) { return d.ancho; })
-                .attr('height', 40)
+                .attr('height', 20)
                 .attr('fill', function(d) { return d.color; });
           </textarea>
         </div>
@@ -165,7 +186,7 @@
         <!-- We already did this -->
 
         <div class="ejemplo">
-          <svg height="200px">
+          <svg height="120px">
             <use xlink:href="#ejemplo03" />
           </svg>
         </div>
@@ -189,7 +210,7 @@
         <!-- Hay que refinar este ejemplo -->
 
         <div class="ejemplo">
-          <svg height="200px">
+          <svg height="120px">
             <use xlink:href="#ejemplo03" />
           </svg>
         </div>

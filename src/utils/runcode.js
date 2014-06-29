@@ -67,7 +67,7 @@ function runnable() {
 
         lines = lines.map(function(line) { return line.trim(); });
         textCode.node().value = lines.join('\n');
-        textCode.attr('rows', lines.length - 1);
+        textCode.attr('rows', lines.length);
     };
 
     chart.run = function() {
