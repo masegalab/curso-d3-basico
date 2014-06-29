@@ -3133,6 +3133,16 @@ input[type="button"].btn-block {
 .banner h1 .d3 {
   color: #73b3ff;
 }
+.banner h1 a {
+  text-decoration: none;
+  color: #ffffff;
+}
+.banner h1 a .d3 {
+  color: #73b3ff;
+}
+.banner h1 a:hover {
+  text-decoration: none;
+}
 .banner-small {
   padding: 10px;
   border-bottom: solid 5px #8ece7b;
@@ -3143,13 +3153,18 @@ input[type="button"].btn-block {
   margin-bottom: 5px;
   text-transform: uppercase;
   font-size: 24px;
+}
+.banner-small h1 a {
   color: #ffffff;
 }
-.banner-small h1 .d3 {
+.banner-small h1 a .d3 {
   color: #73b3ff;
 }
-.banner-small h1 .d3:hover {
+.banner-small h1 a .d3:hover {
   color: #8dc1ff;
+}
+.banner-small h1 a:hover {
+  text-decoration: none;
 }
 .seccion h2 {
   margin-top: 40px;

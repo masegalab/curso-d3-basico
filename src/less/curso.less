@@ -7,10 +7,18 @@
     background-color: @color-slate;
 
     h1 {
-        color: @color-white;
 
-        .d3 {
-            color: @color-blue;
+        color: @color-white;
+        .d3 { color: @color-blue; }
+
+        a {
+            text-decoration: none;
+            color: @color-white;
+            .d3 { color: @color-blue; }
+        }
+
+        a:hover {
+            text-decoration: none;
         }
     }
 
@@ -30,14 +38,15 @@
 
         text-transform: uppercase;
         font-size: 24px;
-        color: @color-white;
 
-        .d3 {
-            color: @color-blue;
+        a {
+            color: @color-white;
+            .d3 { color: @color-blue; }
+            .d3:hover { color: lighten(@color-blue, 5%); }
         }
 
-        .d3:hover {
-            color: lighten(@color-blue, 5%);
+        a:hover {
+            text-decoration: none;
         }
     }
 
