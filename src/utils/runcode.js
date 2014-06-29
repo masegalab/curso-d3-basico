@@ -1,3 +1,15 @@
+// Execute the src statement in the global scope
+var globalEval = function globalEval(src) {
+    if (window.execScript) {
+        window.execScript(src);
+        return;
+    }
+    var fn = function() {
+        window.eval.call(window, src);
+    };
+    fn();
+};
+
 function runnable() {
 
     var me = {
@@ -37,7 +49,7 @@ function runnable() {
             textCode   = codeDiv.select('textarea');
 
         // Run the content of the textarea element
-        eval(textCode.node().value);
+        globalEval(textCode.node().value);
     };
 
     // Accessor methods

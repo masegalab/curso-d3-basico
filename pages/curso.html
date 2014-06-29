@@ -86,18 +86,16 @@
         </div>
 
         <script>
-          var svg;
           runnable().source('#code01-03').target('#ejemplo02').init();
         </script>
 
         <p>La variable <code>svg</code> contiene una referencia al elemento creado. Podemos usar esta referencia para cambiar los atributos del elemento.</p>
 
-        <!-- No reconoce la variable 'svg'-->
+        <!-- No reconoce la variable 'svg' // ahora si. -->
 
         <div class="runnable" id="code01-04">
           <textarea class="form-control" rows="3">
-            console.log(svg);
-            d3.select('#new-svg').attr('width', 300).attr('height', 100).style('border', 'black');
+            svg.attr('width', 300).attr('height', 100).style('border', 'solid 1px black');
           </textarea>
         </div>
 
