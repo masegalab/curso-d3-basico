@@ -17,12 +17,13 @@ function runnable() {
             textCode   = codeDiv.select('textarea');
 
         // Creates the 'Run' button
-        codeButton.enter().insert('button', ':first-child')
+        var button = codeButton.enter().insert('button', ':first-child')
             .attr('type', 'button')
-            .attr('class', 'btn btn-default btn-sm')
-            .append('span')
-            .attr('class', 'glyphicon glyphicon-play')
-            .html('Ejecutar');
+            .attr('class', 'btn btn-default btn-xs');
+
+        // Add the button and the message
+        button.append('span').attr('class', 'glyphicon glyphicon-play');
+        button.append('span').html('Run');
 
         // Binds the click event with the code execution
         codeButton.on('click', chart.run);

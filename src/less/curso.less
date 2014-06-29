@@ -40,10 +40,25 @@
 
 .runnable {
 
+    position: relative;
     margin: @space-medium 0 @space-medium 0;
 
     textarea {
         background-color: @color-grey-lighter;
         font-family: courier;
     }
+
+    button {
+        position: absolute;
+        top:   @space-small;
+        right: @space-small;
+
+        color: @color-grey-light;
+    }
+
+    button:hover {
+        color: @color-grey-dark
+    }
+
+
 }

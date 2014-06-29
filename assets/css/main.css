@@ -3144,11 +3144,21 @@ input[type="button"].btn-block {
   background-color: #eeeeee;
 }
 .runnable {
+  position: relative;
   margin: 10px 0 10px 0;
 }
 .runnable textarea {
   background-color: #eeeeee;
   font-family: courier;
+}
+.runnable button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: #999999;
+}
+.runnable button:hover {
+  color: #333333;
 }
 .ejemplo .fila {
   display: inline-block;
@@ -3168,7 +3178,4 @@ input[type="button"].btn-block {
   height: 40px;
   background-color: #4acd71;
   border: solid 1px #31b358;
-}
-.example-block {
-  
 }

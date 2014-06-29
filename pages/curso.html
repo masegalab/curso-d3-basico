@@ -36,7 +36,7 @@
         </div>
 
         <div class="runnable" id="code01-01">
-          <textarea class="form-control" rows="3">
+          <textarea class="form-control" rows="1">
             d3.select('#block01-01').style('background-color', '#C56060');
           </textarea>
         </div>
@@ -45,16 +45,12 @@
           runnable().source('#code01-01').target('#ejemplo01').init();
         </script>
 
-
-      
-
-      
         <p>Podemos cambiar varios elementos al mismo tiempo, seleccionando por clase o por tipo de elemento:</p>
 
 
         <div class="runnable" id="code01-02">
-          <textarea class="form-control" rows="3">
-            d3.selectAll('.example-block').style('width', '100px');
+          <textarea class="form-control" rows="1">
+            d3.selectAll('.example-block').style('width', '150px');
           </textarea>
         </div>
 
@@ -75,29 +71,33 @@
 
         <div class="ejemplo">
           <div class="fila" id="ejemplo02">
-            <div id="block01-01" class="example-block"></div>
-            <div id="block01-02" class="example-block"></div>
+            <div id="block02-01" class="example-block"></div>
+            <div id="block02-02" class="example-block"></div>
           </div>
         </div>
 
         <div class="runnable" id="code01-03">
-          <textarea class="form-control" rows="3">
-            var svg = d3.select('#ejemplo02').append('svg').attr('id','new-svg');
+          <textarea class="form-control" rows="4">
+            var svg = d3.select('#ejemplo02').append('svg')
+            .attr('id','new-svg')
+            .attr('width', 200)
+            .attr('height', 150);
           </textarea>
         </div>
 
         <script>
+          var svg;
           runnable().source('#code01-03').target('#ejemplo02').init();
         </script>
 
-        <p>La variable `svg` contiene una referencia al elemento creado. Podemos usar esta referencia para cambiar los atributos del elemento.</p>
+        <p>La variable <code>svg</code> contiene una referencia al elemento creado. Podemos usar esta referencia para cambiar los atributos del elemento.</p>
 
         <!-- No reconoce la variable 'svg'-->
 
-
         <div class="runnable" id="code01-04">
           <textarea class="form-control" rows="3">
-            d3.select('#new-svg').attr('width', 300).attr('height', 100);
+            console.log(svg);
+            d3.select('#new-svg').attr('width', 300).attr('height', 100).style('border', 'black');
           </textarea>
         </div>
 
@@ -233,7 +233,7 @@
         </script>
 
         <p>El binding entre elementos graficos y propiedades de los graficos permite crear gráficos y visualizaciones de datos.</p>
-    
+
 
       </section>
 
