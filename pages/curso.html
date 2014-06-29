@@ -26,7 +26,7 @@
       <section class="seccion">
         <h2>Manipulación del DOM con D3</h2>
 
-        <p>Podemos usar D3 para manipular elementos del DOM (Document Object Model). Por ejemplo, podemos cambiar el color de fondo de un contenedor:</p>
+        <p>Podemos usar D3 para manipular elementos del DOM (Document Object Model). Por ejemplo, podemos cambiar el color de fondo de un contenedor.</p>
 
         <div class="ejemplo">
           <div class="fila" id="ejemplo01">
@@ -45,8 +45,7 @@
           runnable().source('#code01-01').target('#ejemplo01').init();
         </script>
 
-        <p>Podemos cambiar varios elementos al mismo tiempo, seleccionando por clase o por tipo de elemento:</p>
-
+        <p>Podemos cambiar varios elementos al mismo tiempo, seleccionando por clase o por tipo de elemento.</p>
 
         <div class="runnable" id="code01-02">
           <textarea class="form-control" rows="1">
@@ -67,7 +66,7 @@
           <li> Escribir algo dentro de un contenedor.</li>
         </ul>
 
-        <p>Podemos agregar elementos:</p>
+        <p>Podemos agregar elementos usando <code>append</code> o <code>insert</code></p>
 
         <div class="ejemplo">
           <div class="fila" id="ejemplo02">
@@ -81,7 +80,8 @@
             var svg = d3.select('#ejemplo02').append('svg')
             .attr('id','new-svg')
             .attr('width', 200)
-            .attr('height', 150);
+            .attr('height', 150)
+            .style('border', 'solid 1px #ccc');
           </textarea>
         </div>
 
@@ -106,13 +106,13 @@
         <p>Podemos agregar un rectángulo al SVG:</p>
 
         <div class="runnable" id="code01-05">
-          <textarea class="form-control" rows="3">
+          <textarea class="form-control" rows="6">
             var rect = d3.select('#new-svg').append('rect')
               .attr('fill', 'blue')
               .attr('x', 20)
               .attr('y', 20)
               .attr('width', 150)
-              .attr('height', 80);
+              .attr('height', 60);
           </textarea>
         </div>
 
