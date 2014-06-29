@@ -1,14 +1,35 @@
-// Execute the src statement in the global scope
-var globalEval = function globalEval(src) {
-    if (window.execScript) {
-        window.execScript(src);
-        return;
+// Evaluates JavaScript code in the global scope
+var globalEval = (function() {
+
+  var isIndirectEvalGlobal = (function(original, Object) {
+    try {
+      // Does `Object` resolve to a local variable, or to a global, built-in `Object`,
+      // reference to which we passed as a first argument?
+      return (1,eval)('Object') === original;
     }
-    var fn = function() {
-        window.eval.call(window, src);
+    catch(err) {
+      // if indirect eval errors out (as allowed per ES3), then just bail out with `false`
+      return false;
+    }
+  })(Object, 123);
+
+  if (isIndirectEvalGlobal) {
+
+    // if indirect eval executes code globally, use it
+    return function(expression) {
+      return (1,eval)(expression);
     };
-    fn();
-};
+  }
+  else if (typeof window.execScript !== 'undefined') {
+
+    // if `window.execScript exists`, use it (IE and old Webkit)
+    return function(expression) {
+      return window.execScript(expression);
+    };
+  }
+
+  // otherwise, globalEval is `undefined` since nothing is returned
+})();
 
 function runnable() {
 
@@ -40,8 +61,13 @@ function runnable() {
         // Binds the click event with the code execution
         codeButton.on('click', chart.run);
 
-        // Remove trailing white spaces in the input code
-        textCode.node().value = textCode.node().value.trim();
+
+        var text = textCode.node().value,
+            lines = text.split('\n');
+
+        lines = lines.map(function(line) { return line.trim(); });
+        textCode.node().value = lines.join('\n');
+        textCode.attr('rows', lines.length);
     };
 
     chart.run = function() {

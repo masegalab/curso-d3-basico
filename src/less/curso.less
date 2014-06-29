@@ -19,15 +19,16 @@
 .seccion {
 
     h2 {
-        color: @color-slate;
+        margin-top: @space-huge;
         border-bottom: solid 1px @color-green;
+
+        color: @color-slate;
     }
 
     p {
-        font-size: 21px;
-        color: @color-grey;
+        margin-top: @space-large;
+        margin-bottom: @space-large;
     }
-
 }
 
 .ejemplo {
@@ -37,6 +38,25 @@
 
     background-color: @color-grey-lighter;
 }
+
+.colored-block(@color) {
+
+    border: solid @space-thin darken(@color, 30%);
+    border-radius: @space-small;
+    padding: @space-medium;
+
+    h3 {
+        margin-top: @space-small;
+        color: darken(@color, 30%);
+    }
+
+    background-color: lighten(@color, 20%);
+}
+
+.diy {
+    .colored-block(@color-green);
+}
+
 
 .runnable {
 
@@ -59,6 +79,5 @@
     button:hover {
         color: @color-grey-dark
     }
-
 
 }
