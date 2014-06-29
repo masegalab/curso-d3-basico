@@ -16,23 +16,15 @@
 
     <div class="container">
 
-      <!-- Banner -->
-      <div class="banner">
+      <!-- Main Heading -->
+      <div class="banner-small">
         <h1>Visualización de datos con <span class="d3">D3</span></h1>
       </div>
 
-      <!-- Table of Contents -->
-      <h2>Contenidos</h2>
-
-      <ul>
-        <li>
-          Introducción a D3.js
-          <ul>
-              <li><a href="pages/manipulacion-dom.html">Manipulación del DOM</a></li>
-              <li><a href="pages/data-binding.html">Data Binding</a></li>
-          </ul>
-        </li>
-      </ul>
+      <section class="seccion">
+        <h2><span class="glyphicon glyphicon-link"></span> {{page.title}}</h2>
+        {{content}}
+      </section>
 
     </div>
 

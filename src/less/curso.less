@@ -16,6 +16,33 @@
 
 }
 
+.banner-small {
+
+    // Layout
+    padding: @space-medium;
+    border-bottom: solid @space-small @color-green;
+
+    background-color: @color-slate;
+
+    h1 {
+        margin-top: @space-small;
+        margin-bottom: @space-small;
+
+        text-transform: uppercase;
+        font-size: 24px;
+        color: @color-white;
+
+        .d3 {
+            color: @color-blue;
+        }
+
+        .d3:hover {
+            color: lighten(@color-blue, 5%);
+        }
+    }
+
+}
+
 .seccion {
 
     h2 {
@@ -33,6 +60,23 @@
     p {
         margin-top: @space-large;
         margin-bottom: @space-large;
+    }
+
+    .section-nav {
+
+        .make-row();
+
+        margin-top: @space-huge;
+        margin-bottom: @space-huge;
+
+        .next-section {
+            text-align: right;
+            .make-sm-column(6);
+        }
+
+        .prev-section {
+            .make-sm-column(6);
+        }
     }
 }
 
