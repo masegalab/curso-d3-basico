@@ -2,8 +2,7 @@
 layout: seccion
 title: Data Binding
 ---
-
-D3 vincula elementos del DOM con elementos de datos, aunque los elementos del DOM no existan todavía. Por ejemplo, tenemos tres items en una lista.
+Muchas herramientas nos permiten manipular el DOM (jQuery,...). La principal característica de D3 es que nos permite vincular elementos del DOM con elementos de datos. Por ejemplo, tenemos tres items en una lista:
 
 <div class="ejemplo">
     <div id="example-b01">
@@ -15,7 +14,7 @@ D3 vincula elementos del DOM con elementos de datos, aunque los elementos del DO
     </div>
 </div>
 
-Estos elementos no tienen datos vinculados todavía. Con D3, podemos vincular cada uno de estos elementos con un elemento de un arreglo de datos.
+Estos elementos no tienen datos vinculados. Podemos vincular cada uno de estos elementos con un elemento de un arreglo de datos usando `data()`:
 
 <div class="runnable" id="code-b01">
     <textarea class="form-control">
@@ -36,9 +35,9 @@ Estos elementos no tienen datos vinculados todavía. Con D3, podemos vincular ca
 
 <script>runnable().source('#code-b01').target('#example-b01').init();</script>
 
-Los elementos de la lista tienen datos asociados, pero no pasó nada más. Podemos inspeccionar los elementos, y veremos que tienen una nueva propiedad, el attributo `__data__`. Este atributo es una referencia al elemento de dato vinculado a este elemento.
+Si inspeccionamos estos elementos, veremos que tienen una nueva propiedad: el attributo `__data__`. Pero, visualmente, no pasó nada.
 
-Ahora, podemos usar los datos para modificar los atributos del elemento del DOM. Por ejemplo, podemos cambiar de color, usando el atributo `color` del dato asociado a cada item.
+Ahora, podemos usar los datos para modificar los atributos del elemento del DOM. Por ejemplo, podemos cambiar el color de los ítems de la lista usando el atributo `color` del dato asociado a cada uno de ellos.
 
 
 <div class="runnable" id="code-b02">
@@ -50,11 +49,11 @@ Ahora, podemos usar los datos para modificar los atributos del elemento del DOM.
 
 <script>runnable().source('#code-b02').target('#example-b01').init();</script>
 
-Dependiendo del tipo de elemento del DOM, se puede usar `attr` para atributos, `style` para propiedades de estilo, `text` o `html` para contenido. Por ejemplo, ahora podemos alterar el contenido del elemento de lista.
+Dependiendo del tipo de elemento del DOM, se puede usar `attr` para modificar los atributos, `style` para propiedades de estilo, `text` o `html` para contenido. Por ejemplo, ahora podemos alterar el contenido del elemento de lista.
 
 <div class="runnable" id="code-b03">
     <textarea class="form-control">
-        // Cambia el color de cada item
+        // Cambia el texto de cada item
         list.html(function(d) { return d.texto; });
     </textarea>
 </div>
@@ -112,7 +111,7 @@ El nuevo elemento fue creado, y además configuramos su contenido para que use l
 
 ### La selección `exit()`.
 
-También puede ocurrir el caso contrario, que hay más elementos del DOM que elementos de datos. Los elementos restantes quedan almacenados en una selección especial llamada `exit`, que podemos usar para remover los elementos.
+También puede ocurrir el caso contrario, que hay más elementos del DOM que elementos de datos. Los elementos restantes quedan almacenados en una selección especial llamada `exit`, que usaremos para remover los elementos.
 
 <div class="ejemplo">
     <div id="example-d01">
@@ -135,7 +134,7 @@ Al vincular cuatro elementos del DOM con tres elementos de datos, un elemento qu
 </div>
 <script>runnable().source('#code-d01').target('#example-d01').init();</script>
 
-Podemos usar esa selección para remover el elemento que no tiene datos. Notar que la selección funciona casi igual que el resto, podemos alterar los atributos de los elementos del DOM (pero sin usar datos, porque no tienen).
+Podemos usar esta selección para remover el elemento que no tiene datos. Notar que la selección funciona casi igual que el resto, podemos alterar los atributos de los elementos del DOM (pero sin usar datos, porque no tienen).
 
 <div class="runnable" id="code-d02">
     <textarea class="form-control">
@@ -222,7 +221,7 @@ Hasta ahora, hemos usado la posición de los elementos del DOM y la posición de
 </div>
 <script>runnable().source('#code-e01').target('#example-e01').init();</script>
 
-Hasta ahora, todo perfecto. Pero supongamos que tenemos que vincular estos elementos con otro arreglo, que tiene un elemento menos. El mismo código debería funcionar, eliminando el elemento del DOM.
+Ahora, supongamos que queremos vincular estos elementos con otro arreglo, que tiene un elemento menos. El mismo código debería funcionar, eliminando el elemento del DOM.
 
 <div class="runnable" id="code-e02">
     <textarea class="form-control">
@@ -248,7 +247,7 @@ Hasta ahora, todo perfecto. Pero supongamos que tenemos que vincular estos eleme
 </div>
 <script>runnable().source('#code-e02').target('#example-e01').init();</script>
 
-Se eliminó el último elemento del DOM, independientemente del contenido. Lo esperado habría sido que el elemento que decía `París` hubiera desaparecido. Esto pasa porque no hemos dicho como hacer la correspondencia entre elementos del DOM y elementos de datos. Queremos que al actualizar los datos, los elementos con el mismo `texto` sean actualizados, y los elementos cuyo `texto` no aparece, sean creados. Para lograr esto, hay que especificar qué atributo de los datos es el ID o key.
+Se eliminó el último elemento del DOM, independientemente del contenido. Sin embargo, era razonable esperar que el elemento con texto `París` hubiera desaparecido. Esto ocurre porque no hemos especificado la correspondencia entre elementos del DOM y elementos de datos. Queremos que al actualizar los datos, los elementos cuyo `texto` aparece en algún elemento de dato sean actualizados, y los demás sean eliminados. Para lograr esto, necesitamos especificar qué atributo de los datos es el ID o key.
 
 <div class="ejemplo">
     <div id="example-e02">
