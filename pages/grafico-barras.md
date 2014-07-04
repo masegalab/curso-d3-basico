@@ -34,8 +34,9 @@ Ahora que sabemos sobre D3 y data binding, podemos usar elementos del DOM para c
 </div>
 <script>runnable().source('#code-f00').target('#example-f01').init();</script>
 
-Vamos a crear un gráfico de barras usando contenedores. Podemos alterar el tamaño y background de los contenedores alterando los correspondientes atributos de estilo.
 <aside>Este comentario es al margen.</aside>
+
+Vamos a crear un gráfico de barras usando contenedores. Podemos alterar el tamaño y background de los contenedores alterando los correspondientes atributos de estilo.
 
 <div class="ejemplo">
     <div id="example-f01">
