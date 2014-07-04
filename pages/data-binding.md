@@ -1,6 +1,15 @@
 ---
 layout: seccion
 title: Data Binding
+parent:
+    url: pages/introduccion-d3
+    title: Introducción a D3
+prev:
+    url: pages/manipulacion-dom
+    title: Manipulación del DOM
+next:
+    url: pages/grafico-barras
+    title: Gráfico de barras
 ---
 Muchas herramientas nos permiten manipular el DOM (jQuery,...). La principal característica de D3 es que nos permite vincular elementos del DOM con elementos de datos. Por ejemplo, tenemos tres items en una lista:
 
@@ -307,13 +316,3 @@ Ahora, si eliminamos un dato, se elimina el elemento del DOM correspondiente.
     </textarea>
 </div>
 <script>runnable().source('#code-e04').target('#example-e02').init();</script>
-
-<div class="section-nav">
-  <div class="prev-section">
-    <a href="{{site.baseurl}}/pages/data-binding"><span class="glyphicon glyphicon-chevron-left"></span> data binding</a>
-  </div>
-
-  <div class="next-section">
-    <a href="{{site.baseurl}}/pages/grafico-barras">Gráfico de barras <span class="glyphicon glyphicon-chevron-right"></span></a>
-  </div>
-</div>

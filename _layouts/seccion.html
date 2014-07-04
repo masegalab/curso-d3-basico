@@ -21,10 +21,30 @@
         <h1><a href="{{site.baseurl}}/">Visualización de datos con <span class="d3">D3</span></a></h1>
       </div>
 
+      <!-- Breadcrumb -->
+      <ol class="breadcrumb">
+        <li><a href="{{site.baseurl}}/">Home</a></li>
+        {% if page.parent %}
+        <li><a href="{{site.baseurl}}/{{page.parent.url}}">{{page.parent.title}}</a></li>
+        {% endif %}
+        <li class="active">{{page.title}}</li>
+      </ol>
+
+
       <section class="seccion">
         <h2><span class="glyphicon glyphicon-link"></span> {{page.title}}</h2>
         {{content}}
       </section>
+
+      <div class="section-nav">
+        <div class="prev-section">
+          <a href="{{site.baseurl}}/{{page.prev.url}}"><span class="glyphicon glyphicon-chevron-left"></span> {{page.prev.title}}</a>
+        </div>
+
+        <div class="next-section">
+          <a href="{{site.baseurl}}/{{page.next.url}}">{{page.next.title}} <span class="glyphicon glyphicon-chevron-right"></span></a>
+        </div>
+      </div>
 
     </div>
 
