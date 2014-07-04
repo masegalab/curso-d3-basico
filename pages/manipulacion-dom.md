@@ -1,139 +1,217 @@
 ---
 layout: seccion
-title: Manipulación del DOM con D3
+title: Manipulación del DOM
 ---
 
-Podemos usar D3 para manipular elementos del DOM (_Document Object Model_). Por ejemplo, podemos cambiar el color de fondo de un contenedor.
+## Qué es el DOM?
 
-<div class="ejemplo">
-  <div class="fila" id="ejemplo01">
-    <div id="block01-01" class="example-block"></div>
-    <div id="block01-02" class="example-block"></div>
-  </div>
-</div>
+El contenido de una página web está organizado como una serie de elementos que contienen otros elementos. Por ejemplo, el `<body>` contiene a todos los elementos visibles, el contenedor `<div>` se usa para crear bloques de contenido relacionado (barras de navegación, pie de página, columnas). Esta organización se conoce como el DOM, _Document Object Model_.
 
-<div class="runnable" id="code01-01">
-  <textarea class="form-control" rows="1">
-    d3.select('#block01-01').style('background-color', '#C56060');
-  </textarea>
-</div>
+Por ejemplo, el siguiente código HTML representa una lista no ordenada, que contiene dos items de lista, cada uno contiene un link.
 
-<script>
-  runnable().source('#code01-01').target('#ejemplo01').init();
-</script>
-
-Podemos cambiar varios elementos al mismo tiempo, seleccionando por clase o por tipo de elemento.
-
-<div class="runnable" id="code01-02">
-  <textarea class="form-control" rows="1">
-    d3.selectAll('.example-block').style('width', '150px');
-  </textarea>
-</div>
-
-<script>
-  runnable().source('#code01-02').target('#ejemplo01').init();
-</script>
-
-<!-- Poner la lista a la derecha del DIY-->
-
-<div class="diy">
-  <h3><span class="glyphicon glyphicon-pencil"></span> Prueba tú mismo</h3>
-  <ul>
-    <li> Cambiar la altura del contenedor verde (<code>#block-01-02</code>).</li>
-    <li> Alinear los contenedores a la derecha.</li>
-    <li> Escribir algo dentro de un contenedor.</li>
-  </ul>
-
-  <div class="runnable" id="diy-01-01">
-    <textarea class="form-control" rows="1">
-      // Codigo aqui
-    </textarea>
-  </div>
-</div>
-
-<script>
-  runnable().source('#diy-01-01').target('#ejemplo01').init();
-</script>
-
-
-Podemos agregar elementos usando `append` o `insert`.
-
-
-<div class="ejemplo">
-  <div class="fila" id="ejemplo02">
-    <div id="block02-01" class="example-block"></div>
-    <div id="block02-02" class="example-block"></div>
-  </div>
-</div>
-
-<div class="runnable" id="code01-03">
+<div class="runnable" id="code-a01">
   <textarea class="form-control" rows="4">
-    var svg01 = d3.select('#ejemplo02').append('svg')
-    .attr('id','new-svg')
-    .attr('width', 200)
-    .attr('height', 150)
-    .style('border', 'solid 1px #ccc');
-  </textarea>
-</div>
-
-<script>
-  runnable().source('#code01-03').target('#ejemplo02').init();
-</script>
-
-La variable `svg` contiene una referencia al elemento creado. Podemos usar esta referencia para cambiar los atributos del elemento.
-
-<div class="runnable" id="code01-04">
-  <textarea class="form-control" rows="3">
-    svg01.attr('width', 300).attr('height', 100).style('border', 'solid 1px black');
-  </textarea>
-</div>
-
-<script>
-  runnable().source('#code01-04').target('#ejemplo02').init();
-</script>
-
-<p>Podemos agregar un rectángulo al SVG.</p>
-
-<div class="runnable" id="code01-05">
-  <textarea class="form-control" rows="6">
-    var rect = svg01.append('rect')
-      .attr('fill', 'blue')
-      .attr('x', 20)
-      .attr('y', 20)
-      .attr('width', 150)
-      .attr('height', 60);
-  </textarea>
-</div>
-
-<script>
-  runnable().source('#code01-05').target('#ejemplo02').init();
-</script>
-
-<div class="diy">
-  <h3><span class="glyphicon glyphicon-pencil"></span> Prueba tú mismo</h3>
   <ul>
-    <li>Agregar un circulo <code>&lt;circle cx=10 cy=10 r=30 fill='red'&gt;&lt;/circle&gt;</code></li>
-    <li>También se pueden eliminar elementos del DOM. Por ejemplo, se puede borrar el rectángulo con <code>rect.remove()</code>.</li>
+     <li><a href="index.html" id="link-a02">Index</a></li>
+     <li><a href="page1.html">Página 1</a></li>
   </ul>
-
-  <div class="runnable" id="diy-01-02">
-    <textarea class="form-control">
-      // Codigo aqui
-    </textarea>
-  </div>
-
-  <script>
-    runnable().source('#diy-01-02').target('#ejemplo02').init();
-  </script>
+  </textarea>
 </div>
 
+<ul>
+   <li><a href="index.html">Index</a></li>
+   <li><a href="page1.html">Página 1</a></li>
+</ul>
 
-<div class="section-nav">
-  <div class="prev-section">
+Un elemento en el DOM puede tener cero o más atributos. Por ejemplo, un link normalmente tiene el atributo `href`, cuyo valor es la URL de la página a la que apunta el link. Además de los atributos del elemento, hay atributos de estilo, que se pueden asignar directamente, o a través de una hoja de estilo CSS.
 
-  </div>
+Usualmente, los browsers incluyen una consola que permite ver y manipular elementos del DOM en cualquier página. Las modificaciones al DOM son locales, sólo afectan a la copia de la página que esta viendo el usuario.
 
-  <div class="next-section">
-    <a href="{{site.baseurl}}/pages/data-binding">Data Binding <span class="glyphicon glyphicon-chevron-right"></span></a>
+**TODO:** Mostrar la consola, buscar las combinaciones de teclas, etc.
+
+## Manipulación del DOM
+
+D3 permite manipular los elementos del DOM muy fácilmente, usando _selectores_ del DOM, que funcionan igual que las reglas de CSS. Por ejemplo, en el ejemplo anterior, el primer link tiene un ID.
+
+<div class="ejemplo">
+  <div id="ejemplo-a02">
+    <ul>
+        <li><a href="index.html" id="link-a02">Index</a></li>
+        <li><a href="page1.html">Página 1</a></li>
+    </ul>
   </div>
 </div>
+
+<div class="runnable" id="code-a02">
+  <textarea class="form-control" rows="1">
+    d3.select('#link-a02').style('color', 'red');
+  </textarea>
+</div>
+<script>runnable().source('#code-a02').target('#ejemplo-a02').init();</script>
+
+Los selectores CSS permiten seleccionar por ID, por clase, por tipo de elemento o incluso usando la estructura del documento. Para seleccionar un elemento de lista, podemos usar
+
+<div class="ejemplo">
+  <div id="ejemplo-a03">
+    <ul>
+        <li><a href="index.html">Index</a></li>
+        <li><a href="page1.html">Página 1</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="runnable" id="code-a03">
+  <textarea class="form-control" rows="1">
+    // Selecciona el primer elemento que encuentra bajo ese camino
+    d3.select('#ejemplo-a03 ul li').style('font-weight', 'bold');
+  </textarea>
+</div>
+<script>runnable().source('#code-a03').target('#ejemplo-a03').init();</script>
+
+Los métodos para cambiar atributos se pueden encadenar, por ejemplo, se puede poner `style('font-weight', 'bold').style('color', 'blue')`.
+
+También se puede seleccionar varios elementos simultáneamente.
+
+<div class="ejemplo">
+  <div id="ejemplo-a04">
+    <ul>
+        <li><a href="index.html">Index</a></li>
+        <li><a href="page1.html">Página 1</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="runnable" id="code-a04">
+  <textarea class="form-control" rows="1">
+    // Selecciona todos los elementos que match el selector
+    d3.selectAll('#ejemplo-a04 ul li').style('font-weight', 'bold');
+  </textarea>
+</div>
+<script>runnable().source('#code-a04').target('#ejemplo-a04').init();</script>
+
+Las selecciones pueden almacenarse en variables.
+
+<div class="ejemplo">
+  <div id="ejemplo-a05">
+    <ul>
+        <li><a href="index.html">Index</a></li>
+        <li><a href="page1.html">Página 1</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="runnable" id="code-a05">
+  <textarea class="form-control" rows="1">
+    // Almacena la selección el la variable `li`.
+    var li = d3.selectAll('#ejemplo-a05 li');
+
+    // Usa la selección para cambiar los atributos de los elementos
+    li.style('font-weight', 'bold');
+  </textarea>
+</div>
+<script>runnable().source('#code-a05').target('#ejemplo-a05').init();</script>
+
+Se pueden crear subselecciones.
+
+<div class="ejemplo">
+  <div id="ejemplo-a06">
+    <ul>
+        <li><a href="index.html">Index</a></li>
+        <li><a href="page1.html">Página 1</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="runnable" id="code-a06">
+  <textarea class="form-control" rows="1">
+    // Almacena la selección el la variable `li`.
+    var div = d3.select('#ejemplo-a06');
+
+    // Usa la selección para cambiar los atributos de los elementos
+    div.selectAll('li').style('font-weight', 'bold');
+  </textarea>
+</div>
+<script>runnable().source('#code-a06').target('#ejemplo-a06').init();</script>
+
+## Agregar y eliminar elementos
+
+Podemos agregar y eliminar elementos del DOM. Por ejemplo
+
+<div class="ejemplo">
+  <div id="ejemplo-a07">
+    <ul>
+        <li>A</li>
+        <li>B</li>
+    </ul>
+  </div>
+</div>
+
+<div class="runnable" id="code-a07">
+  <textarea class="form-control" rows="1">
+    // Almacena la selección el la variable `li`.
+    var ul = d3.select('#ejemplo-a07 ul');
+
+    var li = ul.append('li');
+
+    li.html('nuevo').style('color', 'blue');
+  </textarea>
+</div>
+<script>runnable().source('#code-a07').target('#ejemplo-a07').init();</script>
+
+para eliminar, sólo necesitamos usar `remove`.
+
+<div class="runnable" id="code-a08">
+  <textarea class="form-control" rows="1">
+    li.remove();
+  </textarea>
+</div>
+<script>runnable().source('#code-a08').target('#ejemplo-a07').init();</script>
+
+Manipulando el DOM podemos crear visualizaciones de datos, agregando color etc.
+
+
+## Usando SVG
+
+El DOM no es suficientemente versátil para crear gráficos complejos. Afortunadamente, la mayoría de los browsers soporta SVG, un formato de imágen vectorial que tiene un modelo de datos similar a HTML, y por eso puede ser manipulado con D3.
+
+
+<div class="ejemplo">
+  <div id="ejemplo-b01"></div>
+</div>
+
+<div class="runnable" id="code-b01">
+  <textarea class="form-control" rows="1">
+    var svg = d3.select('#ejemplo-b01').append('svg');
+
+    svg.attr('width', '600px').attr('height', '200px');
+  </textarea>
+</div>
+<script>runnable().source('#code-b01').target('#ejemplo-b01').init();</script>
+
+El elemento SVG está vacío, podemos agregar un círculo.
+
+<div class="runnable" id="code-b02">
+  <textarea class="form-control" rows="1">
+    var circle = svg.append('circle');
+
+    circle.attr('cx', 50).attr('cy', 100).attr('r', 50).attr('fill', 'blue');
+  </textarea>
+</div>
+<script>runnable().source('#code-b02').target('#ejemplo-b01').init();</script>
+
+Podemos cambiar los atributos suavemente, usando transiciones. Las transiciones se realizan interpolando los valores iniciales y finales, cambiando los atributos durante la duración de la transición. Las transiciones ayudan a seguir los elementos visualmente, y se awesome.
+
+
+<div class="runnable" id="code-b03">
+  <textarea class="form-control" rows="1">
+    circle.transition().duration(2000)
+      .attr('cx', 500).attr('r', 100).attr('fill', 'red');
+  </textarea>
+</div>
+<script>runnable().source('#code-b03').target('#ejemplo-b01').init();</script>
+
+Con SVG y D3, podemos crear gráficos awesome. Pero primero, data binding.
+
+
+
+

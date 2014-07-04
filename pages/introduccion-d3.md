@@ -320,12 +320,19 @@ Ahora que sabemos sobre D3 y data binding, podemos usar elementos del DOM para c
 
 <div class="runnable" id="code-f00">
     <textarea class="form-control">
+
         var data = [
-            {name: 'A', a: 150, b:  20},
-            {name: 'B', a: 180, b: 140},
-            {name: 'C', a: 120, b:  60},
-            {name: 'D', a:  90, b:  70},
-            {name: 'E', a: 100, b:  80}
+            {country: 'Argentina',  life: 76.01268293, population:  41086927,  gdp:  14679.92524},
+            {country: 'Bolivia',    life: 66.92663415, population:  10496285,  gdp:   2575.683695},
+            {country: 'Brazil',     life: 73.61787805, population: 198656019,  gdp:  11319.97371},
+            {country: 'Chile',      life: 79.57265854, population:  17464814,  gdp:  15245.468},
+            {country: 'Colombia',   life: 73.77707317, population:  47704427,  gdp:   7762.970829},
+            {country: 'Ecuador',    life: 76.19256098, population:  15492264,  gdp:   5424.633611},
+            {country: 'Guatemala',  life: 71.66385366, population:  15082831,  gdp:   3340.782301},
+            {country: 'Paraguay',   life: 72.19373171, population:   6687361,  gdp:   3680.232059},
+            {country: 'Peru',       life: 74.51553659, population:  29987800,  gdp:   6423.814308},
+            {country: 'Uruguay',    life: 76.90782927, population:   3395253,  gdp:  14727.72564},
+            {country: 'Venezuela',  life: 74.4875122,  population:  29954782,  gdp:  12728.72638}
         ];
     </textarea>
 </div>
@@ -342,16 +349,16 @@ Vamos a crear un gráfico de barras usando contenedores. Podemos alterar el tama
     <textarea class="form-control">
         // Data binding
         var divs = d3.select('#example-f01').selectAll('div')
-            .data(data, function(d) { return d.name; });
+            .data(data, function(d) { return d.country; });
 
         // Enter
-        divs.enter().append('div').style('height', '30px')
-            .style('margin-bottom', '2px')
+        divs.enter().append('div').style('height', '20px')
+            .style('margin-bottom', '1px')
             .style('background-color', '#ccc')
-            .html(function(d) { return d.name; });
+            .html(function(d) { return d.country; });
 
         // Update
-        divs.style('width', function(d) { return (2 * d.a) + 'px'; });
+        divs.style('width', function(d) { return (2 * d.life) + 'px'; });
 
         // Exit
         divs.exit().remove();
@@ -365,7 +372,7 @@ Podemos actualizar la selección, para usar `d.b` en vez de `d.a` para calcular 
     <textarea class="form-control">
         // Update con transicion
         divs.transition().duration(1000)
-            .style('width', function(d) { return (2 * d.b) + 'px'; });
+            .style('width', function(d) { return (d.gdp / 100) + 'px'; });
     </textarea>
 </div>
 <script>runnable().source('#code-f02').target('#example-f01').init();</script>
