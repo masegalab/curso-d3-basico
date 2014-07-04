@@ -111,7 +111,7 @@ El nuevo elemento fue creado, y además configuramos su contenido para que use l
 
 ### La selección `exit()`.
 
-También puede ocurrir el caso contrario, que hay más elementos del DOM que elementos de datos. Los elementos restantes quedan almacenados en una selección especial llamada `exit`, que podemos usar para remover los elementos.
+También puede ocurrir el caso contrario, que hay más elementos del DOM que elementos de datos. Los elementos restantes quedan almacenados en una selección especial llamada `exit`, que usaremos para remover los elementos.
 
 <div class="ejemplo">
     <div id="example-d01">
@@ -134,7 +134,7 @@ Al vincular cuatro elementos del DOM con tres elementos de datos, un elemento qu
 </div>
 <script>runnable().source('#code-d01').target('#example-d01').init();</script>
 
-Podemos usar esa selección para remover el elemento que no tiene datos. Notar que la selección funciona casi igual que el resto, podemos alterar los atributos de los elementos del DOM (pero sin usar datos, porque no tienen).
+Podemos usar esta selección para remover el elemento que no tiene datos. Notar que la selección funciona casi igual que el resto, podemos alterar los atributos de los elementos del DOM (pero sin usar datos, porque no tienen).
 
 <div class="runnable" id="code-d02">
     <textarea class="form-control">
@@ -221,7 +221,7 @@ Hasta ahora, hemos usado la posición de los elementos del DOM y la posición de
 </div>
 <script>runnable().source('#code-e01').target('#example-e01').init();</script>
 
-Hasta ahora, todo perfecto. Pero supongamos que tenemos que vincular estos elementos con otro arreglo, que tiene un elemento menos. El mismo código debería funcionar, eliminando el elemento del DOM.
+Ahora, supongamos que queremos vincular estos elementos con otro arreglo, que tiene un elemento menos. El mismo código debería funcionar, eliminando el elemento del DOM.
 
 <div class="runnable" id="code-e02">
     <textarea class="form-control">
@@ -247,7 +247,7 @@ Hasta ahora, todo perfecto. Pero supongamos que tenemos que vincular estos eleme
 </div>
 <script>runnable().source('#code-e02').target('#example-e01').init();</script>
 
-Se eliminó el último elemento del DOM, independientemente del contenido. Lo esperado habría sido que el elemento que decía `París` hubiera desaparecido. Esto pasa porque no hemos especificado la correspondencia entre elementos del DOM y elementos de datos. Queremos que al actualizar los datos, los elementos con el mismo `texto` sean actualizados, y los elementos cuyo `texto` no aparece, sean creados. Para lograr esto, hay que especificar qué atributo de los datos es el ID o key.
+Se eliminó el último elemento del DOM, independientemente del contenido. Sin embargo, era razonable esperar que el elemento con texto `París` hubiera desaparecido. Esto ocurre porque no hemos especificado la correspondencia entre elementos del DOM y elementos de datos. Queremos que al actualizar los datos, los elementos cuyo `texto` aparece en algún elemento de dato sean actualizados, y los demás sean eliminados. Para lograr esto, necesitamos especificar qué atributo de los datos es el ID o key.
 
 <div class="ejemplo">
     <div id="example-e02">
