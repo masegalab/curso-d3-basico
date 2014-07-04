@@ -212,6 +212,16 @@ Podemos cambiar los atributos suavemente, usando transiciones. Las transiciones 
 
 Con SVG y D3, podemos crear gráficos awesome. Pero primero, data binding.
 
+<div class="section-nav">
+  <div class="prev-section">
+    <a href="{{site.baseurl}}/pages/introduccion-d3"><span class="glyphicon glyphicon-chevron-left"></span> Introducción a D3</a>
+  </div>
+
+  <div class="next-section">
+    <a href="{{site.baseurl}}/pages/data-binding">Data binding <span class="glyphicon glyphicon-chevron-right"></span></a>
+  </div>
+</div>
+
 
 
 
