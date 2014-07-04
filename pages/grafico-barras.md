@@ -1,6 +1,15 @@
 ---
 layout: seccion
 title: Gráfico de barras
+parent:
+    url: pages/introduccion-d3
+    title: Introducción a D3
+prev:
+    url: pages/data-binding
+    title: Data binding
+next:
+    url: pages/next
+    title: Next
 ---
 
 Ahora que sabemos sobre D3 y data binding, podemos usar elementos del DOM para crear gráficos. Por ejemplo, podemos crear un gráfico de barras usando contenedores. Supongamos que tenemos los siguientes datos:
@@ -26,6 +35,7 @@ Ahora que sabemos sobre D3 y data binding, podemos usar elementos del DOM para c
 <script>runnable().source('#code-f00').target('#example-f01').init();</script>
 
 Vamos a crear un gráfico de barras usando contenedores. Podemos alterar el tamaño y background de los contenedores alterando los correspondientes atributos de estilo.
+<aside>Este comentario es al margen.</aside>
 
 <div class="ejemplo">
     <div id="example-f01">
@@ -64,12 +74,3 @@ Podemos actualizar la selección, para usar `d.b` en vez de `d.a` para calcular 
 </div>
 <script>runnable().source('#code-f02').target('#example-f01').init();</script>
 
-<div class="section-nav">
-  <div class="prev-section">
-    <a href="{{site.baseurl}}/pages/data-binding"><span class="glyphicon glyphicon-chevron-left"></span> Data binding</a>
-  </div>
-
-  <div class="next-section">
-    <a href="{{site.baseurl}}/pages/introduccion-d3">Next <span class="glyphicon glyphicon-chevron-right"></span></a>
-  </div>
-</div>

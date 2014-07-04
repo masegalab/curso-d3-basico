@@ -28,6 +28,7 @@
 
     // Layout
     padding: @space-medium;
+    margin-bottom: @space-medium;
     border-bottom: solid @space-small @color-green;
 
     background-color: @color-slate;
@@ -54,7 +55,11 @@
 
 .seccion {
 
+    position: relative;
+
     h2 {
+        width: @content-width;
+
         margin-top: @space-huge;
         border-bottom: solid 1px @color-green;
 
@@ -67,62 +72,57 @@
     }
 
     p {
+        width: @content-width;
         margin-top: @space-large;
         margin-bottom: @space-large;
     }
 
-    .section-nav {
+    aside {
+        display: block;
+        position: absolute;
+        right: 0;
 
-        .make-row();
+        width: @aside-width;
+        padding-left: @space-medium;
 
-        margin-top: @space-huge;
-        margin-bottom: @space-huge;
+        font-size: @font-size-small;
+    }
 
-        .next-section {
-            text-align: right;
-            .make-sm-column(6);
-        }
+}
 
-        .prev-section {
-            .make-sm-column(6);
-        }
+// Footer navigation
+.section-nav {
+
+    .make-row();
+
+    margin-top: @space-huge;
+    margin-bottom: @space-huge;
+
+    .next-section {
+        text-align: right;
+        .make-sm-column(6);
+    }
+
+    .prev-section {
+        .make-sm-column(6);
     }
 }
 
+// Example Markup
 .ejemplo {
 
+    width: @content-width;
     border: solid @space-thin @color-grey-light;
     padding: @space-medium;
 
     background-color: @color-grey-lighter;
 }
 
-.colored-block(@color) {
-
-    border: solid @space-thin darken(@color, 30%);
-    border-radius: @space-small;
-    padding: @space-medium;
-
-    h3 {
-        margin-top: @space-small;
-        color: darken(@color, 30%);
-    }
-
-    background-color: lighten(@color, 20%);
-}
-
-.diy {
-    .colored-block(@color-green);
-
-    .glyphicon {
-        font-size: 0.75em;
-    }
-}
-
-
+// Runnable code block
 .runnable {
 
     position: relative;
+    width: @content-width;
     margin: @space-medium 0 @space-medium 0;
 
     textarea {
@@ -131,7 +131,7 @@
 
         background-color: @color-grey-lighter;
         font-family: courier;
-
+        font-size: @font-size-small;
     }
 
     button.btn-default {
@@ -141,7 +141,7 @@
 
         background-color: @color-grey-lighter;
 
-        font-size: 14px;
+        font-size: @font-size-small;
         color: @color-grey-light;
         text-transform: uppercase;
 
@@ -151,16 +151,16 @@
     }
 
     button.btn-default:hover {
-        border-color: darken(@color-green, 20%);
 
+        border-color: darken(@brand-primary, 20%);
         background-color: @color-grey-lighter;
-        color: darken(@color-green, 20%);
+        color: darken(@brand-primary, 20%);
 
-        font-size: 14px;
+        font-size: @font-size-small;
         text-transform: uppercase;
 
         .glyphicon {
-            font-size: 12px;
+            font-size: @font-size-smaller;
         }
     }
 }
