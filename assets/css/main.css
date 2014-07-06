@@ -3276,9 +3276,9 @@ input[type="button"].btn-block {
   font-size: 12px;
 }
 .runnable button.btn-default:hover {
-  border-color: #144328;
+  border-color: #55a63d;
   background-color: #eeeeee;
-  color: #144328;
+  color: #55a63d;
   font-size: 14px;
   text-transform: uppercase;
 }

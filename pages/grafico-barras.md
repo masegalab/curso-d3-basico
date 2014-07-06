@@ -12,66 +12,89 @@ next:
     title: Next
 ---
 
-Ahora que sabemos sobre D3 y data binding, podemos usar elementos del DOM para crear gráficos. Por ejemplo, podemos crear un gráfico de barras usando contenedores. Supongamos que tenemos los siguientes datos:
+Ahora que sabemos sobre SVG y data binding, podemos crear un gráfico de barras. Vamos a usar el siguiente arreglo de datos para crear nuestro gráfico.
 
-<div class="runnable" id="code-f00">
+<div class="runnable" id="code-a01">
     <textarea class="form-control">
-
         var data = [
-            {country: 'Argentina',  life: 76.01, population:  41086927,  gdp:  14679.92524},
-            {country: 'Bolivia',    life: 66.92, population:  10496285,  gdp:   2575.683695},
-            {country: 'Brazil',     life: 73.61, population: 198656019,  gdp:  11319.97371},
-            {country: 'Chile',      life: 79.57, population:  17464814,  gdp:  15245.468},
-            {country: 'Colombia',   life: 73.77, population:  47704427,  gdp:   7762.970829},
-            {country: 'Ecuador',    life: 76.19, population:  15492264,  gdp:   5424.633611},
-            {country: 'Guatemala',  life: 71.66, population:  15082831,  gdp:   3340.782301},
-            {country: 'Paraguay',   life: 72.19, population:   6687361,  gdp:   3680.232059},
-            {country: 'Peru',       life: 74.51, population:  29987800,  gdp:   6423.814308},
-            {country: 'Uruguay',    life: 76.90, population:   3395253,  gdp:  14727.72564},
-            {country: 'Venezuela',  life: 74.48, population:  29954782,  gdp:  12728.72638}
+            {nombre: 'Manzana',     color: 'red',    calorias:  52, grasa: 0.2, proteinas:  0.3},
+            {nombre: 'Hamburguesa', color: 'brown',  calorias: 295, grasa: 14,  proteinas: 17},
+            {nombre: 'Pizza',       color: 'yellow', calorias: 266, grasa: 10,  proteinas: 11},
+            {nombre: 'Palta',       color: 'green',  calorias: 160, grasa: 15,  proteinas:  2}
         ];
     </textarea>
 </div>
-<script>runnable().source('#code-f00').target('#example-f01').init();</script>
+<script>runnable().source('#code-a01').target('#example-a02').init();</script>
 
-<aside>Este comentario es al margen.</aside>
+Vamos a crear un elemento SVG y usar la estructura de la sección anterior para crear los rectángulos del gráfico.
 
-Vamos a crear un gráfico de barras usando contenedores. Podemos alterar el tamaño y background de los contenedores alterando los correspondientes atributos de estilo.
+<div class="runnable" id="code-a02">
+    <textarea class="form-control">
+        var svg = d3.select('#example-a02').append('svg')
+            .attr('width', 600)
+            .attr('height', 80);
+    </textarea>
+</div>
+<script>runnable().source('#code-a02').target('#example-a02').init();</script>
 
 <div class="ejemplo">
-    <div id="example-f01">
-    </div>
+    <div id="example-a02"></div>
 </div>
 
-<div class="runnable" id="code-f01">
+Ahora creamos la selección para los rectángulos, vinculando los rectángulos al arrelgo de datos.
+
+<div class="runnable" id="code-a03">
     <textarea class="form-control">
-        // Data binding
-        var divs = d3.select('#example-f01').selectAll('div')
-            .data(data, function(d) { return d.country; });
+        var rect = svg.selectAll('rect').data(data);
 
-        // Enter
-        divs.enter().append('div').style('height', '20px')
-            .style('margin-bottom', '1px')
-            .style('background-color', '#ccc')
-            .html(function(d) { return d.country; });
+        rect.enter().append('rect')
+            .attr('x', 200)
+            .attr('y', function(d, i) { return 20 * i; })
+            .attr('width', 0)
+            .attr('height', 20 - 2)
+            .attr('fill', 'blue');
 
-        // Update
-        divs.style('width', function(d) { return (2 * d.life) + 'px'; });
+        rect.transition().duration(2000)
+            .attr('width', function(d) { return d.calorias; });
 
-        // Exit
-        divs.exit().remove();
+        rect.exit().remove();
     </textarea>
 </div>
-<script>runnable().source('#code-f01').target('#example-f01').init();</script>
+<script>runnable().source('#code-a03').target('#example-a02').init();</script>
 
-Podemos actualizar la selección, para usar `d.b` en vez de `d.a` para calcular el ancho de los contenedores. Esta vez, en vez de actualizar el valor directamente, usaremos una transición, que hará que el ancho de actualice más suavemente.
+Podemos agregar etiquetas a cada rectángulo. Vamos a poner el nombre de cada categoría alineado a la izquierda de cada rectángulo.
 
-<div class="runnable" id="code-f02">
+<div class="runnable" id="code-a04">
     <textarea class="form-control">
-        // Update con transicion
-        divs.transition().duration(1000)
-            .style('width', function(d) { return (d.gdp / 100) + 'px'; });
+        var labels = svg.selectAll('text.label').data(data);
+
+        labels.enter().append('text')
+            .attr('class', 'label')
+            .attr('x', 190)
+            .attr('y', function(d, i) { return 20 * (i + 1) - 5; })
+            .attr('text-anchor', 'end')
+            .text(function(d) { return d.nombre; });
+
+        labels.exit().remove();
     </textarea>
 </div>
-<script>runnable().source('#code-f02').target('#example-f01').init();</script>
+<script>runnable().source('#code-a04').target('#example-a02').init();</script>
 
+Además, vamos a poner el número de calorías de cada barra dentro de la barra.
+
+<div class="runnable" id="code-a04">
+    <textarea class="form-control">
+        var count = svg.selectAll('text.count').data(data);
+
+        labels.enter().append('text')
+            .attr('class', 'count')
+            .attr('x', function(d) { return d.calorias + 200 - 5; })
+            .attr('y', function(d, i) { return 20 * (i + 1) - 5; })
+            .attr('fill', 'white')
+            .attr('text-anchor', 'end')
+            .text(function(d) { return d.calorias; });
+
+        labels.exit().remove();
+    </textarea>
+</div>
+<script>runnable().source('#code-a04').target('#example-a02').init();</script>
