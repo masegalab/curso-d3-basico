@@ -187,7 +187,7 @@ Ahora, integraremos el eje a nuestro gráfico de barras.
             .attr('y', function(d, i) { return 20 * i; })
             .attr('width', 0)
             .attr('height', 20 - 2)
-            .attr('fill', 'yellow');
+            .attr('fill', 'blue');
 
         rect.transition().duration(2000)
             .attr('width', function(d) { return xScale(valor(d)); });
@@ -209,4 +209,4 @@ Ahora, integraremos el eje a nuestro gráfico de barras.
 </div>
 <script>runnable().source('#code-b02').init();</script>
 
-En la próxima sección, vamos a encapsular este código para poder reusarlo.
+En la próxima sección, vamos a encapsular este código para poder utilizarlo con datos que tengan otra estructura.

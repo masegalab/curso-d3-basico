@@ -12,7 +12,7 @@ next:
     title: Ejes
 ---
 
-Recapitulando: tenemos los datos,
+Cuando el orden de magnitud de los datos no permite representarlos directamente, necesitaremos una _escala_ para usar mejor el espacio disponible. Con los datos de nuestro ejemplo, si graficamos el contenido proteico de los alimentos, tendremos barras de 17 pixeles máximo, desperdiciando gran parte del espacio de la figura.
 
 <div class="runnable" id="code-a01">
     <textarea class="form-control">
@@ -26,7 +26,7 @@ Recapitulando: tenemos los datos,
 </div>
 <script>runnable().source('#code-a01').target('#example-a02').init();</script>
 
-Creamos el SVG:
+Vamos a recrear el gráfico de barras sin usar escalas, y argegaremos las escalas después. Empezaremos por crear el SVG.
 
 <div class="runnable" id="code-a02">
     <textarea class="form-control">
@@ -42,7 +42,7 @@ Creamos el SVG:
     <div id="example-a02"></div>
 </div>
 
-Y agregamos los rectángulos, las etiquetas y los gramos de proteína de cada alimento:
+Agregamos los rectángulos, las etiquetas y los gramos de proteína de cada alimento usando el mismo código de la [sección anterior]({{site.baseurl}}/{{page.prev.url}}).
 
 <div class="runnable" id="code-a03">
     <textarea class="form-control">
@@ -54,7 +54,7 @@ Y agregamos los rectángulos, las etiquetas y los gramos de proteína de cada al
             .attr('y', function(d, i) { return 20 * i; })
             .attr('width', 0)
             .attr('height', 20 - 2)
-            .attr('fill', 'yellow');
+            .attr('fill', 'blue');
 
         rect.transition().duration(2000)
             .attr('width', function(d) { return d.proteinas; });
@@ -92,7 +92,7 @@ Y agregamos los rectángulos, las etiquetas y los gramos de proteína de cada al
 <script>runnable().source('#code-a03').target('#example-a02').init();</script>
 
 
-### Escalas
+### Agregando la Escala
 
 <div class="ejemplo">
   <svg height="80px">
@@ -140,7 +140,9 @@ Podemos calcular el valor máximo del dominio de la escala usando D3.
 </div>
 <script>runnable().source('#code-b02').init();</script>
 
-## Actualizando nuestro ejemplo
+### Actualizando nuestro ejemplo
+
+Ahora crearemos una escala para nuestro gráfico de barras, y reemplazaremos el código correspondiente.
 
 <div class="runnable" id="code-b03">
     <textarea class="form-control">
@@ -204,7 +206,7 @@ Podemos calcular el valor máximo del dominio de la escala usando D3.
 </div>
 <script>runnable().source('#code-b04').init();</script>
 
-Notar que necesitamos dejar espacio para la etiqueta de los gramos de proteína del valor máximo. Vamos a redefinir la escala, cambiando el rango a `[0, 360]`.
+Notar que necesitamos dejar espacio para la etiqueta de los gramos de proteína del valor máximo. Vamos a redefinir la escala, cambiando el rango a `[0, 360]`. Si volvemos a ejecutar el código que actualiza las barras, totas las etiquetas serán visibles.
 
 <div class="runnable" id="code-b05">
     <textarea class="form-control">
@@ -213,7 +215,6 @@ Notar que necesitamos dejar espacio para la etiqueta de los gramos de proteína 
 </div>
 <script>runnable().source('#code-b05').init();</script>
 
-Si volvemos a ejecutar el código que actualiza las barras, totas las etiquetas serán visibles.
 
 Podemos hacer el código un poco más general (y compacto) creando una función que retorne la cantidad que queremos graficar, en vez de escribirla varias veces. Vamos a definir la función `valor`:
 
@@ -248,7 +249,7 @@ Ahora el código que actualiza el gráfico se puede modificar rápidamente para 
             .attr('y', function(d, i) { return 20 * i; })
             .attr('width', 0)
             .attr('height', 20 - 2)
-            .attr('fill', 'yellow');
+            .attr('fill', 'blue');
 
         rect.transition().duration(2000)
             .attr('width', function(d) { return xScale(valor(d)); });
