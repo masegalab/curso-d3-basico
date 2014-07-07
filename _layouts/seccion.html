@@ -37,13 +37,18 @@
       </section>
 
       <div class="section-nav">
+
+        {% if page.prev %}
         <div class="prev-section">
           <a href="{{site.baseurl}}/{{page.prev.url}}"><span class="glyphicon glyphicon-chevron-left"></span> {{page.prev.title}}</a>
         </div>
+        {% endif%}
 
+        {% if page.next %}
         <div class="next-section">
           <a href="{{site.baseurl}}/{{page.next.url}}">{{page.next.title}} <span class="glyphicon glyphicon-chevron-right"></span></a>
         </div>
+        {% endif %}
       </div>
 
     </div>
