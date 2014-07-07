@@ -12,3 +12,5 @@ next:
 - [Manipulación del DOM]({{site.baseurl}}/pages/manipulacion-dom)
 - [Data binding]({{site.baseurl}}/pages/data-binding)
 - [Creando un gráfico de barras]({{site.baseurl}}/pages/grafico-barras)
+- [Escalas]({{site.baseurl}}/pages/escalas)
+- [Ejes]({{site.baseurl}}/pages/ejes)

@@ -8,11 +8,11 @@ prev:
     url: pages/data-binding
     title: Data binding
 next:
-    url: pages/next
-    title: Next
+    url: pages/escalas
+    title: Escalas
 ---
 
-Ahora que sabemos sobre SVG y data binding, podemos crear un gráfico de barras. Vamos a usar el siguiente arreglo de datos para crear nuestro gráfico.
+Ahora que sabemos sobre SVG y data binding, podemos crear un gráfico de barras. Vamos a usar el siguiente arreglo de datos para crear nuestro gráfico. Vamos a partir graficando la cantidad de calorías de cada alimento.
 
 <div class="runnable" id="code-a01">
     <textarea class="form-control">
@@ -26,13 +26,14 @@ Ahora que sabemos sobre SVG y data binding, podemos crear un gráfico de barras.
 </div>
 <script>runnable().source('#code-a01').target('#example-a02').init();</script>
 
-Vamos a crear un elemento SVG y usar la estructura de la sección anterior para crear los rectángulos del gráfico.
+Vamos a crear un elemento SVG y definir su tamaño.
 
 <div class="runnable" id="code-a02">
     <textarea class="form-control">
         var svg = d3.select('#example-a02').append('svg')
             .attr('width', 600)
-            .attr('height', 80);
+            .attr('height', 80)
+            .attr('id', 'svg-ejemplo-a02');
     </textarea>
 </div>
 <script>runnable().source('#code-a02').target('#example-a02').init();</script>
@@ -41,12 +42,14 @@ Vamos a crear un elemento SVG y usar la estructura de la sección anterior para 
     <div id="example-a02"></div>
 </div>
 
-Ahora creamos la selección para los rectángulos, vinculando los rectángulos al arrelgo de datos.
+Ahora creamos la selección para los rectángulos, vinculando los rectángulos al arrelgo de datos. Vamos a usar la misma secuencia que en el ejemplo de la [sección previa]({{site.baseurl}}/{{page.prev.url}}).
 
 <div class="runnable" id="code-a03">
     <textarea class="form-control">
+        // Data binding
         var rect = svg.selectAll('rect').data(data);
 
+        // Agregamos los rectángulos a la selección enter.
         rect.enter().append('rect')
             .attr('x', 200)
             .attr('y', function(d, i) { return 20 * i; })
@@ -54,20 +57,26 @@ Ahora creamos la selección para los rectángulos, vinculando los rectángulos a
             .attr('height', 20 - 2)
             .attr('fill', 'blue');
 
+        // Actualizamos los atributos de los rectángulos
         rect.transition().duration(2000)
             .attr('width', function(d) { return d.calorias; });
 
+        // Eliminamos los rectángulos sin datos
         rect.exit().remove();
     </textarea>
 </div>
 <script>runnable().source('#code-a03').target('#example-a02').init();</script>
 
+Notar que en este caso, no necesitamos remover elementos, pero es buena práctica remover los elementos de la selección exit para cuando queramos revincular la selección a otro conjunto de datos.
+
 Podemos agregar etiquetas a cada rectángulo. Vamos a poner el nombre de cada categoría alineado a la izquierda de cada rectángulo.
 
 <div class="runnable" id="code-a04">
     <textarea class="form-control">
+        // Data binding
         var labels = svg.selectAll('text.label').data(data);
 
+        // Agrega las etiquetas a la selección enter
         labels.enter().append('text')
             .attr('class', 'label')
             .attr('x', 190)
@@ -75,18 +84,27 @@ Podemos agregar etiquetas a cada rectángulo. Vamos a poner el nombre de cada ca
             .attr('text-anchor', 'end')
             .text(function(d) { return d.nombre; });
 
+        // Elimina las etiquetas en exit
         labels.exit().remove();
     </textarea>
 </div>
 <script>runnable().source('#code-a04').target('#example-a02').init();</script>
 
+<div class="ejemplo">
+  <svg height="80px">
+    <use xlink:href="#svg-ejemplo-a02" />
+  </svg>
+</div>
+
 Además, vamos a poner el número de calorías de cada barra dentro de la barra.
 
-<div class="runnable" id="code-a04">
+<div class="runnable" id="code-a05">
     <textarea class="form-control">
+        // Data binding
         var count = svg.selectAll('text.count').data(data);
 
-        labels.enter().append('text')
+        // Agrega las etiquetas a la selección enter
+        count.enter().append('text')
             .attr('class', 'count')
             .attr('x', function(d) { return d.calorias + 200 - 5; })
             .attr('y', function(d, i) { return 20 * (i + 1) - 5; })
@@ -94,7 +112,40 @@ Además, vamos a poner el número de calorías de cada barra dentro de la barra.
             .attr('text-anchor', 'end')
             .text(function(d) { return d.calorias; });
 
-        labels.exit().remove();
+        // Elimina las etiquetas en exit
+        count.exit().remove();
     </textarea>
 </div>
-<script>runnable().source('#code-a04').target('#example-a02').init();</script>
+<script>runnable().source('#code-a05').target('#example-a02').init();</script>
+
+## Graficando otra variable
+
+Podemos actualizar los atributos de las selecciones existentes para graficar otra variable de cada alimento. Por ejemplo, podemos graficar el contenido de grasa.
+
+<div class="runnable" id="code-b01">
+    <textarea class="form-control">
+        // Actualizamos el ancho y color de los rectángulos
+        rect.transition().duration(2000)
+            .attr('fill', 'yellow')
+            .attr('width', function(d) { return d.grasa; });
+
+        // Actualiza la posición del count con transición
+        count.transition().duration(2000)
+            .attr('x', function(d) { return d.grasa + 200 + 5; });
+
+        // Actualiza otros atributos instantáneamente
+        count
+            .attr('fill', 'black')
+            .attr('text-anchor', 'start')
+            .text(function(d) { return d.grasa; });
+    </textarea>
+</div>
+<script>runnable().source('#code-b01').target('#example-a02').init();</script>
+
+<div class="ejemplo">
+  <svg height="80px">
+    <use xlink:href="#svg-ejemplo-a02" />
+  </svg>
+</div>
+
+En este ejemplo, usamos el valor de cada variable (calorías y grasa) para determinar el largo de los rectángulos. Normalmente, esto no es muy práctico, ya que las barras podrían quedar muy chicas o muy grandes. Para optimizar el uso del espacio, podemos usar escalas, que son el tópico de la próxima sección.

@@ -62,7 +62,6 @@ function runnable() {
         // Binds the click event with the code execution
         codeButton.on('click', chart.run);
 
-
         var text = textCode.node().value,
             lines = text.split('\n');
 
