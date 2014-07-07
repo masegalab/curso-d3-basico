@@ -9,12 +9,15 @@ prev:
     title: Introducción a D3
 next:
     url: pages/data-binding
-    title: Data binding
+    title: Data Binding
 ---
+
+D3 permite manipular elementos del DOM usando datos. Para entender cómo funciona D3, necesitamos entender cómo el browser interpreta y pinta el contenido web.
+
 
 ### Qué es el DOM?
 
-<aside>Para una introducción a HTML referimos a la siguiente guía de <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Introduction"> MDN </a>.</aside>
+<aside>Para una introducción a HTML referimos a la siguiente guía de <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Introduction">MDN</a> _Mozilla Developer Network_.</aside>
 
 El contenido de una página web está organizado como una serie de elementos que contienen otros elementos. Por ejemplo, el `<body>` contiene a todos los elementos visibles, el contenedor `<div>` se usa para crear bloques de contenido relacionado (barras de navegación, pie de página, columnas, etc). Esta organización se conoce como el DOM, _Document Object Model_.
 
@@ -34,15 +37,13 @@ Por ejemplo, el siguiente código HTML representa una lista no ordenada, que con
    <li><a href="page1.html">Página 1</a></li>
 </ul>
 
-<aside>Para una lista de elementos de HTML y sus respectivos atributos, siga este <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">link</a>.
+<aside>Para una lista de elementos de HTML y sus respectivos atributos, consultar la <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">documentación en el sitio MDN</a>.
 
-Para una introducción a HTML referimos a la siguiente guía de <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_started"> MDN </a>.</aside>
+<a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_started">Introducción a CSS</a> en el sitio MDN.</aside>
 
-Un elemento en el DOM puede tener cero o más atributos. Por ejemplo, un link normalmente tiene el atributo `href`, cuyo valor es la URL de la página a la que apunta el link. Además de los atributos del elemento, hay atributos de estilo, que se pueden asignar directamente, o a través de una hoja de estilo CSS.
+Un elemento en el DOM puede tener cero o más atributos. Por ejemplo, un link normalmente tiene el atributo `href`, cuyo valor es la URL de la página a la que apunta el link. Además de los atributos del elemento, hay atributos de estilo, que se pueden asignar directamente, o a través de una hoja de estilo CSS
 
 Usualmente, los browsers incluyen una consola que permite ver y manipular elementos del DOM en cualquier página. Las modificaciones al DOM son locales, sólo afectan a la copia de la página que esta viendo el usuario en ese momento.
-
-**TODO:** Mostrar la consola, buscar las combinaciones de teclas, etc.
 
 ### Manipulando el DOM
 
@@ -57,7 +58,7 @@ D3 permite manipular los elementos del DOM muy fácilmente, usando _selectores_ 
   </div>
 </div>
 
-<aside>Para mayor información acerca de las selecciones, diríjase al siguiente <a href="http://bost.ocks.org/mike/selection/">tutorial</a> del creador de D3, Mike Bostock.</aside>
+<aside>Para mayor información acerca de las selecciones, diríjase al artículo <a href="http://bost.ocks.org/mike/selection/">"How Selections Work"</a> del creador de D3, Mike Bostock.</aside>
 
 <div class="runnable" id="code-a02">
   <textarea class="form-control" rows="1">

@@ -1,12 +1,12 @@
 ---
 layout: seccion
-title: Escalas y ejes
+title: Escalas
 parent:
     url: pages/introduccion-d3
     title: Introducción a D3
 prev:
     url: pages/grafico-barras
-    title: Gráfico de barras
+    title: Gráfico de Barras
 next:
     url: pages/ejes
     title: Ejes
@@ -92,8 +92,7 @@ Y agregamos los rectángulos, las etiquetas y los gramos de proteína de cada al
 <script>runnable().source('#code-a03').target('#example-a02').init();</script>
 
 
-
-## Escalas
+### Escalas
 
 <div class="ejemplo">
   <svg height="80px">
@@ -101,11 +100,11 @@ Y agregamos los rectángulos, las etiquetas y los gramos de proteína de cada al
   </svg>
 </div>
 
-<aside>Para una referencia pedagógica sobre las escalas, consultar la <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch07.html">versión online</a> del libro de Scott Murray 'Interactive Data Visualization for the Web'.</aside>
+<aside>Para una referencia pedagógica sobre las escalas, consultar la <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch07.html">versión online</a> del libro de Scott Murray <a href="http://shop.oreilly.com/product/0636920026938.do">"Interactive Data Visualization for the Web"</a>.</aside>
 
 El resultado es poco satisfactorio, el espacio disponible no es bien utilizado. Lo ideal sería que el rectángulo más grande (17 gramos de proteína) ocupe todo el ancho disponible, y que el resto se escale proporcionalmente. Necesitamos transformar números entre 0 a 17 en números entre 0 y 400 de forma proporcional. Una función que hace esta transformación es una escala lineal.
 
-<aside>Notamos que existen otros tipos de escala que resultan más naturales en diferentes contextos. Referimos a la <a href="https://github.com/mbostock/d3/wiki/Quantitative-Scales"> documentación</a></aside>
+<aside>Notamos que existen otros tipos de escala que resultan más naturales en diferentes contextos. Referimos a la <a href="https://github.com/mbostock/d3/wiki/Quantitative-Scales"> documentación</a>.</aside>
 
 D3 provee una función para calcular escalas automáticamente. En nuestro ejemplo, tenemos 400 pixeles disponibles en sentido horizontal y los valores de nuestros datos van desde 0 a 17 gramos de proteína. Los valores de origen son el _dominio_ de la escala, y los valores de destino son el _rango_ de la escala.
 

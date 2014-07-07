@@ -30,7 +30,7 @@ Volvemos a ingresar los datos:
 
 <aside>Para mayor información sobre ejes en D3, referimos a la siguiente <a href="https://github.com/mbostock/d3/wiki/SVG-Axes">documentación</a>.</aside>
 
-Por brevedad, vamos a crear los ejes sin los rectángulos y etiquetas. Empezaremos creando el elemento SVG.
+Por brevedad, vamos a crear los ejes sin rectángulos ni etiquetas. Empezaremos creando el elemento SVG.
 
 <div class="runnable" id="code-a02">
     <textarea class="form-control">
@@ -46,7 +46,10 @@ Por brevedad, vamos a crear los ejes sin los rectángulos y etiquetas. Empezarem
     <div id="example-a02"></div>
 </div>
 
+<aside>MDN provee un tutorial sobre <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/g">grupos en SVG</a>.</aside>
+
 Para ubicar los ejes en el gráfico, es necesario crear un _grupo_ y trasladarlo donde queremos dibujar los ejes. En este caso, ubicaremos el eje debajo de las barras.
+
 
 <div class="runnable" id="code-a03">
     <textarea class="form-control">
@@ -136,7 +139,7 @@ Puede intentar reproducir el ejemplo anterior sin estas especificaciones de esti
 
 ### Recapitulando
 
-Ahora, integraremos el eje a nuestro gráfico de barras. 
+Ahora, integraremos el eje a nuestro gráfico de barras.
 
 <div class="runnable" id="code-b01">
     <textarea class="form-control">

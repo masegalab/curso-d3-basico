@@ -3,14 +3,14 @@ layout: seccion
 title: Introducción a D3
 prev:
     url: pages/introduccion-visualizacion
-    title: Visualización de datos
+    title: Visualización de Datos
 next:
     url: pages/manipulacion-dom
     title: Manipulación del DOM
 ---
 
 - [Manipulación del DOM]({{site.baseurl}}/pages/manipulacion-dom)
-- [Data binding]({{site.baseurl}}/pages/data-binding)
-- [Creando un gráfico de barras]({{site.baseurl}}/pages/grafico-barras)
+- [Data Binding]({{site.baseurl}}/pages/data-binding)
+- [Gráfico de Barras]({{site.baseurl}}/pages/grafico-barras)
 - [Escalas]({{site.baseurl}}/pages/escalas)
-- [Ejes]({{site.baseurl}}/pages/ejes)
+- [Agregando Ejes]({{site.baseurl}}/pages/ejes)

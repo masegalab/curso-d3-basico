@@ -9,9 +9,10 @@ prev:
     title: Manipulación del DOM
 next:
     url: pages/grafico-barras
-    title: Gráfico de barras
+    title: Gráfico de Barras
 ---
-Muchas herramientas nos permiten manipular el DOM (jQuery,...). La principal característica de D3 es que nos permite vincular elementos del DOM con elementos de datos. Por ejemplo, tenemos tres items en una lista:
+
+Muchas herramientas nos permiten manipular el DOM (jQuery, y la API nativa del DOM, entre otras). La principal característica de D3 es que nos permite vincular elementos del DOM con elementos de datos. Por ejemplo, tenemos tres items en una lista:
 
 <div class="ejemplo">
     <div id="example-b01">
@@ -23,7 +24,7 @@ Muchas herramientas nos permiten manipular el DOM (jQuery,...). La principal car
     </div>
 </div>
 
-<aside>Para una explicación pedagógica de data binding, puede consultar la <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch05.html#_binding_data">versión online</a> del libro de Scott Murray 'Interactive Data Visualization for the Web'.</aside>
+<aside>Para una explicación pedagógica de data binding, puede consultar la <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch05.html#_binding_data">versión online</a> del libro de Scott Murray <a href="http://shop.oreilly.com/product/0636920026938.do">"Interactive Data Visualization for the Web"</a>.</aside>
 
 Estos elementos no tienen datos vinculados. Podemos vincular cada uno de estos elementos con un elemento de un arreglo de datos usando `data()`:
 
@@ -71,9 +72,9 @@ Dependiendo del tipo de elemento del DOM, se puede usar `attr` para modificar lo
 
 <script>runnable().source('#code-b03').target('#example-b01').init();</script>
 
-### La seleccion `enter()`
+### La Seleccion `enter()`
 
-<aside>El siguiente <a href="http://bost.ocks.org/mike/circles/">ejemplo</a> constituye un buen complemento para esta sección.</aside>
+<aside>El tutorial <a href="http://bost.ocks.org/mike/circles/">"Circles"</a> de Mike Bostock ilustra los conceptos expuestos en esta sección.</aside>
 
 Esto funciona bien si los elementos del DOM existen y coinciden con el número de datos. Si hay más datos que elementos del DOM, se crea una selección especial llamada `enter()`. Esta selección tiene elementos del DOM provisionales, que pueden ser creados usando esta selección.
 
@@ -122,9 +123,9 @@ El nuevo elemento fue creado, y además configuramos su contenido para que use l
 
 <script>runnable().source('#code-c03').target('#example-c01').init();</script>
 
-### La selección `exit()`.
+### La Selección `exit()`.
 
-<aside>Nuevamente referimos al siguiente <a href="http://bost.ocks.org/mike/circles/">ejemplo</a> para ilustrar la selección exit().</aside>
+<aside>El tutorial <a href="http://bost.ocks.org/mike/circles/">"Circles"</a> de Mike Bostock ilustra los conceptos expuestos en esta sección.</aside>
 
 También puede ocurrir el caso contrario, que hay más elementos del DOM que elementos de datos. Los elementos restantes quedan almacenados en una selección especial llamada exit, que usaremos para remover los elementos.
 

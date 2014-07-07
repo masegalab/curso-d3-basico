@@ -1,12 +1,12 @@
 ---
 layout: seccion
-title: Gráfico de barras
+title: Gráfico de Barras
 parent:
     url: pages/introduccion-d3
     title: Introducción a D3
 prev:
     url: pages/data-binding
-    title: Data binding
+    title: Data Binding
 next:
     url: pages/escalas
     title: Escalas
@@ -69,7 +69,7 @@ Ahora creamos la selección para los rectángulos, vinculando los rectángulos a
 </div>
 <script>runnable().source('#code-a03').target('#example-a02').init();</script>
 
-<aside>La función 'transition' es bastante flexible. Consultar la <a href="https://github.com/mbostock/d3/wiki/Transitions">documentación</a>.</aside>
+<aside>La función _transition_ es bastante flexible, pero tiene menos funcionalidad que una selección sin transiciones. Consultar la <a href="https://github.com/mbostock/d3/wiki/Transitions">documentación</a>.</aside>
 
 Notar que en este caso, no necesitamos remover elementos, pero es buena práctica remover los elementos de la selección exit para cuando queramos revincular la selección a otro conjunto de datos.
 
@@ -122,7 +122,7 @@ Además, vamos a poner el número de calorías de cada barra dentro de la barra.
 </div>
 <script>runnable().source('#code-a05').target('#example-a02').init();</script>
 
-## Graficando otra variable
+### Graficando Otra Variable
 
 Podemos actualizar los atributos de las selecciones existentes para graficar otra variable de cada alimento. Por ejemplo, podemos graficar el contenido de proteína.
 
@@ -152,4 +152,4 @@ Podemos actualizar los atributos de las selecciones existentes para graficar otr
   </svg>
 </div>
 
-En este ejemplo, usamos el valor de cada variable (calorías y proteína) para determinar el largo de los rectángulos. Normalmente, esto no es muy práctico, ya que las barras podrían quedar muy chicas o muy grandes. Para optimizar el uso del espacio, podemos usar escalas, que son el tópico de la próxima sección.
+En este ejemplo, usamos el valor de cada variable (calorías y proteínas) para determinar el largo de los rectángulos. Normalmente, esto no es muy práctico, ya que las barras podrían quedar muy chicas o muy grandes. Para optimizar el uso del espacio, podemos usar escalas, que son el tópico de la [próxima sección]({{site.baseurl}}/{{page.next.url}}).
