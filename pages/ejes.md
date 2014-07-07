@@ -14,6 +14,8 @@ next:
 
 La mayoría de los gráficos tiene ejes para dar contexto a las cantidades mostradas. Siguiendo con el ejemplo anterior, podríamos agregar un eje horizontal en vez (o además) de mostrar la cantidad graficada junto a las barras.
 
+Volvemos a ingresar los datos:
+
 <div class="runnable" id="code-a01">
     <textarea class="form-control">
         var data = [
@@ -26,7 +28,9 @@ La mayoría de los gráficos tiene ejes para dar contexto a las cantidades mostr
 </div>
 <script>runnable().source('#code-a01').target('#example-a02').init();</script>
 
-Por brevedad, vamos a crear los ejes sin los rectángulos y etiquetas. Partiremos creando el elemento SVG.
+<aside>Para mayor información sobre ejes en D3, referimos a la siguiente <a href="https://github.com/mbostock/d3/wiki/SVG-Axes">documentación</a>.</aside>
+
+Por brevedad, vamos a crear los ejes sin los rectángulos y etiquetas. Empezaremos creando el elemento SVG.
 
 <div class="runnable" id="code-a02">
     <textarea class="form-control">
@@ -42,7 +46,7 @@ Por brevedad, vamos a crear los ejes sin los rectángulos y etiquetas. Partiremo
     <div id="example-a02"></div>
 </div>
 
-Para ubicar los ejes en el gráfico, es necesario crear un _grupo_ y trasladarlo a donde queremos los ejes. En este caso, podremos el eje abajo de donde irían las barras.
+Para ubicar los ejes en el gráfico, es necesario crear un _grupo_ y trasladarlo donde queremos dibujar los ejes. En este caso, ubicaremos el eje debajo de las barras.
 
 <div class="runnable" id="code-a03">
     <textarea class="form-control">
@@ -58,9 +62,9 @@ Para ubicar los ejes en el gráfico, es necesario crear un _grupo_ y trasladarlo
 </div>
 <script>runnable().source('#code-a03').init();</script>
 
-Un grupo es un contenedor de elementos de SVG que no tiene representación gráfica. Tampoco tiene posición, pero se le aplicar transformaciones como translación, y escalado. La posición de los elementos de un grupo es relativa al origen del grupo.
+Un grupo es un contenedor de elementos de SVG que no tiene representación gráfica. Tampoco tiene posición, pero se le puede aplicar transformaciones como translación, y escalado. La posición de los elementos de un grupo es relativa al orígen del grupo.
 
-D3 tiene una función para generar automáticamente las líneas, ticks y etiquetas que componen un eje. Para crear el eje, D3 necesita tener acceso a la escala que se graficar. Definimos la escala y la función de acceso a la variable que queremos graficar:
+D3 tiene una función para generar automáticamente las líneas, ticks y etiquetas que componen un eje. Para crear el eje, D3 necesita tener acceso a la escala. Definimos la escala y la función de acceso a la variable que queremos graficar:
 
 <div class="runnable" id="code-a04">
     <textarea class="form-control">
@@ -94,7 +98,7 @@ Ahora, definimos el _generador de ejes_, configurando la escala y la orientació
   </svg>
 </div>
 
-La mayoría de los browsers, los fonts y valores por defecto para líneas en SVG son poco estéticos, pero podemos resolver esto agregando estilos para los elementos que componen los ejes.
+En la mayoría de los browsers, los fonts y valores por defecto para líneas en SVG son poco estéticos, pero podemos resolver esto agregando estilos para los elementos que componen los ejes.
 
 <div>
     <style>
@@ -127,8 +131,12 @@ La mayoría de los browsers, los fonts y valores por defecto para líneas en SVG
 </style></textarea>
 </div>
 
+Puede intentar reproducir el ejemplo anterior sin estas especificaciones de estilo. Verá que el resultado no es muy atractivo.
 
-## Recapitulando
+
+### Recapitulando
+
+Ahora, integraremos el eje a nuestro gráfico de barras. 
 
 <div class="runnable" id="code-b01">
     <textarea class="form-control">

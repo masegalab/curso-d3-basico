@@ -12,7 +12,7 @@ next:
     title: Ejes
 ---
 
-Recapitulando. Tenemos los datos
+Recapitulando: tenemos los datos,
 
 <div class="runnable" id="code-a01">
     <textarea class="form-control">
@@ -26,7 +26,7 @@ Recapitulando. Tenemos los datos
 </div>
 <script>runnable().source('#code-a01').target('#example-a02').init();</script>
 
-Creamos el SVG
+Creamos el SVG:
 
 <div class="runnable" id="code-a02">
     <textarea class="form-control">
@@ -42,7 +42,7 @@ Creamos el SVG
     <div id="example-a02"></div>
 </div>
 
-Y agregamos los rectángulos, las etiquetas y los gramos de grasa de cada alimento.
+Y agregamos los rectángulos, las etiquetas y los gramos de proteína de cada alimento:
 
 <div class="runnable" id="code-a03">
     <textarea class="form-control">
@@ -57,7 +57,7 @@ Y agregamos los rectángulos, las etiquetas y los gramos de grasa de cada alimen
             .attr('fill', 'yellow');
 
         rect.transition().duration(2000)
-            .attr('width', function(d) { return d.grasa; });
+            .attr('width', function(d) { return d.proteinas; });
 
         rect.exit().remove();
 
@@ -80,11 +80,11 @@ Y agregamos los rectángulos, las etiquetas y los gramos de grasa de cada alimen
             .attr('class', 'count');
 
         count.transition().delay(2000)
-            .attr('x', function(d) { return d.grasa + 200 + 5; })
+            .attr('x', function(d) { return d.proteinas + 200 + 5; })
             .attr('y', function(d, i) { return 20 * (i + 1) - 5; })
             .attr('fill', 'black')
             .attr('text-anchor', 'start')
-            .text(function(d) { return d.grasa; });
+            .text(function(d) { return d.proteinas; });
 
         count.exit().remove();
     </textarea>
@@ -101,20 +101,24 @@ Y agregamos los rectángulos, las etiquetas y los gramos de grasa de cada alimen
   </svg>
 </div>
 
-El resultado es poco satisfactorio, el espacio disponible no es bien utilizado. Lo ideal sería que el rectángulo más grande (15 gramos de grasa) ocupe todo el ancho disponible, y que el resto se escale proporcionalmente. Necesitamos transformar números entre 0 a 15 en números entre 0 y 400 de forma proporcional. Una función que hace esta transformación es una escala lineal.
+<aside>Para una referencia pedagógica sobre las escalas, consultar la <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch07.html">versión online</a> del libro de Scott Murray 'Interactive Data Visualization for the Web'.</aside>
 
-D3 provee una función para calcular escalas automáticamente. En nuestro ejemplo, tenemos 400 pixeles disponibles en sentido horizontal y los valores de nuestros datos van desde 0 a 15 gramos de grasa. Los valores de origen son el _dominio_ de la escala, y los valores de destino son el _rango_ de la escala.
+El resultado es poco satisfactorio, el espacio disponible no es bien utilizado. Lo ideal sería que el rectángulo más grande (17 gramos de proteína) ocupe todo el ancho disponible, y que el resto se escale proporcionalmente. Necesitamos transformar números entre 0 a 17 en números entre 0 y 400 de forma proporcional. Una función que hace esta transformación es una escala lineal.
+
+<aside>Notamos que existen otros tipos de escala que resultan más naturales en diferentes contextos. Referimos a la <a href="https://github.com/mbostock/d3/wiki/Quantitative-Scales"> documentación</a></aside>
+
+D3 provee una función para calcular escalas automáticamente. En nuestro ejemplo, tenemos 400 pixeles disponibles en sentido horizontal y los valores de nuestros datos van desde 0 a 17 gramos de proteína. Los valores de origen son el _dominio_ de la escala, y los valores de destino son el _rango_ de la escala.
 
 <div class="runnable" id="code-b01">
     <textarea class="form-control">
         // Creamos y configuramos una escala lineal
         var escalaAncho = d3.scale.linear()
-            .domain([0, 15])
+            .domain([0, 17])
             .range([0, 400]);
 
-        // Probar con otros valores (0, 15, 5)
-        var grasa = 5;
-        alert(grasa + ' equivale a ' + escalaAncho(grasa) + ' pixeles');
+        // Probar con otros valores (0, 17, 5)
+        var proteinas = 5;
+        alert(proteinas + ' equivale a ' + escalaAncho(proteinas) + ' pixeles');
     </textarea>
 </div>
 <script>runnable().source('#code-b01').init();</script>
@@ -124,15 +128,15 @@ Podemos calcular el valor máximo del dominio de la escala usando D3.
 <div class="runnable" id="code-b02">
     <textarea class="form-control">
         // Creamos y configuramos una escala lineal
-        var maxValor = d3.max(data, function(d) { return d.grasa; });
+        var maxValor = d3.max(data, function(d) { return d.proteinas; });
 
         escalaAncho = d3.scale.linear()
             .domain([0, maxValor])
             .range([0, 400]);
 
-        // Probar con otros valores (0, 15, 5)
-        var grasa = 5;
-        alert(grasa + ' equivale a ' + escalaAncho(grasa) + ' pixeles');
+        // Probar con otros valores (0, 17, 5)
+        var proteinas = 5;
+        alert(proteinas + ' equivale a ' + escalaAncho(proteinas) + ' pixeles');
     </textarea>
 </div>
 <script>runnable().source('#code-b02').init();</script>
@@ -142,7 +146,7 @@ Podemos calcular el valor máximo del dominio de la escala usando D3.
 <div class="runnable" id="code-b03">
     <textarea class="form-control">
         var xScale = d3.scale.linear()
-            .domain([0, d3.max(data, function(d) { return d.grasa; })])
+            .domain([0, d3.max(data, function(d) { return d.proteinas; })])
             .range([0, 400]);
     </textarea>
 </div>
@@ -167,7 +171,7 @@ Podemos calcular el valor máximo del dominio de la escala usando D3.
             .attr('fill', 'yellow');
 
         rect.transition().duration(2000)
-            .attr('width', function(d) { return xScale(d.grasa); });
+            .attr('width', function(d) { return xScale(d.proteinas); });
 
         rect.exit().remove();
 
@@ -190,18 +194,18 @@ Podemos calcular el valor máximo del dominio de la escala usando D3.
             .attr('class', 'count');
 
         count.transition().delay(2000)
-            .attr('x', function(d) { return xScale(d.grasa) + 200 + 5; })
+            .attr('x', function(d) { return xScale(d.proteinas) + 200 + 5; })
             .attr('y', function(d, i) { return 20 * (i + 1) - 5; })
             .attr('fill', 'black')
             .attr('text-anchor', 'start')
-            .text(function(d) { return d.grasa; });
+            .text(function(d) { return d.proteinas; });
 
         count.exit().remove();
     </textarea>
 </div>
 <script>runnable().source('#code-b04').init();</script>
 
-Notar que necesitamos dejar espacio para la etiqueta de los gramos de grasa del valor máximo. Vamos a redefinir la escala, cambiando el rango a `[0, 360]`.
+Notar que necesitamos dejar espacio para la etiqueta de los gramos de proteína del valor máximo. Vamos a redefinir la escala, cambiando el rango a `[0, 360]`.
 
 <div class="runnable" id="code-b05">
     <textarea class="form-control">
@@ -217,7 +221,7 @@ Podemos hacer el código un poco más general (y compacto) creando una función 
 <div class="runnable" id="code-b06">
     <textarea class="form-control">
         // Función de acceso a la variable a graficar
-        var valor = function(d) { return d.grasa; };
+        var valor = function(d) { return d.proteinas; };
 
         // Usamos la función de acceso para definir la escala
         var xScale = d3.scale.linear()
