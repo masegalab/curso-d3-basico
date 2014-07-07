@@ -26,6 +26,7 @@ Ahora que sabemos sobre SVG y data binding, podemos crear un gráfico de barras.
 </div>
 <script>runnable().source('#code-a01').target('#example-a02').init();</script>
 
+
 Vamos a crear un elemento SVG y definir su tamaño.
 
 <div class="runnable" id="code-a02">
@@ -38,11 +39,12 @@ Vamos a crear un elemento SVG y definir su tamaño.
 </div>
 <script>runnable().source('#code-a02').target('#example-a02').init();</script>
 
+
 <div class="ejemplo">
     <div id="example-a02"></div>
 </div>
 
-Ahora creamos la selección para los rectángulos, vinculando los rectángulos al arrelgo de datos. Vamos a usar la misma secuencia que en el ejemplo de la [sección previa]({{site.baseurl}}/{{page.prev.url}}).
+Ahora creamos la selección para los rectángulos, vinculando los rectángulos al arreglo de datos. Vamos a usar la misma secuencia que en el ejemplo de la [sección previa]({{site.baseurl}}/{{page.prev.url}}).
 
 <div class="runnable" id="code-a03">
     <textarea class="form-control">

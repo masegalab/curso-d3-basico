@@ -12,7 +12,9 @@ next:
     title: Data binding
 ---
 
-## Qué es el DOM?
+### Qué es el DOM?
+
+<aside>Para una introducción a HTML referimos a la siguiente guía de <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Introduction"> MDN </a>.</aside>
 
 El contenido de una página web está organizado como una serie de elementos que contienen otros elementos. Por ejemplo, el `<body>` contiene a todos los elementos visibles, el contenedor `<div>` se usa para crear bloques de contenido relacionado (barras de navegación, pie de página, columnas, etc). Esta organización se conoce como el DOM, _Document Object Model_.
 
@@ -32,13 +34,17 @@ Por ejemplo, el siguiente código HTML representa una lista no ordenada, que con
    <li><a href="page1.html">Página 1</a></li>
 </ul>
 
+<aside>Para una lista de elementos de HTML y sus respectivos atributos, siga este <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">link</a>.
+
+Para una introducción a HTML referimos a la siguiente guía de <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_started"> MDN </a>.</aside>
+
 Un elemento en el DOM puede tener cero o más atributos. Por ejemplo, un link normalmente tiene el atributo `href`, cuyo valor es la URL de la página a la que apunta el link. Además de los atributos del elemento, hay atributos de estilo, que se pueden asignar directamente, o a través de una hoja de estilo CSS.
 
 Usualmente, los browsers incluyen una consola que permite ver y manipular elementos del DOM en cualquier página. Las modificaciones al DOM son locales, sólo afectan a la copia de la página que esta viendo el usuario en ese momento.
 
 **TODO:** Mostrar la consola, buscar las combinaciones de teclas, etc.
 
-## Manipulando el DOM
+### Manipulando el DOM
 
 D3 permite manipular los elementos del DOM muy fácilmente, usando _selectores_ del DOM, que funcionan igual que las reglas de CSS. En el ejemplo anterior, el primer link tiene un ID `id="link-a02"`. Podemos seleccionar este elemento mediante su ID y cambiar, por ejemplo, su color.
 
@@ -50,6 +56,8 @@ D3 permite manipular los elementos del DOM muy fácilmente, usando _selectores_ 
     </ul>
   </div>
 </div>
+
+<aside>Para mayor información acerca de las selecciones, diríjase al siguiente <a href="http://bost.ocks.org/mike/selection/">tutorial</a> del creador de D3, Mike Bostock.</aside>
 
 <div class="runnable" id="code-a02">
   <textarea class="form-control" rows="1">
@@ -142,7 +150,7 @@ Se pueden crear subselecciones:
 </div>
 <script>runnable().source('#code-a06').target('#ejemplo-a06').init();</script>
 
-## Agregando y Eliminando Elementos
+### Agregando y Eliminando Elementos
 
 Podemos agregar y eliminar elementos del DOM. Por ejemplo,
 
@@ -179,7 +187,9 @@ Para eliminar este último elemento, sólo necesitamos usar `remove`.
 La manipulación el DOM constituye la base para crear Visualizaciones de Datos.
 
 
-## Usando SVG
+### Usando SVG
+
+<aside>Para una introducción a SVG, referimos otra vez al siguiente <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Introduction">tutorial</a> de MDN.</aside>
 
 El DOM no es suficientemente versátil para crear gráficos complejos. Afortunadamente, la mayoría de los browsers soporta SVG, un formato de imagen vectorial que tiene un modelo de datos similar a HTML, y que, por lo tanto, puede ser manipulado con D3.
 
