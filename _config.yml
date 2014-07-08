@@ -1,0 +1,12 @@
+# Jekyll Configuration
+safe: true
+markdown: rdiscount
+pigments: true
+# permalink: pretty
+exclude:
+    - node_modules
+    - Gruntfile.js
+    - bower.json
+    - package.json
+    - bower_components
+

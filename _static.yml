@@ -1,0 +1,16 @@
+# Jekyll Configuration
+safe: true
+markdown: rdiscount
+pigments: true
+exclude:
+    - node_modules
+    - Gruntfile.js
+    - bower.json
+    - package.json
+    - bower_components
+
+baseurl: '.'
+page:
+    root: '..'
+
+destination: curso-d3

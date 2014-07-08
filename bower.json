@@ -1,0 +1,33 @@
+{
+  "name": "curso-d3-basico",
+  "version": "0.2.0",
+  "homepage": "https://github.com/masegalab/curso-d3-basico",
+  "authors": [
+    "Gregorio Moreno <gregorio@masega.co>",
+    "Pablo Navarro <pablo@masega.co>"
+  ],
+  "description": "Material para el curso 'Visualización de datos con D3'",
+  "main": "index.html",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "d3",
+    "visualizacion",
+    "curso"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "bootstrap": "~3.1.1",
+    "d3": "~3.4.8",
+    "ace-builds": "~1.1.4"
+  }
+}

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="607px" height="957px" viewBox="0 0 607 957" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0.3 (7891) - http://www.bohemiancoding.com/sketch -->
+    <title>base-style</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Group" sketch:type="MSLayerGroup" transform="translate(7.000000, 0.000000)">
+            <rect id="Rectangle-1" fill="#48455C" sketch:type="MSShapeGroup" x="0" y="0" width="600" height="115"></rect>
+            <rect id="Rectangle-2" fill="#8ECE7B" sketch:type="MSShapeGroup" x="0" y="112" width="600" height="17"></rect>
+            <text id="Visualización-de-Dat" sketch:type="MSTextLayer" font-family="Droid Sans" font-size="36" font-weight="normal">
+                <tspan x="58" y="74" fill="#FFFFFF">Visualización de Datos con </tspan>
+                <tspan x="495.238281" y="74" fill="#73B4FF">D3</tspan>
+            </text>
+            <text id="MASEGA" sketch:type="MSTextLayer" font-family="Droid Sans" font-size="14" font-weight="normal" fill="#A8D47B">
+                <tspan x="57" y="35">MASEGA</tspan>
+            </text>
+        </g>
+        <rect id="Rectangle-3" stroke="#8ECE7B" fill="#E1F7DA" sketch:type="MSShapeGroup" x="7" y="156" width="600" height="122"></rect>
+        <rect id="Rectangle-4" stroke="#8ECE7B" stroke-width="2" fill="#8ECE7B" sketch:type="MSShapeGroup" x="7" y="156" width="13" height="122"></rect>
+        <text id="NOTA" sketch:type="MSTextLayer" font-family="Roboto" font-size="24" font-weight="bold" fill="#8ECE7B">
+            <tspan x="31" y="192">NOTA</tspan>
+        </text>
+        <text id="Se-pueden-remover-lo" sketch:type="MSTextLayer" font-family="Droid Sans" font-size="20" font-weight="normal" fill="#48455C">
+            <tspan x="33" y="219">Se pueden remover los elementos usando </tspan>
+            <tspan x="33" y="243" font-family="Monaco">d3.select(‘#element’).remove()</tspan>
+        </text>
+        <text id="Se-pueden-remover-lo-2" sketch:type="MSTextLayer" font-family="Droid Sans" font-size="20" font-weight="normal" fill="#48455C">
+            <tspan x="16" y="585">Se pueden remover los elementos usando </tspan>
+            <tspan x="16" y="609" font-family="Monaco">d3.select(‘#element’).remove()</tspan>
+        </text>
+        <rect id="Rectangle-8" stroke="#DB6070" fill="#FFBBC3" sketch:type="MSShapeGroup" x="7" y="289" width="600" height="110.597656"></rect>
+        <text id="Atención!" sketch:type="MSTextLayer" font-family="Roboto" font-size="24" font-weight="bold" fill="#DB6070">
+            <tspan x="32" y="318">Atención!</tspan>
+        </text>
+        <rect id="Rectangle-7" fill="#D77582" sketch:type="MSShapeGroup" x="7" y="290.095026" width="15" height="109.50263"></rect>
+        <text id="Se-pueden-remover-lo" sketch:type="MSTextLayer" font-family="Droid Sans" font-size="20" font-weight="normal" fill="#48455C">
+            <tspan x="33" y="352">Se pueden remover los elementos usando </tspan>
+            <tspan x="33" y="376" font-family="Monaco">d3.select(‘#element’).remove()</tspan>
+        </text>
+        <rect id="Rectangle-13" stroke="#F8E81C" fill="#FFF9AA" sketch:type="MSShapeGroup" x="7" y="412" width="600" height="110.597656"></rect>
+        <text id="Atención!-2" sketch:type="MSTextLayer" font-family="Roboto" font-size="24" font-weight="bold" fill="#DACA00">
+            <tspan x="32" y="441">Atención!</tspan>
+        </text>
+        <rect id="Rectangle-12" fill="#F8E81C" sketch:type="MSShapeGroup" x="7" y="413.095026" width="15" height="109.50263"></rect>
+        <text id="Se-pueden-remover-lo-3" sketch:type="MSTextLayer" font-family="Droid Sans" font-size="20" font-weight="normal" fill="#48455C">
+            <tspan x="33" y="475">Se pueden remover los elementos usando </tspan>
+            <tspan x="33" y="499" font-family="Monaco">d3.select(‘#element’).remove()</tspan>
+        </text>
+        <rect id="Rectangle-6" stroke="#48455C" fill="#F9F9F9" sketch:type="MSShapeGroup" x="3" y="754" width="600" height="50"></rect>
+        <rect id="Rectangle-9" stroke="#48455C" fill="#FCFCFC" sketch:type="MSShapeGroup" x="4" y="636" width="600" height="108"></rect>
+        <text id="d3.select(‘#element’" sketch:type="MSTextLayer" font-family="Monaco" font-size="20" font-weight="normal" fill="#48455C">
+            <tspan x="29" y="788">d3.select(‘#element’).remove();</tspan>
+        </text>
+        <rect id="Rectangle-10" fill="#D0011B" sketch:type="MSShapeGroup" x="15" y="650" width="125" height="35"></rect>
+        <rect id="Rectangle-11" fill="#7ED321" sketch:type="MSShapeGroup" x="13" y="692" width="324" height="35"></rect>
+        <rect id="Rectangle-17" stroke="#48455C" fill="#FCFCFC" sketch:type="MSShapeGroup" x="360" y="833" width="243.070312" height="123.78125"></rect>
+        <rect id="Rectangle-15" fill="#D0011B" sketch:type="MSShapeGroup" x="364.456289" y="849.045718" width="50.6396484" height="40.114294"></rect>
+        <rect id="Rectangle-16" fill="#7ED321" sketch:type="MSShapeGroup" x="363.646055" y="897.18287" width="131.257969" height="40.114294"></rect>
+        <path d="M567.028172,762.18457 L567.028172,789.026367 L595.170691,776.388245 L567.028172,762.18457 Z" id="Path-1" fill="#4990E2" sketch:type="MSShapeGroup"></path>
+        <rect id="Rectangle-14" stroke="#48455C" fill="#F9F9F9" sketch:type="MSShapeGroup" x="0" y="834" width="353" height="122"></rect>
+        <text id="d3.select(‘#element’" sketch:type="MSTextLayer" font-family="Monaco" font-size="14" font-weight="normal" fill="#48455C">
+            <tspan x="10" y="860">d3.select(‘#element’).remove();</tspan>
+        </text>
+        <path d="M317.028172,843.18457 L317.028172,870.026367 L345.170691,857.388245 L317.028172,843.18457 Z" id="Path-2" fill="#4990E2" sketch:type="MSShapeGroup"></path>
+    </g>
+</svg>

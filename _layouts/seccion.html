@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Visualización de datos con D3</title>
+
+    <link href="{{site.page.root}}/assets/css/main.css" rel="stylesheet">
+
+    <script src="{{site.page.root}}/assets/js/d3.min.js" charset="utf8"></script>
+    <script src="{{site.page.root}}/assets/js/ace.js"></script>
+    <script src="{{site.page.root}}/src/utils/codeblock.js"></script>
+  </head>
+  <body>
+
+    <div class="container">
+
+      <!-- Main Heading -->
+      <div class="banner-small">
+        <h1><a href="{{site.page.root}}/index.html">Visualización de datos con <span class="d3">D3</span></a></h1>
+      </div>
+
+      <!-- Breadcrumb -->
+      <ol class="breadcrumb">
+        <li><a href="{{site.page.root}}/index.html">Home</a></li>
+        {% if page.parent %}
+        <li><a href="{{site.page.root}}/{{page.parent.url}}">{{page.parent.title}}</a></li>
+        {% endif %}
+        <li class="active">{{page.title}}</li>
+      </ol>
+
+
+      <section class="seccion">
+        <h2><span class="glyphicon glyphicon-link"></span> {{page.title}}</h2>
+        {{content}}
+      </section>
+
+      <div class="section-nav">
+
+        {% if page.prev %}
+        <div class="prev-section">
+          <a href="{{site.page.root}}/{{page.prev.url}}"><span class="glyphicon glyphicon-chevron-left"></span> {{page.prev.title}}</a>
+        </div>
+        {% endif%}
+
+        {% if page.next %}
+        <div class="next-section">
+          <a href="{{site.page.root}}/{{page.next.url}}">{{page.next.title}} <span class="glyphicon glyphicon-chevron-right"></span></a>
+        </div>
+        {% endif %}
+      </div>
+
+    </div>
+
+  </body>
+</html>
