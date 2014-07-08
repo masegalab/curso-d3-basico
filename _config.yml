@@ -11,3 +11,5 @@ exclude:
     - bower_components
 
 baseurl: http://masegalab.github.io/curso-d3-basico
+page:
+    root: ''
