@@ -61,11 +61,9 @@ D3 permite manipular los elementos del DOM muy fácilmente, usando _selectores_ 
 <aside>Para mayor información acerca de las selecciones, diríjase al artículo <a href="http://bost.ocks.org/mike/selection/">"How Selections Work"</a> del creador de D3, Mike Bostock.</aside>
 
 <div class="runnable" id="code-a02">
-  <textarea class="form-control" rows="1">
-    d3.select('#link-a02').style('color', 'red');
-  </textarea>
+d3.select('#link-a02').style('color', 'red');
 </div>
-<script>runnable().source('#code-a02').target('#ejemplo-a02').init();</script>
+<script>codeBlock().editor('#code-a02').init();</script>
 
 Los selectores permiten seleccionar por ID, por clase, por tipo de elemento o incluso usando la estructura del documento. Para seleccionar un elemento de lista, podemos usar:
 
@@ -79,12 +77,10 @@ Los selectores permiten seleccionar por ID, por clase, por tipo de elemento o in
 </div>
 
 <div class="runnable" id="code-a03">
-  <textarea class="form-control" rows="2">
-    // Selecciona el primer elemento que encuentra bajo ese camino
-    d3.select('#ejemplo-a03 ul li').style('font-weight', 'bold');
-  </textarea>
+// Selecciona el primer elemento que encuentra bajo ese camino
+d3.select('#ejemplo-a03 ul li').style('font-weight', 'bold');
 </div>
-<script>runnable().source('#code-a03').target('#ejemplo-a03').init();</script>
+<script>codeBlock().editor('#code-a03').init();</script>
 
 Los métodos para cambiar atributos se pueden encadenar, por ejemplo, se puede poner `style('font-weight', 'bold').style('color', 'blue')`.
 
@@ -100,12 +96,10 @@ También se puede seleccionar varios elementos simultáneamente:
 </div>
 
 <div class="runnable" id="code-a04">
-  <textarea class="form-control" rows="2">
-    // Selecciona TODOS los elementos que encuentra bajo ese camino
-    d3.selectAll('#ejemplo-a04 ul li').style('font-weight', 'bold');
-  </textarea>
+// Selecciona TODOS los elementos que encuentra bajo ese camino
+d3.selectAll('#ejemplo-a04 ul li').style('font-weight', 'bold');
 </div>
-<script>runnable().source('#code-a04').target('#ejemplo-a04').init();</script>
+<script>codeBlock().editor('#code-a04').init();</script>
 
 Las selecciones pueden almacenarse en variables:
 
@@ -119,15 +113,13 @@ Las selecciones pueden almacenarse en variables:
 </div>
 
 <div class="runnable" id="code-a05">
-  <textarea class="form-control" rows="5">
-    // Almacena la selección el la variable `li`.
-    var li = d3.selectAll('#ejemplo-a05 li');
+// Almacena la selección el la variable `li`.
+var li = d3.selectAll('#ejemplo-a05 li');
 
-    // Usa la selección para cambiar los atributos de los elementos
-    li.style('font-weight', 'bold');
-  </textarea>
+// Usa la selección para cambiar los atributos de los elementos
+li.style('font-weight', 'bold');
 </div>
-<script>runnable().source('#code-a05').target('#ejemplo-a05').init();</script>
+<script>codeBlock().editor('#code-a05').init();</script>
 
 Se pueden crear subselecciones:
 
@@ -141,15 +133,13 @@ Se pueden crear subselecciones:
 </div>
 
 <div class="runnable" id="code-a06">
-  <textarea class="form-control" rows="5">
-    // Almacena la selección el la variable `li`.
-    var div = d3.select('#ejemplo-a06');
+// Almacena la selección el la variable `li`.
+var div = d3.select('#ejemplo-a06');
 
-    // Usa la selección para cambiar los atributos de los elementos
-    div.selectAll('li').style('font-weight', 'bold');
-  </textarea>
+// Usa la selección para cambiar los atributos de los elementos
+div.selectAll('li').style('font-weight', 'bold');
 </div>
-<script>runnable().source('#code-a06').target('#ejemplo-a06').init();</script>
+<script>codeBlock().editor('#code-a06').init();</script>
 
 ### Agregando y Eliminando Elementos
 
@@ -165,25 +155,21 @@ Podemos agregar y eliminar elementos del DOM. Por ejemplo,
 </div>
 
 <div class="runnable" id="code-a07">
-  <textarea class="form-control" rows="6">
-    // Almacena la selección el la variable `li`.
-    var ul = d3.select('#ejemplo-a07 ul');
+// Almacena la selección el la variable `li`.
+var ul = d3.select('#ejemplo-a07 ul');
 
-    var li = ul.append('li');
+var li = ul.append('li');
 
-    li.html('Pitufos').style('color', 'blue');
-  </textarea>
+li.html('Pitufos').style('color', 'blue');
 </div>
-<script>runnable().source('#code-a07').target('#ejemplo-a07').init();</script>
+<script>codeBlock().editor('#code-a07').init();</script>
 
 Para eliminar este último elemento, sólo necesitamos usar `remove`.
 
 <div class="runnable" id="code-a08">
-  <textarea class="form-control" rows="1">
-    li.remove();
-  </textarea>
+li.remove();
 </div>
-<script>runnable().source('#code-a08').target('#ejemplo-a07').init();</script>
+<script>codeBlock().editor('#code-a08').init();</script>
 
 La manipulación el DOM constituye la base para crear Visualizaciones de Datos.
 
@@ -201,35 +187,29 @@ Crearemos un SVG dentro del siguiente contenedor:
 </div>
 
 <div class="runnable" id="code-b01">
-  <textarea class="form-control" rows="3">
-    var svg = d3.select('#ejemplo-b01').append('svg');
+var svg = d3.select('#ejemplo-b01').append('svg');
 
-    svg.attr('width', '600px').attr('height', '200px');
-  </textarea>
+svg.attr('width', '600px').attr('height', '200px');
 </div>
-<script>runnable().source('#code-b01').target('#ejemplo-b01').init();</script>
+<script>codeBlock().editor('#code-b01').init();</script>
 
 Nuestro elemento SVG tiene un tamaño definido pero aún está vacío. Agregaremos un círculo:
 
 <div class="runnable" id="code-b02">
-  <textarea class="form-control" rows="3">
-    var circle = svg.append('circle');
+var circle = svg.append('circle');
 
-    circle.attr('cx', 50).attr('cy', 100).attr('r', 50).attr('fill', 'blue');
-  </textarea>
+circle.attr('cx', 50).attr('cy', 100).attr('r', 50).attr('fill', 'blue');
 </div>
-<script>runnable().source('#code-b02').target('#ejemplo-b01').init();</script>
+<script>codeBlock().editor('#code-b02').init();</script>
 
 Podemos cambiar los atributos suavemente, usando transiciones. Las transiciones se realizan interpolando los valores iniciales y finales, cambiando los atributos progresivamente durante la duración de la transición. Las transiciones ayudan a seguir los elementos visualmente y agregan un componente estético a la visualización.
 
 
 <div class="runnable" id="code-b03">
-  <textarea class="form-control" rows="2">
-    circle.transition().duration(2000)
-      .attr('cx', 500).attr('r', 100).attr('fill', 'red');
-  </textarea>
+circle.transition().duration(2000)
+    .attr('cx', 500).attr('r', 100).attr('fill', 'red');
 </div>
-<script>runnable().source('#code-b03').target('#ejemplo-b01').init();</script>
+<script>codeBlock().editor('#code-b03').init();</script>
 
 Con SVG y D3, podemos crear gráficos atractivos y dinámicos. Pero primero, necesitamos aprender a vincular datos con elementos del DOM, lo que se conoce como data binding.
 

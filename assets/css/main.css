@@ -3521,6 +3521,7 @@ a.thumbnail.active {
   position: relative;
   width: 80%;
   margin: 10px 0 10px 0;
+  border: solid 1px #cccccc;
 }
 .runnable textarea {
   border-radius: 0px;

@@ -29,48 +29,41 @@ Muchas herramientas nos permiten manipular el DOM (jQuery, y la API nativa del D
 Estos elementos no tienen datos vinculados. Podemos vincular cada uno de estos elementos con un elemento de un arreglo de datos usando `data()`:
 
 <div class="runnable" id="code-b01">
-    <textarea class="form-control">
-        // Arreglo de datos de tres elementos
-        var data = [
-            {texto: 'Talca',   color: 'red'},
-            {texto: 'París',   color: 'blue'},
-            {texto: 'Londres', color: 'green'}
-        ];
+// Arreglo de datos de tres elementos
+var data = [
+    {texto: 'Talca',   color: 'red'},
+    {texto: 'París',   color: 'blue'},
+    {texto: 'Londres', color: 'green'}
+];
 
-        // Seleccionamos el contenedor
-        var div = d3.select('#example-b01 ul');
+// Seleccionamos el contenedor
+var div = d3.select('#example-b01 ul');
 
-        // Vinculamos los elementos de la lista con los elementos del arreglo
-        var list = div.selectAll('li').data(data);
-    </textarea>
+// Vinculamos los elementos de la lista con los elementos del arreglo
+var list = div.selectAll('li').data(data);
 </div>
 
-<script>runnable().source('#code-b01').target('#example-b01').init();</script>
+<script>codeBlock().editor('#code-b01').init();</script>
 
 Si inspeccionamos estos elementos, veremos que tienen una nueva propiedad: el attributo `__data__`. Pero, visualmente, no pasó nada.
 
 Ahora, podemos usar los datos para modificar los atributos del elemento del DOM. Por ejemplo, podemos cambiar el color de los ítems de la lista usando el atributo `color` del dato asociado a cada uno de ellos.
 
-
 <div class="runnable" id="code-b02">
-    <textarea class="form-control">
-        // Cambia el color de cada item
-        list.style('color', function(d) { return d.color; });
-    </textarea>
+// Cambia el color de cada item
+list.style('color', function(d) { return d.color; });
 </div>
 
-<script>runnable().source('#code-b02').target('#example-b01').init();</script>
+<script>codeBlock().editor('#code-b02').init();</script>
 
 Dependiendo del tipo de elemento del DOM, se puede usar `attr` para modificar los atributos, `style` para propiedades de estilo, `text` o `html` para contenido. Por ejemplo, ahora podemos alterar el contenido del elemento de lista.
 
 <div class="runnable" id="code-b03">
-    <textarea class="form-control">
-        // Cambia el texto de cada item
-        list.html(function(d) { return d.texto; });
-    </textarea>
+// Cambia el texto de cada item
+list.html(function(d) { return d.texto; });
 </div>
 
-<script>runnable().source('#code-b03').target('#example-b01').init();</script>
+<script>codeBlock().editor('#code-b03').init();</script>
 
 ### La Seleccion `enter()`
 
@@ -90,38 +83,30 @@ Esto funciona bien si los elementos del DOM existen y coinciden con el número d
 Ahora tenemos dos elementos del DOM, y el mismo arreglo de datos. Podemos vincular los elementos del DOM con los elementos de los datos.
 
 <div class="runnable" id="code-c01">
-    <textarea class="form-control">
-        // Vinculamos los elementos de la lista con los elementos del arreglo
-        var list = d3.select('#example-c01 ul').selectAll('li').data(data);
-    </textarea>
+// Vinculamos los elementos de la lista con los elementos del arreglo
+var list = d3.select('#example-c01 ul').selectAll('li').data(data);
 </div>
-
-<script>runnable().source('#code-c01').target('#example-c01').init();</script>
+<script>codeBlock().editor('#code-c01').init();</script>
 
 La selección `list.enter()` contiene una referencia a los elementos de lista no creados. Podemos usar esta selección para crear los elementos.
 
 <div class="runnable" id="code-c02">
-    <textarea class="form-control">
-        // Crea un elemento de lista para el elemento de dato sin DOM
-        list.enter().append('li')
-            .html(function(d) { return d.texto; });
-    </textarea>
+// Crea un elemento de lista para el elemento de dato sin DOM
+list.enter().append('li')
+    .html(function(d) { return d.texto; });
 </div>
 
-<script>runnable().source('#code-c02').target('#example-c01').init();</script>
+<script>codeBlock().editor('#code-c02').init();</script>
 
 El nuevo elemento fue creado, y además configuramos su contenido para que use los datos. Notar que el resto de los elementos no ha sido actualizado. Una vez creado el elemento, está disponible en la variable `list`, y puede ser actualizado con el resto de los elementos.
 
 <div class="runnable" id="code-c03">
-    <textarea class="form-control">
-        // Crea un elemento de lista para el elemento de dato sin DOM
-        list
-            .style('color', function(d) { return d.color; })
-            .html(function(d) { return d.texto; });
-    </textarea>
+// Crea un elemento de lista para el elemento de dato sin DOM
+list
+    .style('color', function(d) { return d.color; })
+    .html(function(d) { return d.texto; });
 </div>
-
-<script>runnable().source('#code-c03').target('#example-c01').init();</script>
+<script>codeBlock().editor('#code-c03').init();</script>
 
 ### La Selección `exit()`.
 
@@ -143,30 +128,24 @@ También puede ocurrir el caso contrario, que hay más elementos del DOM que ele
 Al vincular cuatro elementos del DOM con tres elementos de datos, un elemento quedará en la selección `exit()`.
 
 <div class="runnable" id="code-d01">
-    <textarea class="form-control">
-        // Vinculamos los elementos de la lista con los elementos del arreglo
-        var list = d3.select('#example-d01 ul').selectAll('li').data(data);
-    </textarea>
+// Vinculamos los elementos de la lista con los elementos del arreglo
+var list = d3.select('#example-d01 ul').selectAll('li').data(data);
 </div>
-<script>runnable().source('#code-d01').target('#example-d01').init();</script>
+<script>codeBlock().editor('#code-d01').init();</script>
 
 Podemos usar esta selección para remover el elemento que no tiene datos. Notar que la selección funciona casi igual que el resto, podemos alterar los atributos de los elementos del DOM (pero sin usar datos, porque no tienen).
 
 <div class="runnable" id="code-d02">
-    <textarea class="form-control">
-        list.exit().style('color', 'yellow');
-    </textarea>
+list.exit().style('color', 'yellow');
 </div>
-<script>runnable().source('#code-d02').target('#example-d01').init();</script>
+<script>codeBlock().editor('#code-d02').init();</script>
 
 También podemos simplemente eliminarlos.
 
 <div class="runnable" id="code-d03">
-    <textarea class="form-control">
-        list.exit().remove();
-    </textarea>
+list.exit().remove();
 </div>
-<script>runnable().source('#code-d03').target('#example-d01').init();</script>
+<script>codeBlock().editor('#code-d03').init();</script>
 
 Normalmente, el código D3 debe manejar estas tres situaciones, `enter`, update y `exit`. Ejecutando correctamente esta secuencia asegura que los datos y el DOM estén sincronizados.
 
@@ -177,29 +156,27 @@ Normalmente, el código D3 debe manejar estas tres situaciones, `enter`, update 
 </div>
 
 <div class="runnable" id="code-d04">
-    <textarea class="form-control">
-        // Arreglo de datos de tres elementos
-        var data = [
-            {texto: 'Talca',   color: 'red'},
-            {texto: 'París',   color: 'blue'},
-            {texto: 'Londres', color: 'green'}
-        ];
+// Arreglo de datos de tres elementos
+var data = [
+    {texto: 'Talca',   color: 'red'},
+    {texto: 'París',   color: 'blue'},
+    {texto: 'Londres', color: 'green'}
+];
 
-        var list = d3.select('#example-d04 ul').selectAll('li').data(data);
+var list = d3.select('#example-d04 ul').selectAll('li').data(data);
 
-        // Enter
-        list.enter().append('li')
-            .html(function(d) { return d.texto; });
+// Enter
+list.enter().append('li')
+    .html(function(d) { return d.texto; });
 
-        // Update
-        list
-            .style('color', function(d) { return d.color; });
+// Update
+list
+    .style('color', function(d) { return d.color; });
 
-        // Exit
-        list.exit().remove();
-    </textarea>
+// Exit
+list.exit().remove();
 </div>
-<script>runnable().source('#code-d04').target('#example-d02').init();</script>
+<script>codeBlock().editor('#code-d04').init();</script>
 
 
 ### Usando un ID
@@ -213,55 +190,51 @@ Hasta ahora, hemos usado la posición de los elementos del DOM y la posición de
 </div>
 
 <div class="runnable" id="code-e01">
-    <textarea class="form-control">
-        // Arreglo de datos de tres elementos
-        var data = [
-            {texto: 'Talca',   color: 'red'},
-            {texto: 'París',   color: 'blue'},
-            {texto: 'Londres', color: 'green'}
-        ];
+// Arreglo de datos de tres elementos
+var data = [
+    {texto: 'Talca',   color: 'red'},
+    {texto: 'París',   color: 'blue'},
+    {texto: 'Londres', color: 'green'}
+];
 
-        var list = d3.select('#example-e01 ul').selectAll('li').data(data);
+var list = d3.select('#example-e01 ul').selectAll('li').data(data);
 
-        // Enter
-        list.enter().append('li')
-            .html(function(d) { return d.texto; });
+// Enter
+list.enter().append('li')
+    .html(function(d) { return d.texto; });
 
-        // Update
-        list
-            .style('color', function(d) { return d.color; });
+// Update
+list
+    .style('color', function(d) { return d.color; });
 
-        // Exit
-        list.exit().remove();
-    </textarea>
+// Exit
+list.exit().remove();
 </div>
-<script>runnable().source('#code-e01').target('#example-e01').init();</script>
+<script>codeBlock().editor('#code-e01').init();</script>
 
 Ahora, supongamos que queremos vincular estos elementos con otro arreglo, que tiene un elemento menos. El mismo código debería funcionar, eliminando el elemento del DOM.
 
 <div class="runnable" id="code-e02">
-    <textarea class="form-control">
-        // Arreglo de datos de tres elementos
-        var data = [
-            {texto: 'Talca',   color: 'red'},
-            {texto: 'Londres', color: 'green'}
-        ];
+// Arreglo de datos de tres elementos
+var data = [
+    {texto: 'Talca',   color: 'red'},
+    {texto: 'Londres', color: 'green'}
+];
 
-        var list = d3.select('#example-e01 ul').selectAll('li').data(data);
+var list = d3.select('#example-e01 ul').selectAll('li').data(data);
 
-        // Enter
-        list.enter().append('li')
-            .html(function(d) { return d.texto; });
+// Enter
+list.enter().append('li')
+    .html(function(d) { return d.texto; });
 
-        // Update
-        list
-            .style('color', function(d) { return d.color; });
+// Update
+list
+    .style('color', function(d) { return d.color; });
 
-        // Exit
-        list.exit().remove();
-    </textarea>
+// Exit
+list.exit().remove();
 </div>
-<script>runnable().source('#code-e02').target('#example-e01').init();</script>
+<script>codeBlock().editor('#code-e02').init();</script>
 
 Se eliminó el último elemento del DOM, independientemente del contenido. Sin embargo, era razonable esperar que el elemento con texto `París` hubiera desaparecido. Esto ocurre porque no hemos especificado la correspondencia entre elementos del DOM y elementos de datos. Queremos que al actualizar los datos, los elementos cuyo `texto` aparece en algún elemento de dato sean actualizados, y los demás sean eliminados. Para lograr esto, necesitamos especificar qué atributo de los datos es el ID o key.
 
@@ -272,54 +245,50 @@ Se eliminó el último elemento del DOM, independientemente del contenido. Sin e
 </div>
 
 <div class="runnable" id="code-e03">
-    <textarea class="form-control">
-        // Arreglo de datos de tres elementos
-        var data = [
-            {texto: 'Talca',   color: 'red'},
-            {texto: 'París',   color: 'blue'},
-            {texto: 'Londres', color: 'green'}
-        ];
+// Arreglo de datos de tres elementos
+var data = [
+    {texto: 'Talca',   color: 'red'},
+    {texto: 'París',   color: 'blue'},
+    {texto: 'Londres', color: 'green'}
+];
 
-        var list = d3.select('#example-e02 ul').selectAll('li')
-            .data(data, function(d) { return d.texto; });
+var list = d3.select('#example-e02 ul').selectAll('li')
+    .data(data, function(d) { return d.texto; });
 
-        // Enter
-        list.enter().append('li')
-            .html(function(d) { return d.texto; });
+// Enter
+list.enter().append('li')
+    .html(function(d) { return d.texto; });
 
-        // Update
-        list
-            .style('color', function(d) { return d.color; });
+// Update
+list
+    .style('color', function(d) { return d.color; });
 
-        // Exit
-        list.exit().remove();
-    </textarea>
+// Exit
+list.exit().remove();
 </div>
-<script>runnable().source('#code-e03').target('#example-e02').init();</script>
+<script>codeBlock().editor('#code-e03').init();</script>
 
 Ahora, si eliminamos un dato, se elimina el elemento del DOM correspondiente.
 
 <div class="runnable" id="code-e04">
-    <textarea class="form-control">
-        // Arreglo de datos de tres elementos
-        var data = [
-            {texto: 'Talca',   color: 'red'},
-            {texto: 'Londres', color: 'green'}
-        ];
+// Arreglo de datos de tres elementos
+var data = [
+    {texto: 'Talca',   color: 'red'},
+    {texto: 'Londres', color: 'green'}
+];
 
-        var list = d3.select('#example-e02 ul').selectAll('li')
-            .data(data, function(d) { return d.texto; });
+var list = d3.select('#example-e02 ul').selectAll('li')
+    .data(data, function(d) { return d.texto; });
 
-        // Enter
-        list.enter().append('li')
-            .html(function(d) { return d.texto; });
+// Enter
+list.enter().append('li')
+    .html(function(d) { return d.texto; });
 
-        // Update
-        list
-            .style('color', function(d) { return d.color; });
+// Update
+list
+    .style('color', function(d) { return d.color; });
 
-        // Exit
-        list.exit().remove();
-    </textarea>
+// Exit
+list.exit().remove();
 </div>
-<script>runnable().source('#code-e04').target('#example-e02').init();</script>
+<script>codeBlock().editor('#code-e04').init();</script>
