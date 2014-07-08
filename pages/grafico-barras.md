@@ -2,13 +2,13 @@
 layout: seccion
 title: Gráfico de Barras
 parent:
-    url: pages/introduccion-d3
+    url: pages/introduccion-d3.html
     title: Introducción a D3
 prev:
-    url: pages/data-binding
+    url: pages/data-binding.html
     title: Data Binding
 next:
-    url: pages/escalas
+    url: pages/escalas.html
     title: Escalas
 ---
 
@@ -44,7 +44,7 @@ Vamos a crear un elemento SVG y definir su tamaño.
     <div id="example-a02"></div>
 </div>
 
-Ahora creamos la selección para los rectángulos, vinculando los rectángulos al arreglo de datos. Vamos a usar la misma secuencia que en el ejemplo de la [sección previa]({{site.baseurl}}/{{page.prev.url}}).
+Ahora creamos la selección para los rectángulos, vinculando los rectángulos al arreglo de datos. Vamos a usar la misma secuencia que en el ejemplo de la [sección previa]({{site.page.root}}/{{page.prev.url}}).
 
 <div class="runnable" id="code-a03">
     <textarea class="form-control">
@@ -131,17 +131,17 @@ Podemos actualizar los atributos de las selecciones existentes para graficar otr
         // Actualizamos el ancho y color de los rectángulos
         rect.transition().duration(2000)
             .attr('fill', 'yellow')
-            .attr('width', function(d) { return d.proteína; });
+            .attr('width', function(d) { return d.proteinas; });
 
         // Actualiza la posición del count con transición
         count.transition().duration(2000)
-            .attr('x', function(d) { return d.proteína + 200 + 5; });
+            .attr('x', function(d) { return d.proteinas + 200 + 5; });
 
         // Actualiza otros atributos instantáneamente
         count
             .attr('fill', 'black')
             .attr('text-anchor', 'start')
-            .text(function(d) { return d.proteína; });
+            .text(function(d) { return d.proteinas; });
     </textarea>
 </div>
 <script>runnable().source('#code-b01').target('#example-a02').init();</script>
@@ -152,4 +152,4 @@ Podemos actualizar los atributos de las selecciones existentes para graficar otr
   </svg>
 </div>
 
-En este ejemplo, usamos el valor de cada variable (calorías y proteínas) para determinar el largo de los rectángulos. Normalmente, esto no es muy práctico, ya que las barras podrían quedar muy chicas o muy grandes. Para optimizar el uso del espacio, podemos usar escalas, que son el tópico de la [próxima sección]({{site.baseurl}}/{{page.next.url}}).
+En este ejemplo, usamos el valor de cada variable (calorías y proteínas) para determinar el largo de los rectángulos. Normalmente, esto no es muy práctico, ya que las barras podrían quedar muy chicas o muy grandes. Para optimizar el uso del espacio, podemos usar escalas, que son el tópico de la [próxima sección]({{site.page.root}}/{{page.next.url}}).

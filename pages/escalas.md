@@ -2,13 +2,13 @@
 layout: seccion
 title: Escalas
 parent:
-    url: pages/introduccion-d3
+    url: pages/introduccion-d3.html
     title: Introducción a D3
 prev:
-    url: pages/grafico-barras
+    url: pages/grafico-barras.html
     title: Gráfico de Barras
 next:
-    url: pages/ejes
+    url: pages/ejes.html
     title: Ejes
 ---
 

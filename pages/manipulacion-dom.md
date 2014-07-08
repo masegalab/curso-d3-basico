@@ -2,13 +2,13 @@
 layout: seccion
 title: Manipulación del DOM
 parent:
-    url: pages/introduccion-d3
+    url: pages/introduccion-d3.html
     title: Introducción a D3
 prev:
-    url: pages/introduccion-d3
+    url: pages/introduccion-d3.html
     title: Introducción a D3
 next:
-    url: pages/data-binding
+    url: pages/data-binding.html
     title: Data Binding
 ---
 

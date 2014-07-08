@@ -2,13 +2,13 @@
 layout: seccion
 title: Ejes
 parent:
-    url: pages/introduccion-d3
+    url: pages/introduccion-d3.html
     title: Introducción a D3
 prev:
-    url: pages/escalas
+    url: pages/escalas.html
     title: Escalas
 next:
-    url: pages/next
+    url: pages/introduccion-d3.html
     title: Next
 ---
 

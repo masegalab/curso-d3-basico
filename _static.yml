@@ -2,7 +2,6 @@
 safe: true
 markdown: rdiscount
 pigments: true
-# permalink: pretty
 exclude:
     - node_modules
     - Gruntfile.js
@@ -10,3 +9,6 @@ exclude:
     - package.json
     - bower_components
 
+baseurl: '.'
+page:
+    root: '..'
