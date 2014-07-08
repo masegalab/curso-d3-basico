@@ -10,5 +10,4 @@ next:
 ---
 
 - [Ejemplos]({{site.baseurl}}/ejemplos-visualizacion.html)
-- [Portfolio]({{site.baseurl}}/portfolio.html)
 
