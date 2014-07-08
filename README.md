@@ -2,6 +2,8 @@
 
 Material para el curso _Visualización de datos con D3.js_, dictado en Julio de 2014 por [Masega](www.masega.co) en conjunto con [Poderomedia Academy](www.poderomedia.org).
 
+[Descargar los ejemplos](https://github.com/masegalab/curso-d3-basico/blob/master/dist/curso-d3.zip?raw=true)
+
 ## Uso
 
 El material para el curso está compilado y listo para usar. Para usar la versión compilada, bajar y descomprimir el archivo curso-d3.zip y abrir el archivo `index.html`. Para los ejemplos que necesitan datos externos (archivos JSON o CSV), se require usar un servidor web estático para servir los archivos. Usando Python, se puede crear un servidor fácilmente usando la línea de comandos (desde el directorio con el código):
