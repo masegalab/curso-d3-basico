@@ -12,3 +12,5 @@ exclude:
 baseurl: '.'
 page:
     root: '..'
+
+destination: curso-d3

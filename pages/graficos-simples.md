@@ -1,4 +1,0 @@
----
-layout: seccion
-title: Gráficos
----
