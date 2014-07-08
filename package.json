@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "description": "Material para el curso 'Visualización de datos con D3'",
   "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/masegalab/curso-d3-basico.git"

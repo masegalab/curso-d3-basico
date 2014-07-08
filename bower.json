@@ -28,7 +28,6 @@
   "devDependencies": {
     "bootstrap": "~3.1.1",
     "d3": "~3.4.8",
-    "ace-builds": "~1.1.4",
-    "bootstrap-lightbox": "~0.7.0"
+    "ace-builds": "~1.1.4"
   }
 }
