@@ -32,7 +32,7 @@ next:
     </style>
 </div>
 
-Vamos a usar la estructura de gráficos reusables con el código del scatter plot creado antes. Definimos los datos nuevamente.
+Aplicaremos la estructura de gráficos reutilizables al ejemplo del Scatter Plot creado anteriormente. Definimos los datos nuevamente:
 
 <div class="runnable" id="code-a01">
 var datosA = [
@@ -73,7 +73,7 @@ var datosA = [
 </div>
 <script>codeBlock().editor('#code-a01').init();</script>
 
-Creamos la estructura básica de los gráficos reutilizables.
+Creamos la estructura básica de los gráficos reutilizables:
 
 <div class="runnable" id="code-a02">
 function scatterChart() {
@@ -244,6 +244,7 @@ function scatterChart() {
 
 ### Usando el gráfico
 
+Finalmente, podemos invocar la función _scatterChart_ y definir el valor de los parámetros usando los accesores o funciones de acceso, para dibujar el gráfico:
 
 <div class="runnable" id="code-a04">
     var scatter = scatterChart()
@@ -263,7 +264,7 @@ function scatterChart() {
     <div id="ejemplo-a04"></div>
 </div>
 
-y podemos hacer update
+Con nuestra estructura de gráficos reutilizables, es muy fácil actualizar nuestro gráfico: sólo tenemos que redefinir los parámetros que queremos cambiar a través de los accesores.
 
 <div class="runnable" id="code-a05">
     var scatter = scatterChart()

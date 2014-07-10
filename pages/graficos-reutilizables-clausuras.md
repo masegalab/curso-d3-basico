@@ -36,7 +36,7 @@ changeWidth();
 </div>
 <script>codeBlock().editor('#code-a02').init();</script>
 
-El que la variable `width` se cambie en el contexto global puede causar problemas con código en otras partes de la página.
+El que la variable `width` se cambie en el contexto global puede causar problemas con otros códigos incluidos en la página.
 
 <div class="runnable" id="code-a03">
 console.log('[global] width = ' + width);
@@ -47,7 +47,7 @@ Esto es una fuente potencial de errores de programación y de conflictos de nomb
 
 ### Clausuras
 
-Lo ideal sería crear estas variables en un contexto privado, no visible desde el scope global. Las funciones declaradas dentro de una función son visibles en todas partes dentro de esta función, pero no fuera de ella. En JavaScript, las funciones tienen una referencia al _scope_ en el que fueron creadas. Por ejemplo, el scope de la función `chart` es la función `createChart`, por tanto `chart` tiene acceso a todas las variables definidas en `createChart`.
+Lo ideal sería crear estas variables en un contexto privado, no visible desde el scope global. Las funciones declaradas dentro de una función son visibles en todas partes dentro de esta función, pero no fuera de ella. En JavaScript, las funciones tienen una referencia al _scope_ en el que fueron creadas. En el siguiente ejemplo, el scope de la función `chart` es la función `createChart`, por tanto `chart` tiene acceso a todas las variables definidas en `createChart`.
 
 <div class="runnable" id="code-a04">
 function createChart() {
@@ -71,11 +71,11 @@ console.log('[global] width = ' + width);
 
 Logramos crear la variable `width` interna a la función, que no interfiere con el valor de la variable global `width`. Esto nos permitirá crear una función para crear un gráfico usando variables internas, minimizando el riesgo de conflictos con variables definidas en el contexto global.
 
-Ahora, no tenemos acceso a la variable interna `width` fuera de la función `createChart`, por tanto la única forma de cambiar su valor es cambiando el código de la función `createChart`. La idea, es poder usar el gráfico sin tener que modificar el código. Afortunadamente, JavaScript tiene algunas particularidades que nos ayudan con esta situación.
+Ahora, no tenemos acceso a la variable interna `width` fuera de la función `createChart`, por lo tanto, la única forma de cambiar su valor es cambiando el código de la función `createChart`. Queremos ser capaces de usar el gráfico sin tener que modificar el código. Afortunadamente, JavaScript tiene algunas particularidades que nos ayudan con esta situación.
 
 ### Funciones
 
-En JavaScript, las funciones son objetos de _primera clase_. Esto significa que son variables como cualquier otra, se pueden pasar como argumento a otras funciones, asignar a variables y se les pueden agregar atributos. También podemos retornar funciones, haremos esto con la función `chart`.
+En JavaScript, las funciones son objetos de _primera clase_. Esto significa que son variables como cualquier otra: se pueden pasar como argumento a otras funciones, asignar a variables y se les pueden agregar atributos. También podemos retornar funciones. Ejemplificaremos esto con la función `chart`:
 
 <div class="runnable" id="code-a05">
 function createChart() {
@@ -136,7 +136,7 @@ console.log('[global] width = ' + width);
 </div>
 <script>codeBlock().editor('#code-a07').init();</script>
 
-Pero además de agregar atributos simples a una función, estos atributos pueden ser funciones. Estas funciones también tienen acceso al scope de la función `chart`, y por tanto, a todas las variables definidas en `createChart`.
+Pero, además de agregar atributos simples a una función, también podemos agregarle funciones. Estas funciones tendrán acceso al scope de la función `chart`, y por tanto, a todas las variables definidas en `createChart`.
 
 <div class="runnable" id="code-a08">
 function createChart() {
@@ -172,7 +172,7 @@ console.log('[global] width = ' + width);
 </div>
 <script>codeBlock().editor('#code-a08-1').init();</script>
 
-Ahora, podemos hacer una función que permite obtener y definir un valor al mismo tiempo, para no tener que crear funciones `get` y `set` para cada atributo de la función.
+Además, podemos hacer una función que permite obtener y definir un valor al mismo tiempo, ahorrándonos la necesidad de crear funciones `get` y `set` para cada atributo de la función.
 
 <div class="runnable" id="code-a09">
 function createChart() {
@@ -204,7 +204,7 @@ console.log('chart width = ' + chart.width());
 </div>
 <script>codeBlock().editor('#code-a09').init();</script>
 
-Podemos definir el valor antes o después de invocar a la función `chart`, en ambos casos el efecto es el mismo. Agregando un último detalle, podemos agregar soporte para _method chaining_, permitiendo configurar varios atributos en cadena.
+Podemos definir este valor antes o después de invocar la función `chart`. En ambos casos el efecto es el mismo. Mediante un último detalle, podemos agregar soporte para _method chaining_, permitiendo configurar varios atributos en cadena.
 
 <div class="runnable" id="code-a11">
 function createChart() {
@@ -233,7 +233,7 @@ function createChart() {
 </div>
 <script>codeBlock().editor('#code-a11').init();</script>
 
-Podemos definir el alto y ancho en una línea. Este patrón es bastante usado en JavaScript.
+Por ejemplo, podemos definir el alto y ancho del gráfico en una línea. Este patrón es bastante usado en JavaScript.
 
 <div class="runnable" id="code-a12">
 // Creamos la función `chart`
@@ -250,9 +250,9 @@ console.log('chart size = ' + chart.width() + 'x' + chart.height());
 </div>
 <script>codeBlock().editor('#code-a12').init();</script>
 
-### Creando un gráfico reusable
+### Creando un gráfico reutilizable
 
-Esta construcción nos permitirá crear un gráfico reusable, con métodos para configurar la apariencia (ancho, alto, márgenes) y las funciones de acceso a las variables. Usando la estructura que hemos construido, sólo nos faltaría cambiar la función `chart` para que reciba una selección.
+Esta construcción nos permitirá crear un gráfico reutilizable, con métodos para configurar la apariencia (ancho, alto, márgenes) y las funciones de acceso a las variables. Usando la estructura que hemos construido, sólo nos faltaría modificar la función `chart` para que reciba una selección.
 
 <div class="runnable" id="code-b01">
 function createListItems() {
@@ -317,7 +317,7 @@ d3.select('#ejemplo-b01 ul')
     </div>
 </div>
 
-y además, podemos actualizar los atributos del gráfico y actualizar con datos nuevos.
+Además, podemos actualizar los atributos del gráfico y cargar datos nuevos.
 
 <div class="runnable" id="code-b03">
 var data2 = [
