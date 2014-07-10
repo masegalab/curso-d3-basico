@@ -8,8 +8,8 @@ prev:
     url: pages/graficos-reutilizables-encapsulando.html
     title: Gráficos Reutilizables II
 next:
-    url: pages/graficos-reutilizables-4.html
-    title: Gráficos Reutilizables IV
+    url: pages/graficos-reutilizables-clausuras.html
+    title: Clausuras
 ---
 
 <div>
@@ -64,9 +64,9 @@ var datosA = [
     {nombre:'Queso',        color:'#ffff00',   calorias: 371,  grasa: 32,   proteinas: 18,    azucar: 3.7},
     {nombre:'Pan Pita',     color:'#660033',   calorias: 275,  grasa: 1.2,  proteinas: 9,     azucar: 56},
     {nombre:'Vacuno',       color:'#660000',   calorias: 250,  grasa: 15,   proteinas: 26,    azucar: 0},
-    {nombre:'Zapayo',       color:'#ff6600',   calorias: 26,   grasa: 0.1,   proteinas: 1,    azucar: 6},                       
-    {nombre:'Piña',         color:'#ffff99',   calorias: 50,   grasa: 0.1,   proteinas: 0.5,  azucar: 13},      
-    {nombre:'Coco',         color:'#ffffcc',   calorias: 354,  grasa: 33,    proteinas: 3.3,  azucar: 15}      
+    {nombre:'Zapayo',       color:'#ff6600',   calorias: 26,   grasa: 0.1,   proteinas: 1,    azucar: 6},
+    {nombre:'Piña',         color:'#ffff99',   calorias: 50,   grasa: 0.1,   proteinas: 0.5,  azucar: 13},
+    {nombre:'Coco',         color:'#ffffcc',   calorias: 354,  grasa: 33,    proteinas: 3.3,  azucar: 15}
 ];
 </div>
 <script>codeBlock().editor('#code-a01').init();</script>

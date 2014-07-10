@@ -2,14 +2,14 @@
 layout: seccion
 title: Clausuras
 parent:
-    url: pages/graficos-reusables.html
+    url: pages/graficos-reutilizables.html
     title: Gráficos Reusables
 prev:
-    url: pages/graficos-reusables-2.html
-    title: Gráficos Reusables II
+    url: pages/graficos-reutilizables-recapitulando.html
+    title: Recapitulando
 next:
-    url: pages/next.html
-    title: Next
+    url: pages/graficos-reutilizables-scatter-chart.html
+    title: Scatter Chart
 ---
 
 El gráfico de la sección anterior funciona, pero requiere que el usuario defina todas las variables de configuración del gráfico en el contexto global. Lo ideal sería que esas variables sean internas al gráfico, pero que se puedan configurar adecuadamente.

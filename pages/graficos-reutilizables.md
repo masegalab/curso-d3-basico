@@ -15,3 +15,6 @@ next:
 - [Gráficos Reutilizables I: dividir para conquistar]({{site.page.root}}/pages/graficos-reutilizables-scatter.html)
 - [Gráficos Reutilizables II: encapsulando el código]({{site.page.root}}/pages/graficos-reutilizables-encapsulando.html)
 
+- [Clausuras]({{site.page.root}}/pages/graficos-reutilizables-clausuras.html)
+- [Clausuras]({{site.page.root}}/pages/graficos-reutilizables-clausuras.html)
+

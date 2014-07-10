@@ -85,9 +85,9 @@ var datosA = [
     {nombre:'Queso',        color:'#ffff00',   calorias: 371,  grasa: 32,   proteinas: 18,    azucar: 3.7},
     {nombre:'Pan Pita',     color:'#660033',   calorias: 275,  grasa: 1.2,  proteinas: 9,     azucar: 56},
     {nombre:'Vacuno',       color:'#660000',   calorias: 250,  grasa: 15,   proteinas: 26,    azucar: 0},
-    {nombre:'Zapayo',       color:'#ff6600',   calorias: 26,   grasa: 0.1,   proteinas: 1,    azucar: 6},                       
-    {nombre:'Piña',         color:'#ffff99',   calorias: 50,   grasa: 0.1,   proteinas: 0.5,  azucar: 13},      
-    {nombre:'Coco',         color:'#ffffcc',   calorias: 354,  grasa: 33,    proteinas: 3.3,  azucar: 15}      
+    {nombre:'Zapayo',       color:'#ff6600',   calorias: 26,   grasa: 0.1,   proteinas: 1,    azucar: 6},
+    {nombre:'Piña',         color:'#ffff99',   calorias: 50,   grasa: 0.1,   proteinas: 0.5,  azucar: 13},
+    {nombre:'Coco',         color:'#ffffcc',   calorias: 354,  grasa: 33,    proteinas: 3.3,  azucar: 15}
 ];
 
 var datosB = [
@@ -113,7 +113,7 @@ var datosB = [
     {nombre:'Pera',         color:'#00ff00',   calorias: 57,   grasa: 0.1,  proteinas: 0.4,   azucar: 15},
     {nombre:'Nutella',      color:'#550000',   calorias: 500,  grasa: 27,   proteinas: 5,     azucar: 50},
     {nombre:'Arroz',        color:'#ffffcc',   calorias: 111,  grasa: 0.9,  proteinas: 2.6,   azucar: 23},
-    {nombre:'Chocolate',    color:'#330000',   calorias: 546,  grasa: 31,   proteinas: 4.9,   azucar: 61}     
+    {nombre:'Chocolate',    color:'#330000',   calorias: 546,  grasa: 31,   proteinas: 4.9,   azucar: 61}
 ];
 
 var datosC = [
@@ -130,8 +130,8 @@ var datosC = [
     {nombre:'Brocoli',      color:'#00bb00',   calorias: 34,   grasa: 0.4,  proteinas: 2.8,   azucar: 7},
     {nombre:'Pan',          color:'#cc6633',   calorias: 289,  grasa: 1.8,  proteinas: 12,    azucar: 56},
     {nombre:'Papas fritas', color:'#ffcc00',   calorias: 536,  grasa: 35,   proteinas: 7,     azucar: 53},
-    {nombre:'Vino',         color:'#660066',   calorias: 83,   grasa: 0,    proteinas: 0.1,   azucar: 2.7} 
-];    
+    {nombre:'Vino',         color:'#660066',   calorias: 83,   grasa: 0,    proteinas: 0.1,   azucar: 2.7}
+];
 
 </div>
 <script>codeBlock().editor('#code-a01').init();</script>
