@@ -8,7 +8,7 @@ prev:
     url: pages/graficos-reutilizables-scatter.html
     title: Gráficos Reutilizables I
 next:
-    url: pages/graficos-reutilizables-3.html
+    url: pages/graficos-reutilizables-recapitulando.html
     title: Gráficos Reutilizables III
 ---
 
