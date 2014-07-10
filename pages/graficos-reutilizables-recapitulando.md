@@ -29,7 +29,7 @@ next:
     </style>
 </div>
 
-Vovemos a presentar el ejemplo anterior ejecutando sólo aquellos bloques de código que utilizamos para crear el gráfico final. Definimos el conjunto de datos:
+Volvemos a presentar el ejemplo anterior ejecutando sólo aquellos bloques de código que necesitamos para crear el gráfico final. Definimos el conjunto de datos:
 
 
 <div class="runnable" id="code-a01">

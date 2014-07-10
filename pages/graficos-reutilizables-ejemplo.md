@@ -33,7 +33,7 @@ next:
     </style>
 </div>
 
-Los datos
+Volvemos a ingresar los datos:
 
 <div class="runnable" id="code-a01">
 var datosA = [
@@ -74,11 +74,11 @@ var datosA = [
 </div>
 <script>codeBlock().editor('#code-a01').init();</script>
 
-Vamos a incluir el código del gráfico usando un archivo externo: `<script src="/pages/scatter-chart.js"></script>`.
+Incluiremos el código del gráfico usando un archivo externo: agregamos la siguiente línea al código html: `<script src="/pages/scatter-chart.js"></script>`.
 
 <script src="{{site.page.root}}/pages/scatter-chart.js"></script>
 
-Ahora creamos el gráfico como antes. Para hacer más interesante el ejemplo, vamos a agregar botones para alternar lo que se grafica.
+Ahora creamos el gráfico como antes. Para hacer más interesante el ejemplo, vamos a agregar botones para alternar los valores graficados.
 
 <div class="runnable" id="code-a02">
     var scatter = scatterChart()
@@ -109,7 +109,7 @@ Ahora creamos el gráfico como antes. Para hacer más interesante el ejemplo, va
     <div id="ejemplo-a03"></div>
 </div>
 
-Ahora agregamos event listeners a los botones, para cambiar las funciones de acceso a las variables y actualizar el gráfico.
+Finalmente, agregamos 'event listeners' a los botones, para cambiar las funciones de acceso a las variables y actualizar el gráfico.
 
 <div class="runnable" id="code-a04">
 
