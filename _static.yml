@@ -8,9 +8,10 @@ exclude:
     - bower.json
     - package.json
     - bower_components
+    - curso-d3
 
 baseurl: '.'
 page:
     root: '..'
 
-destination: curso-d3-2014-07-10
+destination: curso-d3
