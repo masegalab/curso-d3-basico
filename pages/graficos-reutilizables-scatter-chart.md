@@ -8,8 +8,8 @@ prev:
     url: pages/graficos-reutilizables-clausuras.html
     title: Clausuras
 next:
-    url: pages/next.html
-    title: Next
+    url: pages/graficos-reutilizables-ejemplo.html
+    title: Usando el Scatter Plot
 ---
 
 <div>

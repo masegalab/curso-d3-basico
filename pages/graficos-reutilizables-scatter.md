@@ -1,6 +1,6 @@
 ---
 layout: seccion
-title: 'Gráficos Reutilizables I: dividir para conquistar'
+title: Dividir para Conquistar
 parent:
     url: pages/graficos-reutilizables.html
     title: Gráficos Reutilizables
@@ -9,7 +9,7 @@ prev:
     title: Gráficos Reutilizables
 next:
     url: pages/graficos-reutilizables-encapsulando.html
-    title: 'Gráficos Reutilizables II'
+    title: Encapsulando el Gráfico
 ---
 
 <div>

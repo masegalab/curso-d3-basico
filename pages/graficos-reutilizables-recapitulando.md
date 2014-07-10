@@ -1,12 +1,12 @@
 ---
 layout: seccion
-title: 'Gráficos Reutilizables III: recapitulando'
+title: Recapitulando
 parent:
     url: pages/graficos-reutilizables.html
     title: Gráficos Reusables
 prev:
     url: pages/graficos-reutilizables-encapsulando.html
-    title: Gráficos Reutilizables II
+    title: Encapsulando el Gráfico
 next:
     url: pages/graficos-reutilizables-clausuras.html
     title: Clausuras

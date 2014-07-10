@@ -1,12 +1,12 @@
 ---
 layout: seccion
-title: Scatter Chart
+title: Nuevo Gráfico de Barras
 parent:
     url: pages/graficos-reutilizables.html
     title: Gráficos Reutilizables
 prev:
-    url: pages/graficos-reutilizables-clausuras.html
-    title: Clausuras
+    url: pages/graficos-reutilizables-ejemplo.html
+    title: Usando el Scatter Plot
 next:
     url: pages/next.html
     title: Next

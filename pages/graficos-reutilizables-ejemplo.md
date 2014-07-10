@@ -8,8 +8,8 @@ prev:
     url: pages/graficos-reutilizables-scatter-chart.html
     title: Scatter Chart
 next:
-    url: pages/next.html
-    title: Next
+    url: pages/graficos-reutilizables-barchart.html
+    title: Nuevo Gráfico de Barras
 ---
 
 

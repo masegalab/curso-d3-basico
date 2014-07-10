@@ -1,15 +1,15 @@
 ---
 layout: seccion
-title: 'Gráficos Reutilizables II: encapsulando el código'
+title: Encapsulando el Gráfico
 parent:
     url: pages/graficos-reutilizables.html
-    title: Gráficos Reusables
+    title: Gráficos Reutilizables
 prev:
     url: pages/graficos-reutilizables-scatter.html
-    title: Gráficos Reutilizables I
+    title: Dividir para Conquistar
 next:
     url: pages/graficos-reutilizables-recapitulando.html
-    title: Gráficos Reutilizables III
+    title: Recapitulando
 ---
 
 <div>
