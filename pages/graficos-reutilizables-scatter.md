@@ -68,6 +68,8 @@ var data = [
 </div>
 <script>codeBlock().editor('#code-a01').init();</script>
 
+<aside> El Scatter Plot o gráfico de burbujas permite graficar hasta cuatro dimensiones en el plano. Para un ejemplo básico, referimos al siguiente <a href="http://bl.ocks.org/weiglemc/6185069">ejemplo</a> de Mike Bostock.</aside>
+
 El código es muy parecido al caso del gráfico de barras. Básicamente, los rectángulos se cambian por círculos, habrán dos ejes y una escala especial para los círculos. Vamos a dividir el código en bloques de acuerdo a la función que desempeña cada bloque de código. 
 
 #### Configuración del gráfico
@@ -131,6 +133,8 @@ gxaxis.attr('transform', 'translate(' + margin.left + ',' + (height - margin.bot
 <script>codeBlock().editor('#code-a04').init();</script>
 
 #### Escalas
+
+<aside>Referimos nuevamente a la <a href="https://github.com/mbostock/d3/wiki/Quantitative-Scales"> documentación de D3</a> para mayor información sobre escalas, en particular sobre las escalas lineales y de raíz cuadrada. </aside>
 
 Acto seguido, definimos las escalas. Queremos que el área de los círculos sea proporcional a la cantidad que representan. Para eso, el radio del círculo tiene que ser proporcional a la raíz cuadrada de la cantidad. Esta escala se logra usando `d3.scale.sqrt()`.
 

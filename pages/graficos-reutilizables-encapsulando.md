@@ -150,6 +150,10 @@ var divs01 = d3.select('#ejemplo-a01').selectAll('.div-a01').data([datosA, datos
     </div>
 </div>
 
+<aside>Referimos a la <a href="https://github.com/mbostock/d3/wiki/Selections">documentación de D3 acerca de selecciones</a>, en particular la <a href="https://github.com/mbostock/d3/wiki/Selections#each"> descripción del método 'each'</a>.
+
+Recuerde que para selecciones, siempre puede consultar el tutorial <a href="http://bost.ocks.org/mike/selection/">How Selections Work</a> de Mike Bostock.</aside>
+
 La selección precedente es un arreglo. Podemos recorrerlo y operar sobre cada uno de sus elementos usando el método `each`. El contexto `this` referencia al elemento del DOM correspondiente al elemento de la selacción. Resulta útil inspeccionar estos arreglos con la consola para aclarar los conceptos anteriores.
 
 <div class="runnable" id="code-a03">
@@ -312,7 +316,7 @@ var x = function(d) { return d.proteinas; },
 </div>
 <script>codeBlock().editor('#code-b01').init();</script>
 
-Ahora reescribimos la función `createCharts` usando el código de la sección anterior:
+Ahora escribimos una nueva función `createScatterPlot` a partir de `createCharts` usando el código de la sección anterior:
 
 <div class="runnable" id="code-b02">
 function createScatterPlot(selection) {
