@@ -18,4 +18,5 @@ next:
 - [Clausuras]({{site.page.root}}/pages/graficos-reutilizables-clausuras.html)
 - [Scatter Chart]({{site.page.root}}/pages/graficos-reutilizables-scatter-chart.html)
 - [Usando el Scatter Chart]({{site.page.root}}/pages/graficos-reutilizables-ejemplo.html)
+- [Nuevo Gráfico de Barras]({{site.page.root}}/pages/graficos-reutilizables-barchart.html)
 
