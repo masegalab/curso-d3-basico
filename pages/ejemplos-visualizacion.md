@@ -47,7 +47,9 @@ next:
 
     <div class="col-sm-4">
         <p class="caption">NYT Graphics Department <a href="http://www.nytimes.com/interactive/2012/06/11/sports/basketball/nba-shot-analysis.html">The Heat and the Thunder</a>, 2014.</p>
+        <a href="{{site.page.root}}/pages/img/nyt-nba.png">
         <img src="{{site.page.root}}/pages/img/nyt-nba.png" alt="Minard" class="img-thumbnail">
+        </a>
     </div>
 
     <div class="col-sm-4">
