@@ -197,4 +197,8 @@ divs04.call(createScatterPlot);
     <div id="ejemplo-b04"></div>
 </div>
 
+Nótese que agregamos un pequeño elemento estético. Ahora, al posicionar el mouse sobre una burbuja, esta burbuja cambiar de color. Esto se logra definiendo un nuevo atributo de estilo `.node-highlight` y usan los métodos `mouseover` y `mouseout`.
+
+El próximo paso consiste en encapsular la definición de los parámetros del gráfico. Para esto, se necesita entender algunas particularidades de JavaScript.
+
 
