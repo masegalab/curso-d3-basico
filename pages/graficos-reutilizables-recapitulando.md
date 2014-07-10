@@ -31,7 +31,6 @@ next:
 
 Volvemos a presentar el ejemplo anterior ejecutando sólo aquellos bloques de código que necesitamos para crear el gráfico final. Definimos el conjunto de datos:
 
-
 <div class="runnable" id="code-a01">
 var datosA = [
     {nombre: 'Manzana',     color: '#ff0000',  calorias: 52,   grasa: 0.2,  proteinas: 0.3,   azucar: 14},
@@ -71,19 +70,17 @@ var datosA = [
 </div>
 <script>codeBlock().editor('#code-a01').init();</script>
 
-Hacemos Data Binding:
+Creamos una selección para el div contenedor y vinculamos los datos.
 
 <div class="runnable" id="code-a02">
 var divs01 = d3.select('#ejemplo-a01').selectAll('.div-a01').data([datosA]);
 </div>
 <script>codeBlock().editor('#code-a02').init();</script>
 
-
-
-Definimos los parámetros:
+Definimos los parámetros del gráfico, incluyendo las funciones de acceso.
 
 <div class="runnable" id="code-b01">
-var width     = 800,
+var width     = 600,
     height    = 300,
     margin    = {top: 30, right: 20, bottom: 20, left: 40},
     maxRadius = 20,
@@ -95,7 +92,7 @@ var x = function(d) { return d.proteinas; },
 </div>
 <script>codeBlock().editor('#code-b01').init();</script>
 
-Definimos la función que crea el gráfico:
+Definimos la función que crea el gráfico, usando el código escrito en la sección previa.
 
 <div class="runnable" id="code-b02">
 function createScatterPlot(selection) {
@@ -103,7 +100,7 @@ function createScatterPlot(selection) {
 
         var div = d3.select(this);
 
-        // COPY PASTE ----
+        // ---- BEGIN COPY PASTE
         var svg = div.selectAll('svg').data([data]);
 
         var svgEnter = svg.enter().append('svg');
@@ -121,6 +118,8 @@ function createScatterPlot(selection) {
         var gchart = svg.selectAll('g.chart').data([data]),
             gxaxis = svg.selectAll('g.xaxis').data([data]),
             gyaxis = svg.selectAll('g.yaxis').data([data]);
+
+        svg.attr('width', width).attr('height', height);
 
         gchart.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
         gyaxis.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
@@ -174,7 +173,7 @@ function createScatterPlot(selection) {
         circles.exit().transition().duration(duration)
             .attr('r', 0);
 
-        // END COPY PASTE
+        // ---- END COPY PASTE
     });
 }
 </div>

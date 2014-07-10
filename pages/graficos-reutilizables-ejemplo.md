@@ -1,6 +1,6 @@
 ---
 layout: seccion
-title: Ejemplo de Uso
+title: Usando el Scatter Plot
 parent:
     url: pages/graficos-reutilizables.html
     title: Gráficos Reutilizables
@@ -33,7 +33,7 @@ next:
     </style>
 </div>
 
-Volvemos a ingresar los datos:
+Al igual que antes, volvemos a ingresar los datos.
 
 <div class="runnable" id="code-a01">
 var datosA = [
@@ -74,7 +74,7 @@ var datosA = [
 </div>
 <script>codeBlock().editor('#code-a01').init();</script>
 
-Incluiremos el código del gráfico usando un archivo externo: agregamos la siguiente línea al código html: `<script src="/pages/scatter-chart.js"></script>`.
+Incluiremos el código del gráfico usando un archivo externo: agregamos la siguiente línea al código html: `<script src="/pages/scatter-chart.js"></script>`. El archivo sólamente tiene la función `scatterChart` definida en el ejemplo previo.
 
 <script src="{{site.page.root}}/pages/scatter-chart.js"></script>
 
@@ -97,9 +97,9 @@ Ahora creamos el gráfico como antes. Para hacer más interesante el ejemplo, va
 <div class="ejemplo">
 
     <div class="btn-group">
-        <button id="boton-cg" type="button" class="btn btn-default">Calorias vs. Grasa</button>
-        <button id="boton-cp" type="button" class="btn btn-default">Calorias vs. Proteinas</button>
-        <button id="boton-ca" type="button" class="btn btn-default">Calorias vs. Azúcar</button>
+        <button id="boton-cg" type="button" class="btn btn-default btn-sm">Calorias vs. Grasa</button>
+        <button id="boton-cp" type="button" class="btn btn-default btn-sm">Calorias vs. Proteinas</button>
+        <button id="boton-ca" type="button" class="btn btn-default btn-sm">Calorias vs. Azúcar</button>
     </div>
 
     <div id="ejemplo-a02"></div>
@@ -109,7 +109,7 @@ Ahora creamos el gráfico como antes. Para hacer más interesante el ejemplo, va
     <div id="ejemplo-a03"></div>
 </div>
 
-Finalmente, agregamos 'event listeners' a los botones, para cambiar las funciones de acceso a las variables y actualizar el gráfico.
+Finalmente, agregamos _event listeners_ a los botones, para cambiar las funciones de acceso a las variables y actualizar el gráfico. Al hacer click en un botón, configuramos las funciones de acceso `x` e `y`. Para actualizar el gráfico, volvemos a vincular los datos a la selección e invocar el gráfico.
 
 <div class="runnable" id="code-a04">
 

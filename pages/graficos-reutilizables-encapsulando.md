@@ -27,31 +27,23 @@ next:
     </style>
 </div>
 
-Estos son los pasos que seguimos para crear el código en la sección anterior:
+En la sección anterior, seguimos una serie de pasos para crear el gráfico. Las etapas para crear el gráfico son las siguientes:
 
-**Configuración del Gráfico**
+**Configuración**
 
-- Datos
-- Configuración
-- Selección DIV, binding
-
+- Definir el arreglo de datos.
+- Definir la configuración del gráfico y las funciones de acceso.
+- Seleccionamos el div contenedor y vinculamos los datos.
 
 ** Creación del Gráfico**
 
-- Crear SVG y grupos
-- Trasladar grupos
-- Crear escalas
-- Crear ejes
-- Crear círculos
-    - Binding
-    - Enter
-    - Update
-    - Exit
+- Crear SVG y grupos para el gráfico y los ejes
+- Trasladar grupos y ajustar el tamaño del SVG
+- Definir las escalas
+- Definir y dibujar los ejes.
+- Crear los círculos (binding, enter, update y exit).
 
-Ahora, vamos a encapsular este código de forma progresiva hasta llegar a escribir un gráfico reutilizable.
-
-Volveremos a usar los datos de la sección anterior. También vamos a definir dos subconjuntos de datos por razones que se explicarán.
-
+Ahora, vamos a encapsular este código de forma progresiva hasta llegar a escribir un gráfico reutilizable. Volveremos a usar los datos de la sección anterior. También vamos a definir dos subconjuntos de datos para usarlos más adelante.
 
 <div class="runnable" id="code-a01">
 var datosA = [
@@ -136,7 +128,7 @@ var datosC = [
 </div>
 <script>codeBlock().editor('#code-a01').init();</script>
 
-Como siempre, empezamos con el Data Binding. Por ahora nada nuevo.
+Como siempre, empezamos con vinculando los datos. Para lograr hacer gráficos reutilizables, es necesario entender algunos detalles internos de cómo funcionan las selecciones con datos vinculados.
 
 <div class="runnable" id="code-a02">
 var divs01 = d3.select('#ejemplo-a01').selectAll('.div-a01').data([datosA, datosB]);
@@ -304,7 +296,7 @@ Hemos creado nuestro primer gráfico reusable. Vamos a definir los valores de co
 
 
 <div class="runnable" id="code-b01">
-var width     = 800,
+var width     = 600,
     height    = 300,
     margin    = {top: 30, right: 20, bottom: 20, left: 40},
     maxRadius = 20,
@@ -324,7 +316,7 @@ function createScatterPlot(selection) {
 
         var div = d3.select(this);
 
-        // COPY PASTE ----
+        // ---- BEGIN COPY PASTE
         var svg = div.selectAll('svg').data([data]);
 
         var svgEnter = svg.enter().append('svg');
@@ -337,6 +329,9 @@ function createScatterPlot(selection) {
         svgEnter.append('g').attr('class', 'chart');
         svgEnter.append('g').attr('class', 'axis xaxis');
         svgEnter.append('g').attr('class', 'axis yaxis');
+
+        // Ajustamos el tamaño del SVG
+        svg.attr('width', width).attr('height', height);
 
         // Update groups
         var gchart = svg.selectAll('g.chart').data([data]),
@@ -393,7 +388,7 @@ function createScatterPlot(selection) {
         circles.exit().transition().duration(duration)
             .attr('r', 0);
 
-        // END COPY PASTE
+        // ---- END COPY PASTE
     });
 }
 </div>

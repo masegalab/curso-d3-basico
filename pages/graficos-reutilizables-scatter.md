@@ -27,7 +27,7 @@ next:
     </style>
 </div>
 
-Vamos a usar una versión aumentada del set de datos del ejemplo anterior para crear un tipo de gráfico diferente conocido como 'Scatter Plot'.
+Vamos a usar una versión aumentada del set de datos del ejemplo anterior para crear un tipo de gráfico diferente conocido como _scatter plot_.
 
 <div class="runnable" id="code-a01">
 var data = [
@@ -70,11 +70,11 @@ var data = [
 
 <aside> El Scatter Plot o gráfico de burbujas permite graficar hasta cuatro dimensiones en el plano. Para un ejemplo básico, referimos al siguiente <a href="http://bl.ocks.org/weiglemc/6185069">ejemplo</a> de Mike Bostock.</aside>
 
-El código es muy parecido al caso del gráfico de barras. Básicamente, los rectángulos se cambian por círculos, habrán dos ejes y una escala especial para los círculos. Vamos a dividir el código en bloques de acuerdo a la función que desempeña cada bloque de código.
+El código del scatter plot es muy parecido al del gráfico de barras. Básicamente, los rectángulos se cambian por círculos, habrán dos ejes y una escala especial para el radio. Vamos a dividir el código en bloques de acuerdo a la función que desempeña cada bloque de código.
 
 #### Configuración del gráfico
 
-Ingresamos los parámetros del gráfico:
+Esta vez, agregaremos más parámetros de configuración para el gráfico. Además de las dimensiones, agregaremos un margen y funciones de acceso para la variable asociada al radio, la variable de la coordenada del eje x y la coordenada del eje y.
 
 <div class="runnable" id="code-a02">
 var width     = 800,
@@ -92,7 +92,8 @@ var div = d3.select('#ejemplo-a01').data([data]);
 <script>codeBlock().editor('#code-a02').init();</script>
 
 #### Enter
-Creamos el elementos SVG y los grupos que contendrán el gráfico y los ejes:
+
+Creamos el elementos SVG y los grupos que contendrán el gráfico y los ejes. Podemos asignar más de una clase separando las clases con un espacio en blanco.
 
 <div class="runnable" id="code-a03">
 var svg = div.selectAll('svg').data([data]);
@@ -115,7 +116,7 @@ svgEnter.append('g').attr('class', 'axis yaxis');
     <div id="ejemplo-a01"></div>
 </div>
 
-#### Actualizando los grupos
+#### Actualizando los Grupos
 
 Seleccionamos los grupos y los trasladamos a sus posiciones respectivas. Recuerde que los grupos no tienen posición!
 
@@ -156,7 +157,7 @@ var rScale = d3.scale.sqrt()
 
 #### Ejes
 
-Dibujamos el eje horizontal y el eje vertical:
+Dibujamos el eje horizontal y el eje vertical. Notar la orientación `left` para el eje y.
 
 <div class="runnable" id="code-a07">
 // Axis
@@ -182,7 +183,7 @@ gyaxis.call(yAxis);
 
 #### Círculos
 
-Finalmente, dibujamos los círculos.
+Finalmente, dibujamos los círculos usando el mismo patrón que en la sección anterior. Creamos una selección y vinculamos los datos, creamos los círculos en la selección enter, actualizamos los círculos y removemos los círculos en la selección exit.
 
 <div class="runnable" id="code-a06">
 // Circles
@@ -207,7 +208,4 @@ circles.exit().transition().duration(duration)
 </div>
 <script>codeBlock().editor('#code-a06').init();</script>
 
-En la próxima sección vamos a aprovechar esta división para crear gráficos reutilizables.
-
-
-
+En la próxima sección vamos a usar estos bloques de código para crear progresivamente un gráfico reutilizable.

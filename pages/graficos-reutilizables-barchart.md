@@ -82,7 +82,7 @@ var datosA = [
 </div>
 <script>codeBlock().editor('#code-a01').init();</script>
 
-Creamos la estructura básica de los gráficos reutilizables, para crear el gráfico de barras
+Creamos la estructura básica de los gráficos reutilizables, para crear el gráfico de barras. Esta función no hace nada, sólo la escribimos como referencia.
 
 <div class="runnable" id="code-a02">
 function barChart() {
@@ -239,13 +239,14 @@ function barChart() {
 
 ### Usando el gráfico
 
+Podemos usar el gráfico usando la misma sintaxis que con el scatter plot. Podemos configurar los atributos del gráfico usando _method chaining_. Al igual que en el ejemplo del scatter plot, seleccionamos el div contenedor, vinculamos los datos e invocamos el gráfico usando `call`.
 
 <div class="runnable" id="code-a04">
     var barchart = barChart()
         .x(function(d) { return d.calorias; })
         .label(function(d) { return d.nombre.toUpperCase(); })
         .margin({top: 10, right: 10, bottom: 30, left: 100})
-        .width(800)
+        .width(600)
         .height(600);
 
     d3.select('#ejemplo-a04')
@@ -263,6 +264,8 @@ function barChart() {
     </div>
     <div id="ejemplo-a04"></div>
 </div>
+
+Para hacer más interesante este ejemplo también, agregamos botones para graficar distintas cosas y agregamos listeners para el evento _click_. El callback del evento será reconfigurar el gráfico, vincular los datos nuevamente e invocar el gráfico.
 
 <div class="runnable" id="code-a05">
     d3.select('#boton-g').on('click', function() {
