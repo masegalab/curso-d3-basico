@@ -12,9 +12,10 @@ next:
     title: Gráficos Reutilizables I
 ---
 
-- [Gráficos Reutilizables I: dividir para conquistar]({{site.page.root}}/pages/graficos-reutilizables-scatter.html)
-- [Gráficos Reutilizables II: encapsulando el código]({{site.page.root}}/pages/graficos-reutilizables-encapsulando.html)
-
+- [Dividir para conquistar]({{site.page.root}}/pages/graficos-reutilizables-scatter.html)
+- [Encapsulando el código]({{site.page.root}}/pages/graficos-reutilizables-encapsulando.html)
+- [Recapitulando]({{site.page.root}}/pages/graficos-reutilizables-recapitulando.html)
 - [Clausuras]({{site.page.root}}/pages/graficos-reutilizables-clausuras.html)
-- [Clausuras]({{site.page.root}}/pages/graficos-reutilizables-clausuras.html)
+- [Scatter Chart]({{site.page.root}}/pages/graficos-reutilizables-scatter-chart.html)
+- [Usando el Scatter Chart]({{site.page.root}}/pages/graficos-reutilizables-ejemplo.html)
 
