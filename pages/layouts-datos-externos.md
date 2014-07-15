@@ -43,6 +43,8 @@ next:
 
 Podemos cargar datos externos usando `d3.json`, `d3.csv`, `d3.tsv` o `d3.xml`. Estas funciones reciben la URL del archivo de datos y un _callback_, que será invocado una vez que el archivo de datos sea descargado completamente.
 
+Hay que usar un servidor
+
 #### JSON
 
 <div class="runnable" id="code-a01">
