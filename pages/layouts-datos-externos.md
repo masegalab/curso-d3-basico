@@ -8,8 +8,8 @@ prev:
     url: pages/layouts.html
     title: Layouts
 next:
-    url: pages/next.html
-    title: Next
+    url: pages/layouts-pie.html
+    title: Pie Layout
 ---
 
 <div>
@@ -41,11 +41,23 @@ next:
     </style>
 </div>
 
-Podemos cargar datos externos usando `d3.json`, `d3.csv`, `d3.tsv` o `d3.xml`. Estas funciones reciben la URL del archivo de datos y un _callback_, que será invocado una vez que el archivo de datos sea descargado completamente.
+Podemos cargar datos externos usando `d3.json`, `d3.csv`, `d3.tsv` o `d3.xml`. Estas funciones reciben la URL del archivo de datos y una función _callback_, que será invocada una vez que el archivo de datos sea descargado completamente.
 
-Hay que usar un servidor
+Cuando abrimos un archivo html, el browser lo abre usando el protocolo `file://`. Debido a consideraciones de seguridad, el browser no permite usar las funciones tipo `d3.json`.
 
-#### JSON
+Para poder cargar datos externos, se debe acceder al archivo html usando un servidor. Podemos servir el contenido de un directorio usando python o algún otro servidor estático.
+
+<div class="runnable" id="code-d01">
+// Sirve el directorio actual en http://localhost:8000
+// python -m SimpleHTTPServer
+</div>
+<script>codeBlock().editor('#code-d01').init();</script>
+
+#### Archivos JSON
+
+JSON es un formato de archivos usado para serializar objetos JavaScript. Por ejemplo, los datos de los alimentos ahora están en un archivo [JSON]({{site.page.root}}/assets/data/food.json).
+
+Esta es la manera de cargar un archivo JSON:
 
 <div class="runnable" id="code-a01">
 d3.json('/assets/data/food.json', function(error, data) {
@@ -58,8 +70,7 @@ d3.json('/assets/data/food.json', function(error, data) {
 </div>
 <script>codeBlock().editor('#code-a01').init();</script>
 
-Estas funciones son asíncronas, esto quiere decir que mientras los datos se bajan, el script JavaScript se sigue ejecutando.
-
+Esta función es asíncrona, esto quiere decir que mientras los datos se bajan, el script JavaScript se sigue ejecutando.
 
 <div class="runnable" id="code-a02">
 // Declaramos la variable data en el contexto global
@@ -71,7 +82,6 @@ d3.json('/assets/data/food.json', function(error, data) {
     // Se lanza un error si el archivo no es accesible o si no se puede procesar
     if (error) {
         console.error(error);
-        throw error;
     }
 
     food = data;
@@ -79,14 +89,13 @@ d3.json('/assets/data/food.json', function(error, data) {
 });
 
 // En este punto, la variable `food` no está definida aun
-
 console.log('[script] food =', food);
-
 </div>
 <script>codeBlock().editor('#code-a02').init();</script>
 
+#### Archivos CSV
 
-#### CSV
+Para cargar un archivo CSV, el código es similar. En este caso, el [archivo CSV]({{site.page.root}}/assets/wbdata.csv) contiene datos de países.
 
 <div class="runnable" id="code-a03">
 d3.csv('/assets/data/wbdata.csv', function(error, data) {
@@ -99,19 +108,20 @@ d3.csv('/assets/data/wbdata.csv', function(error, data) {
 </div>
 <script>codeBlock().editor('#code-a03').init();</script>
 
-Los elementos del arreglo son objetos JavaScript.
+La función `d3.csv` se encarga de convertir cada fila en un objeto JavaScript.
+
 <div class="runnable" id="code-a04">
-{
-    "Country":        "Brazil",
-    "GDP":            "2.24878E+12",
-    "LifeExpectancy": "73.61787805",
-    "Population":     "198656019",
-    "GDPCapita":      "11319.97371"
-}
+// {
+//    "Country":        "Brazil",
+//    "GDP":            "2.24878E+12",
+//    "LifeExpectancy": "73.61787805",
+//    "Population":     "198656019",
+//    "GDPCapita":      "11319.97371"
+// }
 </div>
 <script>codeBlock().editor('#code-a04').init();</script>
 
-Lamentablemente, hay que convertir los campos numéricos.
+Lamentablemente, hay que convertir los campos numéricos manualmente, porque CSV no especifica el formato de cada columna. Pero se pueden convertir fácilmente.
 
 <div class="runnable" id="code-a05">
 d3.csv('/assets/data/wbdata.csv', function(error, data) {
@@ -131,7 +141,7 @@ d3.csv('/assets/data/wbdata.csv', function(error, data) {
 </div>
 <script>codeBlock().editor('#code-a05').init();</script>
 
-Con los datos ya cargados, podemos usar los gráficos reusables. Configuramos el gráfico para nuestro conjunto de datos
+Con los datos ya cargados, podemos usar los gráficos reutilizables de la sección anterior. Por ejemplo, podemos configurar el [barchart]({{site.page.root}}/pages/bar-chart.js) para usar estos nuevos datos.
 
 <script src="{{site.page.root}}/pages/bar-chart.js"></script>
 <div class="runnable" id="code-a06">
@@ -144,7 +154,7 @@ var barchart = barChart()
 </div>
 <script>codeBlock().editor('#code-a06').init();</script>
 
-Cargamos los datos y agregamos listeners a los botones
+Cargamos los datos nuevamente, y agregamos botones para visualizar distintas variables. Recordar que hay que agregar callbacks para el evento `click` de cada botón.
 
 <div class="runnable" id="code-a07">
 d3.csv('/assets/data/wbdata.csv', function(error, data) {
@@ -211,10 +221,4 @@ d3.csv('/assets/data/wbdata.csv', function(error, data) {
     <div id="ejemplo-a06"></div>
 </div>
 
-Una vez cargados los datos, que vengan de un archivo externo, una API o una variable no es relevante. En este caso, los datos tienen la estructura que necesitamos para crear el gráfico, en otros casos, puede ser necesario transformar los datos.
-
-En D3, un _layout_ es una función configurable (muy parecida a un gráfico reusable) que transforma datos de un formato a otro. En la siguiente sección, usaremos varios layout para convertir la estructura de los datos.
-
-
-
-
+Una vez cargados los datos, es irrelevante que los datos vengan de un archivo externo o que sean una variable definida en el script.
