@@ -6,11 +6,12 @@ prev:
     title: Nuevo Gráfico de Barras
 next:
     url: pages/layouts-datos-externos.html
-    title: Usando Datos Externos
+    title: Datos Externos
 ---
 
-- [Pie]({{site.page.root}}/pages/layouts-pie.html)
+- [Datos Externos]({{site.page.root}}/pages/layouts-datos-externos.html)
+- [Pie Layout]({{site.page.root}}/pages/layouts-pie.html)
 - [Histogram]({{site.page.root}}/pages/layouts-histogram.html)
-- [Jerarquia]({{site.page.root}}/pages/layouts-jerarquia.html)
-- [Relaciones]({{site.page.root}}/pages/layouts-relaciones.html)
-    - [Usando Datos Externos]({{site.page.root}}/pages/layouts-datos-externos.html)
+- [Layouts Jerárquicos]({{site.page.root}}/pages/layouts-jerarquia.html)
+- [Redes]({{site.page.root}}/pages/layouts-relaciones.html)
+
