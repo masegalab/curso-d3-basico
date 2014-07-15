@@ -5,11 +5,11 @@ parent:
     url: pages/layouts.html
     title: Layouts
 prev:
-    url: pages/layouts-datos-externos.html
-    title: Datos Externos
+    url: pages/layouts-histogram.html
+    title: Histograma
 next:
-    url: pages/next.html
-    title: Next
+    url: pages/layouts-relaciones.html
+    title: Redes
 ---
 
 <div>

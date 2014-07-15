@@ -2,14 +2,14 @@
 layout: seccion
 title: Histogram Layout
 parent:
-    url: pages/graficos-reutilizables.html
-    title: Gráficos Reutilizables
+    url: pages/layouts.html
+    title: Layouts
 prev:
     url: pages/layouts-pie.html
     title: Pie Layout
 next:
-    url: pages/layouts-jerarquico.html
-    title: Datos Jerárquicos
+    url: pages/layouts-jerarquia.html
+    title: Layouts Jerárquicos
 ---
 
 <div>
@@ -28,7 +28,7 @@ next:
 </div>
 
 En esta sección presentaremos el layout para crear histogramas.
-Primero, cargamos los datos usando d3.json (recuerde que es asíncrono):
+Primero, cargamos los datos usando `d3.json` (recuerde que es asíncrono):
 
 <div class="runnable" id="code-a01">
 var datos;
@@ -53,13 +53,13 @@ var value = function(d) { return d.calorias; }
 </div>
 <script>codeBlock().editor('#code-a02').init();</script>
 
-Creamos el histogram layout. Observe que el layout necesita conocer la escala de x:
+Creamos el histogram layout. Observe que el layout necesita conocer los `ticks` del dominio de la escala de x para generar los intervalos del histograma.
 
 <div class="runnable" id="code-a03">
 //Escala en x
 var xScale = d3.scale.linear()
-    .domain([0,d3.max(datos, value)])
-    .range([0,width]);
+    .domain([0, d3.max(datos, value)])
+    .range([0, width]);
 
 //Layout
 var histLayout = d3.layout.histogram()
@@ -68,22 +68,23 @@ var histLayout = d3.layout.histogram()
 </div>
 <script>codeBlock().editor('#code-a03').init();</script>
 
-Hemos definido la cantidad de 'bins', esto es, en la práctica, la cantidad de barras que tendrá nuestro histograma. En este caso, estamos particionando el dominio de nuestra escala en 40 intervalos disjuntos de misma longitud. Recuerde que, en el histograma, la altura de las barras representa la cantidad de valores que caen en cada uno de estos intervalos. Esto es distinto de un gráfico de barra en el que se grafica alguna observable asociada a un conjunto de entidades.
+Hemos definido la cantidad de 'bins', esto es, en la práctica, la cantidad de barras que tendrá nuestro histograma. En este caso, estamos dividiendo el dominio de nuestra escala en 40 intervalos disjuntos de misma longitud. Recuerde que, en el histograma, la altura de las barras representa la cantidad de valores que caen en cada uno de estos intervalos. Esto es distinto de un gráfico de barras en el que se grafica alguna observable asociada a un conjunto de entidades.
 
-La variable 'histLayout' es una función. Cuando aplicamos 'histLayout' a nuestros datos, se calcula, entre otras cosas, la posición en la que dibujaremos las barras y la cantidad de valores que caen dentro de cada intervalo. Después de ejecutar el siguiente código, observe la variable 'hist' en la consola. 
+La variable `histLayout` es una función de _layout_. Cuando la aplicamos a nuestros datos, se calcula, entre otras cosas, la posición en la que dibujaremos las barras y la cantidad de valores que caen dentro de cada intervalo. Después de ejecutar el siguiente código, observe la variable `hist` en la consola.
+
 <div class="runnable" id="code-a04">
 var hist = histLayout(datos);
 </div>
 <script>codeBlock().editor('#code-a04').init();</script>
 
+Finalmente, graficamos las barras:
+
 <div class="ejemplo">
     <div id="ejemplo-a01"></div>
 </div>
 
-Finalmente, graficamos el histograma:
-
 <div class="runnable" id="code-a05">
-//Escala en y
+// Escala en y
 var yScale = d3.scale.linear()
     .domain([0, d3.max(hist, function (d) { return d.y; })])
     .range([0,height]);
@@ -94,7 +95,7 @@ var svg = d3.select('#ejemplo-a01').selectAll('svg').data([hist]);
 svg.enter().append('svg');
 
 svg
-    .attr('width', width + marginLeft)
+    .attr('width',  width + marginLeft)
     .attr('height', height + marginBottom);
 
 //Definimos el eje x
@@ -102,10 +103,16 @@ var xAxis = d3.svg.axis()
     .scale(xScale)
     .orient("bottom");
 
-svg.append("g")
-    .attr("class", "eje")
+var gAxis = svg.selectAll('g.eje').data([hist]);
+
+gAxis.enter().append("g")
+    .attr("class", "eje");
+
+gAxis
     .attr("transform", "translate(" + marginLeft + "," + (height + 1) + ")")
     .call(xAxis);
+
+gAxis.exit().remove();
 
 // Creamos un grupo para cada barra
 var gBars = svg.selectAll('g.bar').data(hist);
@@ -113,14 +120,14 @@ var gBars = svg.selectAll('g.bar').data(hist);
 gBars.enter().append('g')
     .classed('bar', true);
 
-//Trasladamos los grupos
+// Trasladamos los grupos
 gBars.attr('transform', function(d) {
     return 'translate(' + ( marginLeft + xScale(d.x) ) + ', ' + 0 + ')';
 });
 
 gBars.exit().remove();
 
-//Creamos las barras
+// Creamos las barras
 var rects = gBars.selectAll('rect.bar').data(function(d) { return [d]; });
 
 rects.enter().append('rect')
@@ -132,7 +139,7 @@ rects.enter().append('rect')
     .attr('height', 0);
 
 rects.transition().duration(2000)
-    .attr('y', function(d) { return height - yScale(d.y)}) //Observe el posicionamiento de la barra 
+    .attr('y', function(d) { return height - yScale(d.y)}) //Observe el posicionamiento de la barra
     .attr('height', function (d) { return yScale(d.y)})
     .attr('width', xScale(hist[0].dx) - 1);
 
