@@ -106,6 +106,10 @@ Este generador se puede usar junto al _pie layout_ para crear un _donut chart_.
     <div id="ejemplo-b01"></div>
 </div>
 
+<div class="ejemplo">
+    <div id="ejemplo-b01"></div>
+</div>
+
 <div class="runnable" id="code-b05">
 // Creamos el contenedor SVG
 var div = d3.select('#ejemplo-b01'),
