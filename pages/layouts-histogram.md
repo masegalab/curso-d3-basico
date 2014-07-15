@@ -102,10 +102,13 @@ bars.enter().append('g').classed('bar', true)
         return 'translate(' + xScale(d.x) + ', ' + 0 + ')'; 
     });
 
+bars.exit().remove();
+
 
 var rect = bars.selectAll('rect.bar').data(function(d) { return [d]; });
 
 rect.enter().append('rect')
+    .classed('bar',true)
     .attr('fill', 'black')
     .attr('x', 2);
 
@@ -113,6 +116,8 @@ rect.transition().duration(2000)
     .attr('y', function(d) { return height - yScale(d.y)})
     .attr('width', 36)
     .attr('height', function (d) { return yScale(d.y)});
+
+rect.exit().remove();
 
 
 </div>
