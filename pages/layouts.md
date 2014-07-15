@@ -9,4 +9,8 @@ next:
     title: Usando Datos Externos
 ---
 
-- [Usando Datos Externos]({{site.page.root}}/pages/layouts-datos-externos.html)
+- [Pie]({{site.page.root}}/pages/layouts-pie.html)
+- [Histogram]({{site.page.root}}/pages/layouts-histogram.html)
+- [Jerarquia]({{site.page.root}}/pages/layouts-jerarquia.html)
+- [Relaciones]({{site.page.root}}/pages/layouts-relaciones.html)
+    - [Usando Datos Externos]({{site.page.root}}/pages/layouts-datos-externos.html)
