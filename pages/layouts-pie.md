@@ -25,7 +25,7 @@ next:
 
 Los layout son funciones que transforman datos de una representación a otra, usualmente para que sea más fácil generar cierto tipo de gráficos. No tienen una representación visual determinada, sólo son transformaciones en los datos.
 
-Para crear un _donut chart_, necesitamos un conjunto de datos categóricos con una variable cuantitativa que representen partes de un total.
+Para crear un _donut chart_, necesitamos un conjunto de datos categóricos con una variable cuantitativa que representan partes de un total.
 
 <div class="runnable" id="code-b01">
 var desayuno = [
@@ -99,6 +99,10 @@ var arcPath = arc(arcItem);
 
 Este generador se puede usar junto al _pie layout_ para crear un _donut chart_
 
+<div class="ejemplo">
+    <div id="ejemplo-b01"></div>
+</div>
+
 <div class="runnable" id="code-b05">
 var div = d3.select('#ejemplo-b01'),
     svg = div.selectAll('svg').data([pieData]);
@@ -126,10 +130,6 @@ arcPaths.attr('d', function(d) { return arc(d); });
 arcPaths.exit().remove();
 </div>
 <script>codeBlock().editor('#code-b05').init();</script>
-
-<div class="ejemplo">
-    <div id="ejemplo-b01"></div>
-</div>
 
 ### Pie Chart Reutilizable
 
