@@ -292,5 +292,210 @@ d3.select('#ejemplo-b02')
 </div>
 <script>codeBlock().editor('#code-b07').init();</script>
 
+### Transiciones
 
+<div class="ejemplo">
+    <div class="btn-group btn-group-sm">
+        <button id="boton-p" type="button" class="btn btn-default btn-sm">Precio</button>
+        <button id="boton-c" type="button" class="btn btn-default btn-sm">Calorias</button>
+    </div>
+    <div id="ejemplo-b03"></div>
+</div>
+
+<div class="runnable" id="code-b08">
+
+d3.select('#boton-p').on('click', function() {
+
+    donut.value(function(d) { return d.precio; });
+
+    d3.select('#ejemplo-b03')
+        .data([desayuno])
+        .call(donut);
+});
+
+d3.select('#boton-c').on('click', function() {
+
+    donut.value(function(d) { return d.calorias; });
+
+    d3.select('#ejemplo-b03')
+        .data([desayuno])
+        .call(donut);
+});
+
+// Data binding y rendering
+d3.select('#ejemplo-b03')
+    .data([desayuno])
+    .call(donut);
+</div>
+<script>codeBlock().editor('#code-b08').init();</script>
+
+La transición no es suave como en otros ejemplos.
+
+<div class="runnable" id="code-b09">
+function donutChart() {
+
+    var me = {
+        width:  400,
+        height: 400,
+        outerRadius: 180,
+        innerRadius: 130,
+        value: function(d) { return d.value; },
+        color: function(d, i) { return d.color; },
+        label: function(d) { return ''; }
+    };
+
+    function chart(selection) {
+        selection.each(function(data) {
+
+            var div = d3.select(this),
+                svg = div.selectAll('svg').data([data]);
+
+            svg.enter().append('svg');
+
+            svg
+                .attr('width',  me.width)
+                .attr('height', me.height);
+
+            svg.exit().remove();
+
+            var gChart = svg.selectAll('g.chart').data([data]);
+
+            gChart.enter().append('g')
+                .classed('chart', true);
+
+            gChart.attr('transform', 'translate(' + me.width / 2 + ',' + me.height / 2 +')');
+
+            // Compute the pie Layout
+            var pieLayout = d3.layout.pie()
+                .value(me.value);
+
+            var pieData = pieLayout(data);
+
+            // Arc Generator
+            var arcGenerator = d3.svg.arc()
+                .innerRadius(me.innerRadius)
+                .outerRadius(me.outerRadius);
+
+            function arcTween(a) {
+                var i = d3.interpolate(this._current, a);
+                this._current = i(0);
+                return function(t) {
+                    return arcGenerator(i(t));
+                };
+            }
+
+            var arcPaths = gChart.selectAll('path.arco').data(pieData);
+
+            arcPaths.enter().append('path')
+                .classed('arco', true)
+                .each(function(d) { this._current = d; });
+
+            arcPaths.transition().duration(1000)
+                .attrTween('d', arcTween)
+                .attr('fill', function(d, i) { return me.color(d, i); });
+
+            arcPaths.exit().remove();
+
+            var arcLabels = gChart.selectAll('text.label').data(pieData);
+
+            arcLabels.enter().append('text')
+                .classed('label', true);
+
+            var labelR = 1.2 * me.outerRadius;
+
+            arcLabels
+                .attr('x', function(d) { return labelR * Math.cos(0.5 * (-Math.PI + d.startAngle + d.endAngle)); })
+                .attr('y', function(d) { return labelR * Math.sin(0.5 * (-Math.PI + d.startAngle + d.endAngle)); })
+                .text(function(d) { return me.label(d.data); });
+
+            arcLabels.exit().remove();
+        });
+    }
+
+    chart.innerRadius = function(value) {
+        if (!arguments.length) { return me.innerRadius; }
+        me.innerRadius = value;
+        return chart;
+    };
+
+    chart.outerRadius = function(value) {
+        if (!arguments.length) { return me.outerRadius; }
+        me.outerRadius = value;
+        return chart;
+    };
+
+    chart.width = function(value) {
+        if (!arguments.length) { return me.width; }
+        me.width = value;
+        return chart;
+    };
+
+    chart.height = function(value) {
+        if (!arguments.length) { return me.height; }
+        me.height = value;
+        return chart;
+    };
+
+    chart.value = function(valueAccessor) {
+        if (!arguments.length) { return me.value; }
+        me.value = valueAccessor;
+        return chart;
+    };
+
+    chart.color = function(color) {
+        if (!arguments.length) { return me.color; }
+        me.color = color;
+        return chart;
+    };
+
+    chart.label = function(labelAccessor) {
+        if (!arguments.length) { return me.label; }
+        me.label = labelAccessor;
+        return chart;
+    };
+
+    return chart;
+}
+</div>
+<script>codeBlock().editor('#code-b09').init();</script>
+
+<div class="ejemplo">
+    <div class="btn-group btn-group-sm">
+        <button id="boton-p4" type="button" class="btn btn-default btn-sm">Precio</button>
+        <button id="boton-c4" type="button" class="btn btn-default btn-sm">Calorias</button>
+    </div>
+    <div id="ejemplo-b04"></div>
+</div>
+
+<div class="runnable" id="code-b10">
+// Configuramos el gráfico
+var newDonut = donutChart()
+    .innerRadius(80)
+    .outerRadius(100)
+    .value(function(d) { return d.precio; })
+    .color(function(d, i) { return colorScale(i); });
+
+d3.select('#ejemplo-b04')
+    .data([desayuno])
+    .call(newDonut);
+
+d3.select('#boton-p4').on('click', function() {
+
+    newDonut.value(function(d) { return d.precio; });
+
+    d3.select('#ejemplo-b04')
+        .data([desayuno])
+        .call(newDonut);
+});
+
+d3.select('#boton-c4').on('click', function() {
+
+    newDonut.value(function(d) { return d.calorias; });
+
+    d3.select('#ejemplo-b04')
+        .data([desayuno])
+        .call(newDonut);
+});
+</div>
+<script>codeBlock().editor('#code-b10').init();</script>
 
