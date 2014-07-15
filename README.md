@@ -29,3 +29,14 @@ Para compilar el contenido del curso, se necesita Node, Grunt, Bower y Jekyll. A
 
 Esto generará el directorio `curso-d3`, que tiene el contenido para ser usado de forma estática.
 
+## Datasets
+
+- [Dolphin Social Network](http://infochimps.org/datasets/dolphin-social-network)
+   An undirected social network of frequent associations between 62 dolphins in a community living off Doubtful Sound, New Zealand. Additional information on the network can be found in:
+
+    - D. Lusseau, The emergent properties of a dolphin social network,
+    Proc. R. Soc. London B (suppl.) 270, S186-S188 (2003).
+
+    - D. Lusseau, Evidence for social role in a dolphin social network,
+    Preprint q-bio/0607048 (http://arxiv.org/abs/q-bio.PE/0607048)
+
