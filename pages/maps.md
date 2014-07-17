@@ -5,7 +5,7 @@ prev:
     url: pages/layouts-relaciones.html
     title: Redes
 next:
-    url: pages/mapas-proyecciones.html
+    url: pages/maps-proyecciones.html
     title: GeoJSON y Proyecciones
 ---
 
