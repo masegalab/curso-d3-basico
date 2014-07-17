@@ -12,11 +12,38 @@ next:
     title: Flight Routes
 ---
 
+
+<div>
+    <style>
+        .feature {
+            fill: #138c9e;
+        }
+
+        .background {
+            fill: #ccc;
+        }
+
+        .graticule {
+            fill-opacity: 0;
+            stroke: #fff;
+        }
+
+        .country {
+            fill: #0d6470;
+        }
+
+        .centered {
+            fill: #18b5cb;
+        }
+
+    </style>
+</div>
+
 El formato GeoJSON es redundante. Los vértices de dos países contiguos están escritos dos veces, y podrían no coincidir exactamente, creando artefactos en el mapa.
 
-Mike Bostock creó el formato TopoJSON, que define formas en términos de _arcos_ (fronteras) entre formas. Esto elimina redundancia y además agrega información de _topología_ de las formas, dos formas que comparten un arco son vecinas. Los archivos TopoJSON usualmente pesan menos del 10% que su contraparte GeoJSON.
+<aside>La especificación y documentación oficial de TopoJSON están disponibles en el [repositorio del proyecto](https://github.com/mbostock/topojson/wiki)</aside>
 
-https://github.com/mbostock/topojson/wiki
+Mike Bostock creó el formato TopoJSON, que define formas en términos de _arcos_ (fronteras) entre formas. Esto elimina redundancia y además agrega información de _topología_ de las formas, dos formas que comparten un arco son vecinas. Los archivos TopoJSON usualmente pesan menos del 10% que su contraparte GeoJSON. En nuestro caso, el archivo GeoJSON pesa 4.4 M, el archivo TopoJSON pesa sólo 600K.
 
 <div class="runnable" id="code-f01">
 var t = {
@@ -108,13 +135,10 @@ d3.json('/src/data/countries.topojson', function(error, data) {
 
     if (error) { console.error(error); }
 
-    // Convertir a GeoJSON
     topodata = data;
 
-    geojson = topojson.feature(data, data.objects.countries);
-
     var div = d3.select('#ejemplo-f03'),
-        svg = div.selectAll('svg').data([geojson.features]);
+        svg = div.selectAll('svg').data([data]);
 
     svg.enter().append('svg');
 
@@ -122,6 +146,10 @@ d3.json('/src/data/countries.topojson', function(error, data) {
 
     svg.exit().remove();
 
+    // Convierte los datos a GeoJSON
+    geojson = topojson.feature(data, data.objects.countries);
+
+    // Una vez convertidos los archivos, es como si hubieramos usado GeoJSON
     var pathCountries = svg.selectAll('path.country').data(geojson.features);
 
     pathCountries.enter().append('path')
@@ -132,7 +160,6 @@ d3.json('/src/data/countries.topojson', function(error, data) {
 
     pathCountries.exit().remove();
 });
-
 
 </div>
 <script>codeBlock().editor('#code-f03').init();</script>
