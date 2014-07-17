@@ -1,6 +1,15 @@
 ---
 layout: seccion
 title: Mapa Reusable
+parent:
+    url: pages/maps.html
+    title: Mapas
+prev:
+    url: pages/maps-path-generator.html
+    title: Dibujando
+next:
+    url: pages/mapas-topojson.html
+    title: TopoJSON
 ---
 
 <div>

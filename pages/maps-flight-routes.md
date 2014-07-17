@@ -1,6 +1,12 @@
 ---
 layout: seccion
 title: Flight Routes
+parent:
+    url: pages/maps.html
+    title: Mapas
+prev:
+    url: pages/maps-topojson.html
+    title: TopoJSON
 ---
 
 <div>

@@ -1,6 +1,15 @@
 ---
 layout: seccion
 title: Path Generator
+parent:
+    url: pages/maps.html
+    title: Mapas
+prev:
+    url: pages/maps-proyecciones.html
+    title: Proyecciones
+next:
+    url: pages/mapas-reusable.html
+    title: Mapa Reutilizable
 ---
 
 <div>

@@ -1,6 +1,15 @@
 ---
 layout: seccion
 title: GeoJSON y Proyecciones
+parent:
+    url: pages/maps.html
+    title: Mapas
+prev:
+    url: pages/maps.html
+    title: Mapas
+next:
+    url: pages/mapas-path-generator.html
+    title: Dibujando los Mapas
 ---
 
 <div>
