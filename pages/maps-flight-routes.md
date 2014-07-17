@@ -25,18 +25,18 @@ prev:
         }
 
         .airport {
-            fill: #ffff00;
+            fill: #31cfe6;
             fill-opacity: 0.5;
         }
 
         .route {
-            stroke: #ffff00;
+            stroke: #31cfe6;
             stroke-opacity: 0.02;
         }
     </style>
 </div>
 
-[OpenFlights](http://openflights.org/data.html)
+<aside>Datos obtenidos del proyecto open source [OpenFlights.](http://openflights.org/data.html)</aside>
 
 Vamos a usar mapas en conjunto con datos geográficos externos (no mapas) para crear una visualización de las rutas aéreas más importantes. Comenzaremos dibujando el mapa usando nuestro mapa reusable, esta vez usando el formato TopoJSON.
 
@@ -44,7 +44,7 @@ Vamos a usar mapas en conjunto con datos geográficos externos (no mapas) para c
 
 <div class="runnable" id="code-a01">
 // Creamos y configuramos el mapa reusable
-var map = geojsonMap();
+var map = geojsonMap().width(800).height(400).scale(800 / (2 * Math.PI));
 
 // Cargamos los datos en formato topojson
 d3.json('/src/data/countries.topojson', function(error, data) {
@@ -115,7 +115,7 @@ d3.csv('/src/data/airports.dat', function(error, data) {
 
 ### Graficando las Rutas
 
-El archivo [routes.dat]({{site.page.root}}/src/data/routes.dat), que tiene información de las routas aéreas en formato CSV. Cada línea del archivo contiene información del aeropuerto de orígen y de destino, pero no las coordenadas de cada aeropuerto. Para obtenerlas, necesitaremos juntar información de ambos archivos.
+El archivo [routes.dat]({{site.page.root}}/src/data/routes.dat), que tiene información de las routas aéreas en formato CSV, en total son cerca de 60,000 rutas. Cada línea del archivo contiene información del aeropuerto de orígen y de destino, pero no las coordenadas de cada aeropuerto. Para obtenerlas, necesitaremos juntar información de ambos archivos.
 
 <div class="runnable" id="code-k02">
 // Airline,AirlineId,Source,SourceId,Target,TargetId,CodeShare,Stops,Equipment
@@ -130,7 +130,8 @@ Graficaremos los países una vez más para usar este gráfico como base.
 
 <div class="runnable" id="code-b01">
 // Creamos y configuramos el mapa reusable
-var map = geojsonMap();
+var map = geojsonMap().width(800).height(400).scale(800 / (2 * Math.PI)),
+    projection = map.projection();
 
 // Cargamos los datos en formato topojson
 d3.json('/src/data/countries.topojson', function(error, data) {
@@ -167,8 +168,9 @@ d3.csv('/src/data/airports.dat', function(error, data) {
 
     if (error) { console.error(error); }
 
+    // Precalcula la proyección de las coordenadas del aeropuerto
     data.forEach(function(d) {
-        d.coords = [+d.Lon, +d.Lat];
+        d.pixels = projection([+d.Lon, +d.Lat]);
         airports[d.AirportId] = d;
     });
 
@@ -196,13 +198,15 @@ d3.csv('/src/data/routes.dat', function(error, data) {
 });
 
 function joinData() {
+    // Agrega referencias a los aeropuertos de origen y destino
     routes.forEach(function(route) {
-        route.sourceAirport = airports[route.SourceId];
-        route.targetAirport = airports[route.TargetId];
+        route.sourcePixels = airports[route.SourceId] ? airports[route.SourceId].pixels : false;
+        route.targetPixels = airports[route.TargetId] ? airports[route.TargetId].pixels : false;
     });
 
+    // Filtra las rutas, por si algún aeropuerto no fue encontrado
     routes = routes.filter(function(d) {
-        return d.sourceAirport && d.targetAirport;
+        return d.sourcePixels && d.targetPixels;
     });
 }
 
@@ -217,39 +221,13 @@ function renderLines() {
     lines.enter().append('line')
         .classed('route', true);
 
-    var projection = mapB01.projection();
-
     lines
-        .attr('x1', function(d) {
-            return projection(d.sourceAirport.coords)[0];
-        })
-        .attr('y1', function(d) {
-            return projection(d.sourceAirport.coords)[1];
-        })
-        .attr('x2', function(d) {
-            return projection(d.targetAirport.coords)[0];
-        })
-        .attr('y2', function(d) {
-            return projection(d.targetAirport.coords)[1];
-        })
-        .attr('stroke', 'blue');
+        .attr('x1', function(d) { return d.sourcePixels[0]; })
+        .attr('y1', function(d) { return d.sourcePixels[1]; })
+        .attr('x2', function(d) { return d.targetPixels[0]; })
+        .attr('y2', function(d) { return d.targetPixels[1]; });
 
     lines.exit().remove();
 }
-
 </div>
 <script>codeBlock().editor('#code-b02').init();</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
