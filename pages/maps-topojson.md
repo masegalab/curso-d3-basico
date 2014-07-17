@@ -19,7 +19,7 @@ Mike Bostock creó el formato TopoJSON, que define formas en términos de _arcos
 https://github.com/mbostock/topojson/wiki
 
 <div class="runnable" id="code-f01">
-{
+var t = {
     "type": "Topology",
     "objects": {
         "countries": {
@@ -67,7 +67,7 @@ https://github.com/mbostock/topojson/wiki
             -89.99892578124998
         ]
     }
-}
+};
 </div>
 <script>codeBlock().editor('#code-f01').init();</script>
 
