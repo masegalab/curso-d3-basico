@@ -1,8 +1,7 @@
 ---
 layout: seccion
-title: Maps Demo
+title: GeoJSON y Proyecciones
 ---
-
 
 <div>
     <style>
@@ -21,315 +20,7 @@ title: Maps Demo
     </style>
 </div>
 
-### Reusable Map
-
-<script>
-
-var width  = 600,
-    height = 600;
-
-function geojsonMap() {
-
-    var me = {
-        height: 300,
-        width:  600,
-        projection: d3.geo.equirectangular(),
-        scale: 600 / (2 * Math.PI)
-    };
-
-    function chart(selection) {
-        selection.each(function(features) {
-
-            var div = d3.select(this),
-                svg = div.selectAll('svg.geojson-map').data([features]);
-
-            svg.enter().append('svg')
-                .classed('geojson-map', true);
-
-            svg.attr('width', me.width).attr('height', me.height);
-
-            svg.exit().remove();
-
-            // Background
-            var background = svg.selectAll('rect.background').data([features]);
-
-            background.enter().append('rect')
-                .classed('background', true);
-
-            background
-                .attr('width', me.width)
-                .attr('height', me.height);
-
-            background.exit().remove();
-
-            // Configure the projection
-            me.projection
-                .translate([me.width / 2, me.height / 2])
-                .scale(me.scale);
-
-            var pathGenerator = d3.geo.path()
-                .projection(me.projection);
-
-            // Graticule
-            var graticule = d3.geo.graticule();
-
-            var graticuleLines = svg.selectAll('path.graticule').data([graticule()]);
-
-            graticuleLines.enter().append('path')
-                .classed('graticule', true);
-
-            graticuleLines
-                .attr('d', pathGenerator);
-
-            graticuleLines.exit().remove();
-
-            // Render the features
-            var pathFeatures = svg.selectAll('path.feature').data(features);
-
-            pathFeatures.enter().append('path')
-                .classed('feature', true);
-
-            pathFeatures.attr('d', pathGenerator);
-
-            pathFeatures.exit().remove();
-        });
-    }
-
-    chart.width = function(value) {
-        if (!arguments.length) { return me.width; }
-        me.width = value;
-        return chart;
-    };
-
-    chart.height = function(value) {
-        if (!arguments.length) { return me.height; }
-        me.height = value;
-        return chart;
-    };
-
-    chart.projection = function(value) {
-        if (!arguments.length) { return me.projection; }
-        me.projection = value;
-        return chart;
-    };
-
-    chart.scale = function(value) {
-        if (!arguments.length) { return me.scale; }
-        me.scale = value;
-        return chart;
-    };
-
-    return chart;
-};
-
-var map = geojsonMap();
-
-d3.json('/src/data/countries.geojson', function(error, data) {
-
-    if (error) { console.error(error); }
-
-    d3.select('#ejemplo-a01')
-        .data([data.features])
-        .call(map);
-
-
-    d3.select('#boton-m').on('click', function() {
-
-        map.projection(d3.geo.mercator());
-
-        d3.select('#ejemplo-a01')
-            .data([data.features])
-            .call(map);
-
-    });
-
-    d3.select('#boton-e').on('click', function() {
-
-        map.projection(d3.geo.equirectangular())
-            .height(300);
-
-        d3.select('#ejemplo-a01')
-            .data([data.features])
-            .call(map);
-
-    });
-
-    d3.select('#boton-o').on('click', function() {
-
-        map.projection(d3.geo.orthographic().clipAngle(90));
-
-        d3.select('#ejemplo-a01')
-            .data([data.features])
-            .call(map);
-
-    });
-
-    d3.select('#boton-c').on('click', function() {
-
-        map.projection(d3.geo.conicEquidistant())
-            .scale(0.75 * width / (2 * Math.PI));
-
-        d3.select('#ejemplo-a01')
-            .data([data.features])
-            .call(map);
-
-    });
-
-});
-</script>
-
-<div class="btn-group btn-group-sm">
-    <button id="boton-m" type="button" class="btn btn-default btn-sm">Mercator</button>
-    <button id="boton-e" type="button" class="btn btn-default btn-sm">Equirectangular</button>
-    <button id="boton-o" type="button" class="btn btn-default btn-sm">Orthographic</button>
-    <button id="boton-c" type="button" class="btn btn-default btn-sm">Conic Equidistant</button>
-</div>
-
-<div class="ejemplo">
-    <div id="ejemplo-a01"></div>
-</div>
-
-##### Aruba
-
-<div class="runnable" id="code-b01">
-var arubaFeature = {
-  "type": "Feature",
-  "properties": {
-    "scalerank": 3,
-    "featurecla": "Admin-0 country",
-    "labelrank": 5.0,
-    "sovereignt": "Netherlands",
-    "sov_a3": "NL1",
-    "adm0_dif": 1.0,
-    "level": 2.0,
-    "type": "Country",
-    "admin": "Aruba",
-    "adm0_a3": "ABW",
-    "geou_dif": 0.0,
-    "geounit": "Aruba",
-    "gu_a3": "ABW",
-    "su_dif": 0.0,
-    "subunit": "Aruba",
-    "su_a3": "ABW",
-    "brk_diff": 0.0,
-    "name": "Aruba",
-    "name_long": "Aruba",
-    "brk_a3": "ABW",
-    "brk_name": "Aruba",
-    "brk_group": null,
-    "abbrev": "Aruba",
-    "postal": "AW",
-    "formal_en": "Aruba",
-    "formal_fr": null,
-    "note_adm0": "Neth.",
-    "note_brk": null,
-    "name_sort": "Aruba",
-    "name_alt": null,
-    "mapcolor7": 4.0,
-    "mapcolor8": 2.0,
-    "mapcolor9": 2.0,
-    "mapcolor13": 9.0,
-    "pop_est": 103065.0,
-    "gdp_md_est": 2258.0,
-    "pop_year": -99.0,
-    "lastcensus": 2010.0,
-    "gdp_year": -99.0,
-    "economy": "6. Developing region",
-    "income_grp": "2. High income: nonOECD",
-    "wikipedia": -99.0,
-    "fips_10": null,
-    "iso_a2": "AW",
-    "iso_a3": "ABW",
-    "iso_n3": "533",
-    "un_a3": "533",
-    "wb_a2": "AW",
-    "wb_a3": "ABW",
-    "woe_id": -99.0,
-    "adm0_a3_is": "ABW",
-    "adm0_a3_us": "ABW",
-    "adm0_a3_un": -99.0,
-    "adm0_a3_wb": -99.0,
-    "continent": "North America",
-    "region_un": "Americas",
-    "subregion": "Caribbean",
-    "region_wb": "Latin America & Caribbean",
-    "name_len": 5.0,
-    "long_len": 5.0,
-    "abbrev_len": 5.0,
-    "tiny": 4.0,
-    "homepart": -99.0
-  },
-  "geometry": {
-    "type": "Polygon",
-    "coordinates": [
-      [
-        [
-          -69.899121093749997,
-          12.452001953124991
-        ],
-        [
-          -69.895703125,
-          12.422998046874994
-        ],
-        [
-          -69.942187499999989,
-          12.438525390624989
-        ],
-        [
-          -70.004150390625,
-          12.50048828125
-        ],
-        [
-          -70.066113281249997,
-          12.546972656249991
-        ],
-        [
-          -70.050878906249991,
-          12.597070312499994
-        ],
-        [
-          -70.035107421874997,
-          12.614111328124991
-        ],
-        [
-          -69.97314453125,
-          12.567626953125
-        ],
-        [
-          -69.911816406249997,
-          12.48046875
-        ],
-        [
-          -69.899121093749997,
-          12.452001953124991
-        ]
-      ]
-    ]
-  }
-};
-</div>
-<script>codeBlock().editor('#code-b01').init()</script>
-
-<div class="runnable" id="code-c01">
-var projection = d3.geo.equirectangular();
-
-var pathGenerator = d3.geo.path()
-    .projection(projection);
-
-var arubaPathString = pathGenerator(arubaFeature);
-</div>
-<script>codeBlock().editor('#code-c01').init();</script>
-
-
-<div class="runnable" id="code-c02">
-var arubaCoords = arubaFeature.geometry.coordinates[0][0];
-
-var arubaPixels = projection(arubaCoords);
-</div>
-<script>codeBlock().editor('#code-c02').init();</script>
-
-
-##### Bélgica
+### GeoJSON
 
 <div class="runnable" id="code-b02">
 var belgicaFeature = {
@@ -1062,149 +753,140 @@ var belgicaFeature = {
 </div>
 <script>codeBlock().editor('#code-b02').init()</script>
 
-### Madagascar
+### Proyecciones
 
-<div class="runnable" id="code-d01">
-var madagascarFeature;
-
-d3.json('/src/data/countries.geojson', function(error, data) {
-
-    if (error) { console.error(error); }
-
-    madagascarFeature = data.features.filter(function(d) {
-        return d.properties.sov_a3 === 'MDG';
-    }).pop();
-});
+<div class="runnable" id="code-b01">
+var arubaFeature = {
+  "type": "Feature",
+  "properties": {
+    "scalerank": 3,
+    "featurecla": "Admin-0 country",
+    "labelrank": 5.0,
+    "sovereignt": "Netherlands",
+    "sov_a3": "NL1",
+    "adm0_dif": 1.0,
+    "level": 2.0,
+    "type": "Country",
+    "admin": "Aruba",
+    "adm0_a3": "ABW",
+    "geou_dif": 0.0,
+    "geounit": "Aruba",
+    "gu_a3": "ABW",
+    "su_dif": 0.0,
+    "subunit": "Aruba",
+    "su_a3": "ABW",
+    "brk_diff": 0.0,
+    "name": "Aruba",
+    "name_long": "Aruba",
+    "brk_a3": "ABW",
+    "brk_name": "Aruba",
+    "brk_group": null,
+    "abbrev": "Aruba",
+    "postal": "AW",
+    "formal_en": "Aruba",
+    "formal_fr": null,
+    "note_adm0": "Neth.",
+    "note_brk": null,
+    "name_sort": "Aruba",
+    "name_alt": null,
+    "mapcolor7": 4.0,
+    "mapcolor8": 2.0,
+    "mapcolor9": 2.0,
+    "mapcolor13": 9.0,
+    "pop_est": 103065.0,
+    "gdp_md_est": 2258.0,
+    "pop_year": -99.0,
+    "lastcensus": 2010.0,
+    "gdp_year": -99.0,
+    "economy": "6. Developing region",
+    "income_grp": "2. High income: nonOECD",
+    "wikipedia": -99.0,
+    "fips_10": null,
+    "iso_a2": "AW",
+    "iso_a3": "ABW",
+    "iso_n3": "533",
+    "un_a3": "533",
+    "wb_a2": "AW",
+    "wb_a3": "ABW",
+    "woe_id": -99.0,
+    "adm0_a3_is": "ABW",
+    "adm0_a3_us": "ABW",
+    "adm0_a3_un": -99.0,
+    "adm0_a3_wb": -99.0,
+    "continent": "North America",
+    "region_un": "Americas",
+    "subregion": "Caribbean",
+    "region_wb": "Latin America & Caribbean",
+    "name_len": 5.0,
+    "long_len": 5.0,
+    "abbrev_len": 5.0,
+    "tiny": 4.0,
+    "homepart": -99.0
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -69.899121093749997,
+          12.452001953124991
+        ],
+        [
+          -69.895703125,
+          12.422998046874994
+        ],
+        [
+          -69.942187499999989,
+          12.438525390624989
+        ],
+        [
+          -70.004150390625,
+          12.50048828125
+        ],
+        [
+          -70.066113281249997,
+          12.546972656249991
+        ],
+        [
+          -70.050878906249991,
+          12.597070312499994
+        ],
+        [
+          -70.035107421874997,
+          12.614111328124991
+        ],
+        [
+          -69.97314453125,
+          12.567626953125
+        ],
+        [
+          -69.911816406249997,
+          12.48046875
+        ],
+        [
+          -69.899121093749997,
+          12.452001953124991
+        ]
+      ]
+    ]
+  }
+};
 </div>
-<script>codeBlock().editor('#code-d01').init();</script>
+<script>codeBlock().editor('#code-b01').init()</script>
 
-<div class="runnable" id="code-d02">
+<div class="runnable" id="code-c02">
+var projection = d3.geo.equirectangular();
+
+var arubaCoords = arubaFeature.geometry.coordinates[0][0];
+
+var arubaPixels = projection(arubaCoords);
+</div>
+<script>codeBlock().editor('#code-c02').init();</script>
+
+<script>
+
 var width  = 600,
-    height = 300;
-
-var projection = d3.geo.equirectangular()
-    .scale(width / (2 * Math.PI))
-    .translate([width / 2, height / 2]);
-
-var pathGenerator = d3.geo.path().projection(projection);
-
-var div = d3.select('#ejemplo-d01'),
-    svg = div.selectAll('svg').data([madagascarFeature]);
-
-svg.enter().append('svg');
-
-svg.attr('width', width).attr('height', height);
-
-svg.exit().remove();
-
-var pathMadagascar = svg.selectAll('path.mdg').data([madagascarFeature]);
-
-pathMadagascar.enter().append('path')
-    .classed('mdg', true);
-
-pathMadagascar
-    .attr('d', pathGenerator);
-
-pathMadagascar.exit().remove();
-
-</div>
-<script>codeBlock().editor('#code-d02').init();</script>
-
-
-<div class="ejemplo">
-    <div id="ejemplo-d01"></div>
-</div>
-
-#### Centrado automático
-
-<div class="runnable" id="code-d03">
-var width  = 600,
-    height = 300;
-
-var geoCentroid = d3.geo.centroid(madagascarFeature);
-
-var projection = d3.geo.equirectangular()
-    .scale(5 * width / (2 * Math.PI))
-    .translate([width / 2, height / 2])
-    .center(geoCentroid);
-
-var pathGenerator = d3.geo.path().projection(projection);
-
-var div = d3.select('#ejemplo-d02'),
-    svg = div.selectAll('svg').data([madagascarFeature]);
-
-svg.enter().append('svg');
-
-svg.attr('width', width).attr('height', height);
-
-svg.exit().remove();
-
-var pathMadagascar = svg.selectAll('path.mdg').data([madagascarFeature]);
-
-pathMadagascar.enter().append('path')
-    .classed('mdg', true);
-
-pathMadagascar
-    .attr('d', pathGenerator);
-
-pathMadagascar.exit().remove();
-
-</div>
-<script>codeBlock().editor('#code-d03').init();</script>
-
-
-<div class="ejemplo">
-    <div id="ejemplo-d02"></div>
-</div>
-
-
-#### Mapa del mundo
-
-<div class="runnable" id="code-d04">
-var width  = 600,
-    height = 300;
-
-var projection = d3.geo.equirectangular()
-    .scale(width / (2 * Math.PI))
-    .translate([width / 2, height / 2]);
-
-var pathGenerator = d3.geo.path().projection(projection);
-
-
-d3.json('/src/data/countries.geojson', function(error, data) {
-
-    var div = d3.select('#ejemplo-d03'),
-        svg = div.selectAll('svg').data([data.features]);
-
-    svg.enter().append('svg');
-
-    svg.attr('width', width).attr('height', height);
-
-    svg.exit().remove();
-
-    var pathCountries = svg.selectAll('path.country').data(data.features);
-
-    pathCountries.enter().append('path')
-        .classed('country', true);
-
-    pathCountries
-        .attr('d', pathGenerator);
-
-    pathCountries.exit().remove();
-});
-</div>
-<script>codeBlock().editor('#code-d04').init();</script>
-
-
-<div class="ejemplo">
-    <div id="ejemplo-d03"></div>
-</div>
-
-#### Mapa del mundo reusable
-
-<div class="runnable" id="code-e01">
-var width  = 600,
-    height = 300;
+    height = 600;
 
 function geojsonMap() {
 
@@ -1298,7 +980,7 @@ function geojsonMap() {
     };
 
     return chart;
-}
+};
 
 var map = geojsonMap();
 
@@ -1306,155 +988,63 @@ d3.json('/src/data/countries.geojson', function(error, data) {
 
     if (error) { console.error(error); }
 
-    d3.select('#ejemplo-e01')
+    d3.select('#ejemplo-a01')
         .data([data.features])
         .call(map);
 
 
-    d3.select('#boton-rm').on('click', function() {
+    d3.select('#boton-m').on('click', function() {
 
         map.projection(d3.geo.mercator());
 
-        d3.select('#ejemplo-e01')
+        d3.select('#ejemplo-a01')
             .data([data.features])
             .call(map);
 
     });
 
-    d3.select('#boton-re').on('click', function() {
+    d3.select('#boton-e').on('click', function() {
 
-        map.projection(d3.geo.equirectangular());
+        map.projection(d3.geo.equirectangular())
+            .height(300);
 
-        d3.select('#ejemplo-e01')
+        d3.select('#ejemplo-a01')
             .data([data.features])
             .call(map);
 
     });
 
-    d3.select('#boton-ro').on('click', function() {
+    d3.select('#boton-o').on('click', function() {
 
         map.projection(d3.geo.orthographic().clipAngle(90));
 
-        d3.select('#ejemplo-e01')
+        d3.select('#ejemplo-a01')
             .data([data.features])
             .call(map);
 
     });
 
-    d3.select('#boton-rc').on('click', function() {
+    d3.select('#boton-c').on('click', function() {
 
         map.projection(d3.geo.conicEquidistant())
             .scale(0.75 * width / (2 * Math.PI));
 
-        d3.select('#ejemplo-e01')
+        d3.select('#ejemplo-a01')
             .data([data.features])
             .call(map);
 
     });
 
 });
-</div>
-<script>codeBlock().editor('#code-e01').init();</script>
+</script>
 
 <div class="btn-group btn-group-sm">
-    <button id="boton-rm" type="button" class="btn btn-default btn-sm">Mercator</button>
-    <button id="boton-re" type="button" class="btn btn-default btn-sm">Equirectangular</button>
-    <button id="boton-ro" type="button" class="btn btn-default btn-sm">Orthographic</button>
-    <button id="boton-rc" type="button" class="btn btn-default btn-sm">Conic Equidistant</button>
+    <button id="boton-m" type="button" class="btn btn-default btn-sm">Mercator</button>
+    <button id="boton-e" type="button" class="btn btn-default btn-sm">Equirectangular</button>
+    <button id="boton-o" type="button" class="btn btn-default btn-sm">Orthographic</button>
+    <button id="boton-c" type="button" class="btn btn-default btn-sm">Conic Equidistant</button>
 </div>
 
 <div class="ejemplo">
-    <div id="ejemplo-e01"></div>
-</div>
-
-### Awesomeness moderado
-
-<div>
-    <style>
-        .centered {
-            fill: #dd0000;
-        }
-    </style>
-</div>
-
-<div class="runnable" id="code-e02">
-var width  = 600,
-    height = 300,
-    zoomScale = 2,
-    x = width / 2,
-    y = height / 2;
-
-var projection = d3.geo.equirectangular()
-    .scale(width / (2 * Math.PI))
-    .translate([width / 2, height / 2]);
-
-var pathGenerator = d3.geo.path().projection(projection);
-
-d3.json('/src/data/countries.geojson', function(error, data) {
-
-    var div = d3.select('#ejemplo-e02'),
-        svg = div.selectAll('svg').data([data.features]);
-
-    svg.enter().append('svg');
-
-    svg.attr('width', width).attr('height', height);
-
-    svg.exit().remove();
-
-    var gCountries = svg.selectAll('g.countries').data([data.features]);
-
-    gCountries.enter().append('g')
-        .classed('countries', true);
-
-    gCountries.exit().remove();
-
-    var pathCountries = gCountries.selectAll('path.country').data(data.features);
-
-    pathCountries.enter().append('path')
-        .classed('country', true);
-
-    pathCountries
-        .on('click', function(d) {
-
-            d._centered = !d._centered;
-
-            pathCountries.each(function(u) {
-                if (u !== d) { u._centered = false; }
-            });
-
-            pathCountries.classed('centered', false);
-            d3.select(this).classed('centered', d._centered);
-
-            if (d._centered) {
-
-                // Centrar y escalar
-                var centerCoords = d3.geo.centroid(d),
-                    centerPixels = projection(centerCoords);
-
-                gCountries.transition().duration(1500)
-                    .attr('transform', function() {
-                        var dx = x - zoomScale * centerPixels[0],
-                            dy = y - zoomScale * centerPixels[1];
-                        var t = 'translate(' + [dx, dy] + ')',
-                            s = 'scale(' + zoomScale + ')';
-                        return t + s;
-                    });
-
-            } else {
-                gCountries.transition().duration(1500)
-                    .attr('transform', '');
-            }
-
-        });
-
-    pathCountries
-        .attr('d', pathGenerator);
-
-    pathCountries.exit().remove();
-});
-</div>
-<script>codeBlock().editor('#code-e02').init();</script>
-
-<div class="ejemplo">
-    <div id="ejemplo-e02"></div>
+    <div id="ejemplo-a01"></div>
 </div>
