@@ -8,7 +8,7 @@ prev:
     url: pages/maps.html
     title: Mapas
 next:
-    url: pages/mapas-path-generator.html
+    url: pages/maps-path-generator.html
     title: Dibujando los Mapas
 ---
 
@@ -29,8 +29,21 @@ next:
     </style>
 </div>
 
+La manera estándar de representar un punto sobre la superficie de la tierra es mediante su longitud y latitud. Estas dos cantidades, o cooredenadas, corresponden a ángulos medidos de una manera determinada.
+
+Para dibujar un mapa, necesitamos, por un lado, obtener las coordenadas del conjunto de puntos que queremos graficar, y por otro lado, disponer de un método para traducir estas coordenadas a pixeles.
+
+Para explicar la primera tarea, hablaremos del formato ´GeoJSON´. Para la segunda, hablaremos de ´escalas´.
+
 ### GeoJSON
 
+<aside> Existen varias fuentes para obtener archivos GeoJSON. En este curso, usaremos datos de <a href="http://www.naturalearthdata.com/">Natural Earth</a>. Usar datos de distintas fuentes puede crear problemas futuros.</aside>
+
+En un archivo GeoJSON, cada país (o región según corresponda) se representa por un objeto. Este objeto tiene tipo ´Feature´, una lista de propiedades y, finalmente, información geométrica. Para graficar el país, sólo necesitamos esta última.
+
+En ´geometry´, se representa la frontera del país como un polígono, que puede tener un grado de precisión mayor o menor, según la fuente de datos. A continuación, copiamos la información corespondiente a Bélgica con una precisión media. Nótese que aunque se trata de un país pequeño, el polígono resulta largo de escribir.
+
+<aside> En estricto rigor, esta es una versión transformada de los datos originales. Este proceso está descrito en el archivo <a href="{{site.page.root}}/src/data/Makefile">MakeFile</a>.</aside>
 <div class="runnable" id="code-b02">
 var belgicaFeature = {
       "type": "Feature",
@@ -764,6 +777,10 @@ var belgicaFeature = {
 
 ### Proyecciones
 
+Las coordenadas geográficas en un archivo GeoJSON corresponden a latitud y longitud, o sea, a ángulos. Necesitamos transformar estas coordenadas a un formato que podamos usar para graficar. D3 tiene funciones de proyección que realizan esta tarea.
+
+Explicaremos este proceso para Aruba ya que el polígono que lo representa tiene pocos vértices.
+
 <div class="runnable" id="code-b01">
 var arubaFeature = {
   "type": "Feature",
@@ -883,6 +900,9 @@ var arubaFeature = {
 </div>
 <script>codeBlock().editor('#code-b01').init()</script>
 
+<aside>Para mayor información sobre proyecciones, incluyendo otros tipos de proyecciones implementadas en D3, puede consultar la <a href="https://github.com/mbostock/d3/wiki/Geo-Projections">Documentación oficial de D3</a>.</aside>
+
+Observemos como la proyección equirectangular transforma las coordenadas:
 <div class="runnable" id="code-c02">
 var projection = d3.geo.equirectangular();
 
@@ -892,6 +912,11 @@ var arubaPixels = projection(arubaCoords);
 </div>
 <script>codeBlock().editor('#code-c02').init();</script>
 
+ Si observa en la consola el valor de las variables `arubaCoords` y `arubaPixels`, verá que no coinciden. Notemos que necesitamos escalar las cantidades `arubaPixels` para poder graficarlas en un SVG de tamaño determinado (observe, por ejemplo, donde nuestra escala mapea el punto de coordenadas (0,0)). También podríamos necesitar trasladarlas para especificar el centro de nuestro mapa.
+
+ Usando la proyección, es fácil mapear los vértices del polígono que representa un país dado. Para graficar los lados del polígono, necesitamos un generador de caminos. Discutiremos esto en la próxima sección.
+
+El display siguiente permite apreciar las diferencias entre las proyecciones de Mercator, equirectangular, ortográfica y cónica-equidistante.
 <script>
 
 var width  = 600,

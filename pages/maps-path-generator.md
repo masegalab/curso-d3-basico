@@ -8,7 +8,7 @@ prev:
     url: pages/maps-proyecciones.html
     title: Proyecciones
 next:
-    url: pages/mapas-reusable.html
+    url: pages/maps-reusable.html
     title: Mapa Reutilizable
 ---
 
@@ -29,7 +29,12 @@ next:
     </style>
 </div>
 
+La función de proyección nos permite traducir las coordenadas de cualquier punto del globo a pixeles.
+Como ya habíamos anticipado, para dibujar las fronteras del mapa, necesitamos un generador de camino.
+
 ### Madagascar
+
+Esta vez, usaremos Madagascar como ejemplo. En vez de copiar nuevamente el Feature Madagascar, lo ubicaremos en el archivo (bla)GeoJSON que contiene la totalidad de los países. 
 
 <div class="runnable" id="code-d01">
 var madagascarFeature;
