@@ -20,4 +20,4 @@ countries.geojson: ne_50m_admin_0_countries.shp
 	ogr2ogr -f GeoJSON $@ ne_50m_admin_0_countries.shp
 
 countries.topojson: countries.geojson
-	topojson -o $@ -p admin -p continent countries.geojson
+	topojson -o $@ -p admin -p continent -p sov_a3 countries.geojson
