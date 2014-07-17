@@ -34,7 +34,7 @@ Como ya habíamos anticipado, para dibujar las fronteras del mapa, necesitamos u
 
 ### Madagascar
 
-Esta vez, usaremos Madagascar como ejemplo. En vez de copiar nuevamente el Feature Madagascar, lo ubicaremos en el archivo (bla)GeoJSON que contiene la totalidad de los países. 
+Esta vez, usaremos Madagascar como ejemplo. En vez de copiar nuevamente el Feature Madagascar, lo ubicaremos en el archivo [GeoJSON]({{site.page.root}}/src/data/countries.geojson) que contiene la totalidad de los países. 
 
 <div class="runnable" id="code-d01">
 var madagascarFeature;
@@ -50,6 +50,8 @@ d3.json('/src/data/countries.geojson', function(error, data) {
 </div>
 <script>codeBlock().editor('#code-d01').init();</script>
 
+Enseguida, graficamos un generador de caminos para graficar Madagascar:
+
 <div class="runnable" id="code-d02">
 var width  = 600,
     height = 300;
@@ -58,6 +60,8 @@ var projection = d3.geo.equirectangular()
     .scale(width / (2 * Math.PI))
     .translate([width / 2, height / 2]);
 
+//Generador de caminos
+//Observe pathGenerator(madagascarFeature) en la consola!
 var pathGenerator = d3.geo.path().projection(projection);
 
 var div = d3.select('#ejemplo-d01'),
@@ -86,6 +90,8 @@ pathMadagascar.exit().remove();
 <div class="ejemplo">
     <div id="ejemplo-d01"></div>
 </div>
+
+Explorando la variable `madagascarFeature` en la consola, podemos centrar el gráfico y magnificar el tamaño de Madagascar manualmente. Sin embargo, esto se puede automatizar.
 
 #### Centrado automático
 
