@@ -8,7 +8,8 @@ function scatterChart() {
         duration  = 1e3,
         x         = function(d) { return d.x; },
         y         = function(d) { return d.y; },
-        r         = function(d) { return d.z; };
+        r         = function(d) { return d.z; },
+        color     = function(d) { return d.color; };
 
     // Creación y actualización del grafico
     function chart(selection) {
@@ -72,7 +73,7 @@ function scatterChart() {
                 .attr('class', 'bubble')
                 .attr('cx', function(d) { return xScale(x(d)); })
                 .attr('cy', function(d) { return yScale(y(d)); })
-                .attr('fill', function(d) {return d.color})
+                .attr('fill', function(d) { return color(d); })
                 .attr('opacity', 0.7)
                 .attr('stroke', 'black')
                 .attr('stroke-width','1')
@@ -127,6 +128,12 @@ function scatterChart() {
     chart.r = function(value) {
         if (!arguments.length) { return r; }
         r = value;
+        return chart;
+    };
+
+    chart.color = function(value) {
+        if (!arguments.length) { return color; }
+        color = value;
         return chart;
     };
 
