@@ -12,16 +12,26 @@ prev:
 <div>
     <style>
         .feature {
-            fill: #6F3C1F;
+            fill: #777;
         }
 
         .background {
-            fill: #C7E4FF;
+            fill: #333;
         }
 
         .graticule {
             fill-opacity: 0;
-            stroke: #fff;
+            stroke-opacity: 0;
+        }
+
+        .airport {
+            fill: #ffff00;
+            fill-opacity: 0.5;
+        }
+
+        .route {
+            stroke: #ffff00;
+            stroke-opacity: 0.02;
         }
     </style>
 </div>
@@ -43,8 +53,6 @@ d3.json('/src/data/countries.geojson', function(error, data) {
     d3.select('#ejemplo-a01')
         .data([data.features])
         .call(map);
-
-    console.log(data);
 });
 
 </div>
@@ -62,28 +70,23 @@ d3.csv('/src/data/airports.dat', function(error, data) {
     var div = d3.select('#ejemplo-a01'),
         svg = div.selectAll('svg').data([data]);
 
+    var projection = map.projection();
+
     data.forEach(function(d) {
-        d.coords = [+d.Lon, +d.Lat];
+        d.pixels = projection([+d.Lon, +d.Lat]);
     });
 
-    console.log(data);
-
-    var circles = svg.selectAll('circle.airport')
-        .data(data);
+    var circles = svg.selectAll('circle.airport').data(data);
 
     circles.enter().append('circle')
         .classed('airport', true);
 
-    var projection = map.projection();
-
     circles
-        .attr('cx', function(d) {
-            return projection(d.coords)[0];
-        })
-        .attr('cy', function(d) {
-            return projection(d.coords)[1];
-        })
+        .attr('cx', function(d) { return d.pixels[0]; })
+        .attr('cy', function(d) { return d.pixels[1]; })
         .attr('r', 1);
+
+    circles.exit().remove();
 
 });
 
@@ -105,8 +108,6 @@ d3.json('/src/data/countries.geojson', function(error, data) {
     d3.select('#ejemplo-b01')
         .data([data.features])
         .call(mapB01);
-
-    console.log(data);
 });
 
 </div>
@@ -114,14 +115,6 @@ d3.json('/src/data/countries.geojson', function(error, data) {
 
 <div class="ejemplo">
     <div id="ejemplo-b01"></div>
-</div>
-
-<div>
-    <style>
-        .route {
-            stroke-opacity: 0.025;
-        }
-    </style>
 </div>
 
 <div class="runnable" id="code-b02">
