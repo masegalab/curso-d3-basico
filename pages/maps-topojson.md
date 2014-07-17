@@ -92,4 +92,53 @@ La librería TopoJSON convierte objetos en formato TopoJSON en GeoJSON, que pued
 ### Usando el formato TopoJSON
 
 
+<div class="runnable" id="code-f03">
+var width  = 600,
+    height = 300;
+
+var projection = d3.geo.equirectangular()
+    .scale(width / (2 * Math.PI))
+    .translate([width / 2, height / 2]);
+
+var pathGenerator = d3.geo.path().projection(projection);
+
+var geojson,
+    topodata;
+d3.json('/src/data/countries.topojson', function(error, data) {
+
+    if (error) { console.error(error); }
+
+    // Convertir a GeoJSON
+    topodata = data;
+
+    geojson = topojson.feature(data, data.objects.countries);
+
+    var div = d3.select('#ejemplo-f03'),
+        svg = div.selectAll('svg').data([geojson.features]);
+
+    svg.enter().append('svg');
+
+    svg.attr('width', width).attr('height', height);
+
+    svg.exit().remove();
+
+    var pathCountries = svg.selectAll('path.country').data(geojson.features);
+
+    pathCountries.enter().append('path')
+        .classed('country', true);
+
+    pathCountries
+        .attr('d', pathGenerator);
+
+    pathCountries.exit().remove();
+});
+
+
+</div>
+<script>codeBlock().editor('#code-f03').init();</script>
+
+<div class="ejemplo">
+    <div id="ejemplo-f03"></div>
+</div>
+
 
