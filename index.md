@@ -9,4 +9,5 @@ layout: curso
 - [Introducción a D3]({{site.baseurl}}/pages/introduccion-d3.html)
 - [Gráficos Reutilizables]({{site.baseurl}}/pages/graficos-reutilizables.html)
 - [Layouts]({{site.baseurl}}/pages/layouts.html)
+- [Mapas]({{site.baseurl}}/pages/maps.html)
 
